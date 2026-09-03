@@ -17,35 +17,52 @@ import {
   Film,
   PenTool,
   ArrowRight,
-  BookMarked,
   Sparkles,
   Layers,
+  Compass,
+  Heart,
+  TrendingUp,
+  UserCheck,
+  Palette,
+  BookMarked,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = React.useState(false);
-  const [genreOpen, setGenreOpen] = React.useState(false);
+  const [genreMenuOpen, setGenreMenuOpen] = React.useState(false);
 
-  const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const servicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const genreTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const handleServicesEnter = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (genreTimeoutRef.current) clearTimeout(genreTimeoutRef.current);
+    setGenreMenuOpen(false);
     setServicesMenuOpen(true);
   };
 
   const handleServicesLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
+    servicesTimeoutRef.current = setTimeout(() => {
       setServicesMenuOpen(false);
     }, 150);
   };
 
-  // EXACT SUBMENUS FROM USER'S PROVIDED CODE:
-  // Column 1: The Suite
+  const handleGenreEnter = () => {
+    if (genreTimeoutRef.current) clearTimeout(genreTimeoutRef.current);
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setServicesMenuOpen(false);
+    setGenreMenuOpen(true);
+  };
+
+  const handleGenreLeave = () => {
+    genreTimeoutRef.current = setTimeout(() => {
+      setGenreMenuOpen(false);
+    }, 150);
+  };
+
+  // Writing Services: The Suite
   const theSuiteItems = [
     {
       title: "SEO Writing",
@@ -73,7 +90,7 @@ export function Navbar() {
     },
   ];
 
-  // Column 2: Extensions
+  // Writing Services: Extensions
   const extensionsItems = [
     {
       title: "Web Copy Writing",
@@ -101,14 +118,60 @@ export function Navbar() {
     },
   ];
 
-  // Genres from user code
-  const genreItems = [
-    { title: "Fiction & Novels", href: "/genre#fiction", desc: "Contemporary, thrillers, fantasy & literary fiction" },
-    { title: "Non-Fiction & Memoir", href: "/genre#non-fiction", desc: "Personal memoirs, historical & biographical accounts" },
-    { title: "Sci-Fi & Fantasy", href: "/genre#scifi", desc: "Epic world-building & speculative fiction" },
-    { title: "Business & Self-Help", href: "/genre#business", desc: "Executive leadership, finance & motivational guides" },
-    { title: "Children's Illustrated", href: "/genre#children", desc: "Picture books, middle grade & young adult stories" },
-    { title: "Romance & Suspense", href: "/genre#romance", desc: "Captivating emotional arcs and mystery thrillers" },
+  // Genre: Fiction & Literature
+  const fictionGenres = [
+    {
+      title: "Sci-Fi & Cyberpunk",
+      subtitle: "Epic world-building, dystopian futures, and tech fiction.",
+      href: "/genre#scifi",
+      icon: Sparkles,
+    },
+    {
+      title: "Mystery & Thriller",
+      subtitle: "High-stakes suspense, detective crime, and psychological noir.",
+      href: "/genre#thriller",
+      icon: Compass,
+    },
+    {
+      title: "Romance & Drama",
+      subtitle: "Emotional character arcs, contemporary & historical love.",
+      href: "/genre#romance",
+      icon: Heart,
+    },
+    {
+      title: "Fantasy & Supernatural",
+      subtitle: "Magical realism, urban fantasy, and mythological sagas.",
+      href: "/genre#fantasy",
+      icon: BookOpen,
+    },
+  ];
+
+  // Genre: Non-Fiction & Specialty
+  const nonFictionGenres = [
+    {
+      title: "Memoir & Biography",
+      subtitle: "Personal life narratives, legacy stories, and executive biographies.",
+      href: "/genre#memoir",
+      icon: UserCheck,
+    },
+    {
+      title: "Business & Leadership",
+      subtitle: "Entrepreneurship, wealth strategy, and executive management.",
+      href: "/genre#business",
+      icon: TrendingUp,
+    },
+    {
+      title: "Self-Help & Mindset",
+      subtitle: "Personal growth, productivity, and habit transformation.",
+      href: "/genre#selfhelp",
+      icon: Compass,
+    },
+    {
+      title: "Children's Illustrated",
+      subtitle: "Full-color illustrations, picture books, and middle-grade.",
+      href: "/genre#children",
+      icon: Palette,
+    },
   ];
 
   return (
@@ -116,7 +179,7 @@ export function Navbar() {
       {/* 97%-98% Full width container with overflow-visible */}
       <div className="relative w-[97%] lg:w-[98%] max-w-[1850px] mx-auto pointer-events-auto overflow-visible">
         
-        {/* Animated Rotating Laser Border Shell (isolated with overflow-hidden so it NEVER clips mega-menus) */}
+        {/* Animated Rotating Laser Border Shell */}
         <div className="absolute inset-0 rounded-2xl p-[1.8px] overflow-hidden pointer-events-none shadow-[0_0_35px_-4px_rgba(64,190,226,0.45)]">
           {/* 360deg Rotating Laser Shine Beam */}
           <div
@@ -153,7 +216,7 @@ export function Navbar() {
             <div className="h-8 w-[1px] bg-slate-700/80 mx-1 hidden lg:block" />
           </div>
 
-          {/* 2. Middle: Navigation Links (Extracted from user's original HTML code) */}
+          {/* 2. Middle: Navigation Links */}
           <nav className="hidden lg:flex items-center justify-center flex-1 mx-2 xl:mx-5 2xl:gap-x-6 xl:gap-x-5 lg:gap-x-3.5 text-[14px] xl:text-[14.5px] 2xl:text-[15px] font-medium tracking-normal">
             {/* 1. Home */}
             <Link
@@ -173,7 +236,7 @@ export function Navbar() {
               <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#40bee2] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-full" />
             </Link>
 
-            {/* 3. Writing Services (Mega Menu with The Suite & Extensions from user code) */}
+            {/* 3. Writing Services (Full-Width Mega Menu) */}
             <div
               className="relative py-2"
               onMouseEnter={handleServicesEnter}
@@ -198,63 +261,29 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* 4. Genre (Dropdown from user code) */}
+            {/* 4. Genre (Full-Width Mega Menu) */}
             <div
               className="relative py-2"
-              onMouseEnter={() => setGenreOpen(true)}
-              onMouseLeave={() => setGenreOpen(false)}
+              onMouseEnter={handleGenreEnter}
+              onMouseLeave={handleGenreLeave}
             >
-              <Link
-                href="/genre"
+              <button
+                type="button"
                 className="flex items-center gap-1.5 text-white hover:text-[#40bee2] transition-colors cursor-pointer group"
                 aria-haspopup="true"
               >
                 <span>Genre</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    genreOpen ? "rotate-180 text-[#40bee2]" : "text-slate-300"
+                    genreMenuOpen ? "rotate-180 text-[#40bee2]" : "text-slate-300"
                   }`}
                 />
                 <span
                   className={`absolute bottom-0 left-0 w-full h-[2.5px] bg-[#40bee2] origin-left transition-transform duration-300 rounded-full ${
-                    genreOpen ? "scale-x-100" : "scale-x-0"
+                    genreMenuOpen ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
-              </Link>
-
-              {/* Genre Dropdown Menu */}
-              <AnimatePresence>
-                {genreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                    transition={{ duration: 0.18, ease: "easeOut" }}
-                    className="absolute top-full -left-16 w-80 rounded-2xl bg-[#06070a]/98 border border-[#40bee2]/35 backdrop-blur-2xl p-3.5 shadow-2xl z-50 flex flex-col gap-1.5 text-left"
-                  >
-                    <div className="flex items-center gap-2 px-3 py-1.5 border-b border-white/10">
-                      <BookMarked className="w-3.5 h-3.5 text-[#40bee2]" />
-                      <span className="text-[11px] font-bold text-[#40bee2] uppercase tracking-wider">
-                        Book Genres & Categories
-                      </span>
-                    </div>
-                    {genreItems.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.href}
-                        className="px-3 py-2 rounded-xl hover:bg-white/5 border border-transparent hover:border-[#40bee2]/20 transition-all group/genre"
-                      >
-                        <div className="text-xs font-semibold text-white group-hover/genre:text-[#40bee2] transition-colors">
-                          {item.title}
-                        </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
-                          {item.desc}
-                        </div>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              </button>
             </div>
 
             {/* 5. Marketing */}
@@ -312,7 +341,7 @@ export function Navbar() {
             </Link>
           </nav>
 
-          {/* 3. Right: Exact Cyan Call Button from user's code */}
+          {/* 3. Right: Exact Cyan Call Button */}
           <div className="flex items-center gap-3 shrink-0">
             <a
               href="tel:+18556666675"
@@ -340,7 +369,7 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* 4. Full-Width Framer Mega SaaS Dropdown populated with User's Exact Submenus */}
+        {/* 4. Full-Width Writing Services Mega Menu */}
         <AnimatePresence>
           {servicesMenuOpen && (
             <motion.div
@@ -352,10 +381,8 @@ export function Navbar() {
               onMouseLeave={handleServicesLeave}
               className="absolute top-[calc(100%+10px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto"
             >
-              {/* Main 3-Column Layout: The Suite (Col 1), Extensions (Col 2), Featured Guide (Col 3) */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                {/* Column 1: THE SUITE (4 cols - Exact Submenus from User's Code) */}
+                {/* Column 1: THE SUITE */}
                 <div className="lg:col-span-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Sparkles className="w-3.5 h-3.5 text-[#40bee2]" />
@@ -389,7 +416,7 @@ export function Navbar() {
                   </div>
                 </div>
 
-                {/* Column 2: EXTENSIONS (4 cols - Exact Submenus from User's Code) */}
+                {/* Column 2: EXTENSIONS */}
                 <div className="lg:col-span-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Layers className="w-3.5 h-3.5 text-[#40bee2]" />
@@ -423,11 +450,10 @@ export function Navbar() {
                   </div>
                 </div>
 
-                {/* Column 3: FEATURED GUIDE CARD (4 cols) */}
+                {/* Column 3: FEATURED GUIDE */}
                 <div className="lg:col-span-4 h-full">
                   <div className="h-full rounded-2xl bg-[#0c0d12] border border-white/[0.08] p-5 flex flex-col justify-between hover:border-[#40bee2]/40 transition-colors group/guide">
                     <div>
-                      {/* Glowing 3D Wireframe Wave Image */}
                       <div className="relative w-full h-[130px] rounded-xl overflow-hidden mb-4 bg-black border border-white/5">
                         <Image
                           src="/mega-featured-wave.png"
@@ -461,7 +487,7 @@ export function Navbar() {
                 </div>
               </div>
 
-              {/* Bottom Footer Bar matching Framer SaaS navigation screenshot */}
+              {/* Bottom Footer Row */}
               <div className="border-t border-white/[0.08] mt-8 pt-5 px-1 flex items-center justify-between text-[13px]">
                 <div className="flex items-center gap-6 text-slate-400">
                   <Link href="/portfolio" className="hover:text-white transition-colors">
@@ -481,6 +507,150 @@ export function Navbar() {
                 >
                   <span>Talk to an expert</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/sales:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 5. Full-Width Genre Mega Menu */}
+        <AnimatePresence>
+          {genreMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 12, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.99 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onMouseEnter={handleGenreEnter}
+              onMouseLeave={handleGenreLeave}
+              className="absolute top-[calc(100%+10px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Column 1: FICTION & NOVELS */}
+                <div className="lg:col-span-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <BookMarked className="w-3.5 h-3.5 text-[#40bee2]" />
+                    <span className="text-[11px] font-bold tracking-[0.18em] text-[#40bee2] uppercase block">
+                      FICTION & NOVELS
+                    </span>
+                  </div>
+                  <div className="space-y-2">
+                    {fictionGenres.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.title}
+                          href={item.href}
+                          className="group flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-[#40bee2]/30 transition-all"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center shrink-0 text-slate-400 group-hover:text-[#40bee2] group-hover:border-[#40bee2]/40 transition-colors">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-[14px] font-semibold text-white group-hover:text-[#40bee2] transition-colors leading-snug">
+                              {item.title}
+                            </div>
+                            <p className="text-[12px] text-slate-400 mt-0.5 leading-relaxed">
+                              {item.subtitle}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Column 2: NON-FICTION & SPECIALTY */}
+                <div className="lg:col-span-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Layers className="w-3.5 h-3.5 text-[#40bee2]" />
+                    <span className="text-[11px] font-bold tracking-[0.18em] text-[#40bee2] uppercase block">
+                      NON-FICTION & SPECIALTY
+                    </span>
+                  </div>
+                  <div className="space-y-2">
+                    {nonFictionGenres.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.title}
+                          href={item.href}
+                          className="group flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.06] hover:border-[#40bee2]/30 transition-all"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center shrink-0 text-slate-400 group-hover:text-[#40bee2] group-hover:border-[#40bee2]/40 transition-colors">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-[14px] font-semibold text-white group-hover:text-[#40bee2] transition-colors leading-snug">
+                              {item.title}
+                            </div>
+                            <p className="text-[12px] text-slate-400 mt-0.5 leading-relaxed">
+                              {item.subtitle}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Column 3: FEATURED GENRE SPOTLIGHT */}
+                <div className="lg:col-span-4 h-full">
+                  <div className="h-full rounded-2xl bg-[#0c0d12] border border-white/[0.08] p-5 flex flex-col justify-between hover:border-[#40bee2]/40 transition-colors group/genreSpot">
+                    <div>
+                      <div className="relative w-full h-[130px] rounded-xl overflow-hidden mb-4 bg-black border border-white/5">
+                        <Image
+                          src="/mega-featured-wave.png"
+                          alt="The Genre Publishing Strategy Blueprint"
+                          fill
+                          className="object-cover group-hover/genreSpot:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+
+                      <span className="text-[10px] font-bold tracking-[0.16em] text-slate-400 uppercase block mb-1.5">
+                        GENRE SPOTLIGHT
+                      </span>
+
+                      <h4 className="text-[15px] font-bold text-white leading-snug group-hover/genreSpot:text-[#40bee2] transition-colors mb-1.5">
+                        Cross-Genre Publishing & Category Dominance
+                      </h4>
+
+                      <p className="text-[12px] text-slate-400 leading-relaxed">
+                        Learn how bestselling authors strategically position fiction and non-fiction across global retailer categories.
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/genre"
+                      className="mt-4 text-[13px] font-semibold text-white hover:text-[#40bee2] flex items-center gap-1.5 transition-colors"
+                    >
+                      <span>Explore genre catalog</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/genreSpot:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Footer Row */}
+              <div className="border-t border-white/[0.08] mt-8 pt-5 px-1 flex items-center justify-between text-[13px]">
+                <div className="flex items-center gap-6 text-slate-400">
+                  <Link href="/genre" className="hover:text-white transition-colors">
+                    All Categories
+                  </Link>
+                  <Link href="/book-cover-design" className="hover:text-white transition-colors">
+                    Custom Artwork
+                  </Link>
+                  <Link href="/portfolio" className="hover:text-white transition-colors">
+                    Success Stories
+                  </Link>
+                </div>
+
+                <Link
+                  href="/contact-us"
+                  className="font-semibold text-white hover:text-[#40bee2] flex items-center gap-1.5 transition-colors group/genreSales"
+                >
+                  <span>Consult a genre specialist</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/genreSales:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>
@@ -523,28 +693,11 @@ export function Navbar() {
                 About
               </Link>
 
-              {/* Mobile Writing Services - The Suite */}
+              {/* Mobile Writing Services */}
               <div className="border-t border-slate-800 pt-2.5">
-                <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">The Suite</span>
+                <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">Writing Services</span>
                 <div className="grid grid-cols-2 gap-2 mt-2 pl-2">
-                  {theSuiteItems.map((item) => (
-                    <Link
-                      key={item.title}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-300 hover:text-[#40bee2] py-1"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile Writing Services - Extensions */}
-              <div className="border-t border-slate-800 pt-2.5">
-                <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">Extensions</span>
-                <div className="grid grid-cols-2 gap-2 mt-2 pl-2">
-                  {extensionsItems.map((item) => (
+                  {[...theSuiteItems, ...extensionsItems].map((item) => (
                     <Link
                       key={item.title}
                       href={item.href}
@@ -561,7 +714,7 @@ export function Navbar() {
               <div className="border-t border-slate-800 pt-2.5">
                 <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">Genre</span>
                 <div className="grid grid-cols-2 gap-2 mt-2 pl-2">
-                  {genreItems.map((item) => (
+                  {[...fictionGenres, ...nonFictionGenres].map((item) => (
                     <Link
                       key={item.title}
                       href={item.href}

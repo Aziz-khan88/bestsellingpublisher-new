@@ -13,26 +13,25 @@ import {
 
 export function Footer() {
   return (
-    <footer className="relative bg-black text-slate-300 pt-24 sm:pt-28 pb-14 min-h-[600px] overflow-hidden font-sans border-t border-white/5">
-      {/* Background Graphic: Antique Leather Book, Inkwell & Feather Quill (Spans Full Height on the Right) */}
-      <div className="absolute right-0 top-0 bottom-0 w-full sm:w-[500px] lg:w-[620px] xl:w-[700px] pointer-events-none select-none z-0 overflow-hidden">
+    <footer className="relative bg-black text-slate-300 pt-28 sm:pt-32 lg:pt-36 pb-14 min-h-[680px] lg:min-h-[720px] overflow-hidden font-sans border-t border-white/5">
+      {/* Background Graphic: Antique Leather Book, Inkwell & Feather Quill (Flush with the Right Edge, Leaning Right) */}
+      <div className="absolute right-0 top-0 bottom-0 w-full sm:w-[480px] lg:w-[600px] xl:w-[680px] pointer-events-none select-none z-0 overflow-hidden">
         <div className="relative w-full h-full">
           <Image
             src="/footer-quill-bg.jpg"
             alt="Vintage Book with Quill in Inkwell"
             fill
             priority
-            className="object-contain object-right opacity-65"
+            className="object-contain object-right-bottom opacity-75"
           />
-          {/* Smooth gradient blends to melt into solid black on the left and bottom */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+          {/* Subtle gradient to dissolve into solid black on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-80" />
         </div>
       </div>
 
       {/* 97%-98% Responsive Shell matching design specifications */}
       <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto">
-        {/* Main 5-Column Row with Exact Proportions and Generous Spacing */}
+        {/* Main 5-Column Row with Exact Proportions and Generous Vertical Padding */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-16">
           
           {/* Column 1: Brand Logo, Narrative Summary & Social Channels (28% Width) */}
@@ -101,7 +100,7 @@ export function Footer() {
                 className="w-9 h-9 rounded-full border border-slate-700/80 bg-black hover:border-[#40bee2] hover:text-[#40bee2] text-slate-300 flex items-center justify-center transition-all text-sm shadow-sm hover:shadow-[0_0_12px_rgba(64,190,226,0.4)] active:scale-95"
                 aria-label="TikTok"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
                 </svg>
               </a>
@@ -329,35 +328,41 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Central Animated Book Divider across the entire footer */}
-        <div className="relative w-full flex items-center justify-center my-8">
-          {/* Left glowing animated line with pulse dot */}
-          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#40bee2]/50 to-[#40bee2] relative">
-            <span className="absolute -left-1 -top-[3px] w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_10px_#40bee2] animate-pulse" />
+        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Center Book Icon */}
+        <div className="relative w-full flex items-center justify-between my-8">
+          {/* Left Line Segment with Outer and Inner Cyan Dots */}
+          <div className="flex-1 flex items-center">
+            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
+            <div className="flex-1 h-[1.5px] bg-[#00A3E0]/85" />
+            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
           </div>
 
           {/* Center Book Icon */}
-          <div className="px-6 bg-black flex items-center justify-center">
-            <div className="relative w-14 h-9">
+          <div className="px-5 sm:px-6 flex items-center justify-center shrink-0">
+            <div className="relative w-11 h-7 sm:w-12 sm:h-8">
               <Image
                 src="/footer-center-book.png"
-                alt="Center book icon divider"
+                alt="Center Book Icon"
                 fill
                 className="object-contain"
               />
             </div>
           </div>
 
-          {/* Right glowing animated line with pulse dot */}
-          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-[#40bee2]/50 to-[#40bee2] relative">
-            <span className="absolute -right-1 -top-[3px] w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_10px_#40bee2] animate-pulse" />
+          {/* Right Line Segment with Inner and Outer Cyan Dots */}
+          <div className="flex-1 flex items-center">
+            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
+            <div className="flex-1 h-[1.5px] bg-[#00A3E0]/85" />
+            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
           </div>
         </div>
 
-        {/* Copyright matching screenshot */}
-        <div className="text-center pt-3 text-xs sm:text-[13px] text-slate-400 font-medium">
+        {/* Copyright Line matching reference image */}
+        <div className="text-center pt-2 text-[13.5px] sm:text-[14px] text-white font-normal tracking-normal">
           © 2026 - All Rights Reserved{" "}
-          <span className="text-[#40bee2] font-semibold">Infiniti Media INC</span>
+          <span className="text-[#00A3E0] font-normal hover:underline cursor-pointer">
+            Infiniti Media INC
+          </span>
         </div>
       </div>
     </footer>
