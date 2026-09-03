@@ -13,27 +13,32 @@ import {
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#000000] text-slate-300 pt-20 pb-10 overflow-hidden font-sans border-t border-white/5">
-      {/* Background Graphic: Antique Leather Book with Inkwell and Feather Quill (Positioned on the right side) */}
-      <div className="absolute right-0 bottom-14 w-[360px] sm:w-[440px] h-[380px] pointer-events-none opacity-40 mix-blend-screen select-none z-0">
-        <Image
-          src="/footer-quill-bg.jpg"
-          alt="Vintage Book and Inkwell"
-          fill
-          className="object-contain object-right-bottom"
-        />
+    <footer className="relative bg-black text-slate-300 pt-20 pb-10 overflow-hidden font-sans border-t border-white/5">
+      {/* Background Graphic: Antique Leather Book, Glass Inkwell & Black Feather Quill (Positioned on the Right Side) */}
+      <div className="absolute right-0 top-0 bottom-16 w-[360px] sm:w-[460px] lg:w-[520px] pointer-events-none select-none z-0 overflow-hidden">
+        <div className="relative w-full h-full">
+          <Image
+            src="/footer-quill-bg.jpg"
+            alt="Vintage Book with Quill in Inkwell"
+            fill
+            priority
+            className="object-cover object-right-bottom opacity-50"
+          />
+          {/* Smooth gradient masks to blend seamlessly into pure black on the left and bottom */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+        </div>
       </div>
 
-      {/* 97%-98% Container matching user specification */}
+      {/* 97%-98% Responsive Shell matching design specifications */}
       <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto">
-        {/* Main 5-Column Grid Matching Screenshot Exactly */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-3 pb-12 items-stretch">
+        {/* Main 5-Column Row with Exact Proportional Column Widths */}
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-0 pb-12">
           
-          {/* Column 1: Brand Logo, Bio & 7 Social Icons (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col justify-between pr-2">
+          {/* Column 1: Brand Logo, Narrative Summary & Social Channels (28% Width) */}
+          <div className="w-full lg:w-[28%] lg:pr-6 flex flex-col justify-between">
             <div>
-              {/* Exact Brand Logo matching navbar */}
-              <Link href="/" className="inline-block select-none mb-2">
+              <Link href="/" className="inline-block select-none mb-3">
                 <div className="relative w-[210px] sm:w-[235px] h-[48px] sm:h-[54px]">
                   <Image
                     src="/logo.png"
@@ -44,14 +49,13 @@ export function Footer() {
                 </div>
               </Link>
 
-              {/* Bio description word-for-word from screenshot */}
               <p className="text-xs sm:text-[13px] text-slate-400 leading-relaxed max-w-sm mt-3">
                 Best Selling Publisher supports authors with editing, design, formatting, publishing setup, 
                 and marketing services selected in an approved project scope.
               </p>
             </div>
 
-            {/* 7 Social Icons matching screenshot */}
+            {/* 7 Social Media Ring Icons */}
             <div className="mt-8 flex items-center gap-2.5 flex-wrap">
               {/* Facebook */}
               <a
@@ -125,20 +129,19 @@ export function Footer() {
           </div>
 
           {/* Animated Vertical Divider 1 with glowing cyan top dot */}
-          <div className="hidden lg:flex flex-col items-center h-full py-1">
+          <div className="hidden lg:flex flex-col items-center self-stretch mx-4">
             <div className="w-[1px] h-full bg-gradient-to-b from-[#40bee2]/90 via-slate-800/80 to-transparent relative">
               <span className="absolute -top-1 -left-[3px] w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_12px_#40bee2] animate-pulse" />
             </div>
           </div>
 
-          {/* Column 2: QUICK LINKS (1.8 cols) with Animated Underline */}
-          <div className="lg:col-span-2">
+          {/* Column 2: QUICK LINKS (13% Width - Compact) */}
+          <div className="w-full lg:w-[13%]">
             <div className="mb-5">
               <h4 className="text-[13px] sm:text-[14px] font-bold uppercase tracking-wider text-white">
                 QUICK LINKS
               </h4>
-              {/* Animated Glowing Accent Border under title */}
-              <div className="h-[2px] w-14 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
+              <div className="h-[2px] w-12 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
                 <div className="absolute inset-0 bg-white/40 animate-pulse" />
               </div>
             </div>
@@ -165,20 +168,19 @@ export function Footer() {
           </div>
 
           {/* Animated Vertical Divider 2 with glowing cyan top dot */}
-          <div className="hidden lg:flex flex-col items-center h-full py-1">
+          <div className="hidden lg:flex flex-col items-center self-stretch mx-4">
             <div className="w-[1px] h-full bg-gradient-to-b from-[#40bee2]/90 via-slate-800/80 to-transparent relative">
               <span className="absolute -top-1 -left-[3px] w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_12px_#40bee2] animate-pulse" />
             </div>
           </div>
 
-          {/* Column 3: OUR SERVICES (2.2 cols) with Animated Underline */}
-          <div className="lg:col-span-2">
+          {/* Column 3: OUR SERVICES (17% Width - Compact) */}
+          <div className="w-full lg:w-[17%]">
             <div className="mb-5">
               <h4 className="text-[13px] sm:text-[14px] font-bold uppercase tracking-wider text-white">
                 OUR SERVICES
               </h4>
-              {/* Animated Glowing Accent Border under title */}
-              <div className="h-[2px] w-16 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
+              <div className="h-[2px] w-14 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
                 <div className="absolute inset-0 bg-white/40 animate-pulse" />
               </div>
             </div>
@@ -207,20 +209,19 @@ export function Footer() {
           </div>
 
           {/* Animated Vertical Divider 3 with glowing cyan top dot */}
-          <div className="hidden lg:flex flex-col items-center h-full py-1">
+          <div className="hidden lg:flex flex-col items-center self-stretch mx-4">
             <div className="w-[1px] h-full bg-gradient-to-b from-[#40bee2]/90 via-slate-800/80 to-transparent relative">
               <span className="absolute -top-1 -left-[3px] w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_12px_#40bee2] animate-pulse" />
             </div>
           </div>
 
-          {/* Column 4: CONTACT US (2.6 cols) with Animated Underline */}
-          <div className="lg:col-span-2">
+          {/* Column 4: CONTACT US (18% Width - Compact) */}
+          <div className="w-full lg:w-[18%]">
             <div className="mb-5">
               <h4 className="text-[13px] sm:text-[14px] font-bold uppercase tracking-wider text-white">
                 CONTACT US
               </h4>
-              {/* Animated Glowing Accent Border under title */}
-              <div className="h-[2px] w-14 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
+              <div className="h-[2px] w-12 bg-gradient-to-r from-[#40bee2] via-[#40bee2]/60 to-transparent rounded-full mt-1.5 relative overflow-hidden">
                 <div className="absolute inset-0 bg-white/40 animate-pulse" />
               </div>
             </div>
@@ -270,12 +271,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 5: DMCA & Payment Cards Interactive Box + Script Slogan (Built in Code) */}
-          <div className="lg:col-span-3 flex flex-col justify-between items-start lg:items-end z-10">
-            {/* Interactive DMCA & Payment Card (Built in Code) */}
-            <div className="rounded-2xl border border-white/15 bg-[#0a0d14]/70 backdrop-blur-md p-3.5 sm:p-4 flex flex-col gap-3 w-fit shadow-[0_8px_30px_rgba(0,0,0,0.7)] hover:border-[#40bee2]/40 transition-all cursor-pointer group">
-              {/* DMCA Badge */}
-              <div className="border border-amber-400/90 rounded-[5px] overflow-hidden flex items-center h-[34px] shadow-sm bg-black">
+          {/* Column 5: DMCA & Payment Cards Box + Calligraphy Slogan (24% Width) */}
+          <div className="w-full lg:w-[24%] flex flex-col items-start lg:items-start pl-0 lg:pl-4 z-10">
+            {/* Interactive DMCA & Payment Cards Card */}
+            <div className="relative rounded-2xl border border-white/20 bg-black/50 backdrop-blur-md p-3.5 sm:p-4 shadow-xl hover:border-[#40bee2]/50 transition-all cursor-pointer group select-none">
+              {/* DMCA Badge Header */}
+              <div className="border border-amber-400/90 rounded-[5px] overflow-hidden flex items-center h-[34px] shadow-sm bg-black mb-3">
                 <div className="bg-gradient-to-r from-lime-600 via-green-600 to-green-500 h-full px-3 flex items-center justify-center text-white font-extrabold text-[12px] tracking-wider shadow-inner">
                   DMCA
                 </div>
@@ -284,8 +285,8 @@ export function Footer() {
                 </div>
               </div>
 
-              {/* Payment Logos Row (MasterCard, VISA, American Express, Discover) */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* 4 Payment Cards Row */}
+              <div className="flex items-center gap-2">
                 {/* MasterCard */}
                 <div className="w-11 h-7 rounded bg-[#0a1b3a] border border-white/10 flex items-center justify-center overflow-hidden p-0.5 shadow-sm">
                   <div className="flex items-center -space-x-2">
@@ -314,18 +315,21 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Cursive Slogan: "Your Story. Our Expertise." with Cyan Curved Underline */}
-            <div className="mt-8 lg:mt-12 text-left lg:text-right select-none">
-              <div className="text-2xl sm:text-3xl font-serif italic tracking-wide">
-                <span className="text-[#40bee2] block">Your Story.</span>
-                <span className="text-white block mt-0.5">Our Expertise.</span>
+            {/* Cursive Slogan: "Your Story. Our Expertise." directly below the badge card */}
+            <div className="mt-8 select-none">
+              <div className="relative w-[150px] h-[80px]">
+                <Image
+                  src="/footer-slogan.png"
+                  alt="Your Story. Our Expertise."
+                  fill
+                  className="object-contain object-left"
+                />
               </div>
-              <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-[#40bee2] to-[#40bee2] rounded-full mt-2 ml-auto hidden lg:block" />
             </div>
           </div>
         </div>
 
-        {/* Central Animated Book Divider matching screenshot */}
+        {/* Central Animated Book Divider across the entire footer */}
         <div className="relative w-full flex items-center justify-center my-6">
           {/* Left glowing animated line with pulse dot */}
           <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-[#40bee2]/50 to-[#40bee2] relative">
