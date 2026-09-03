@@ -426,7 +426,7 @@ export function Footer() {
         </div>
 
         {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Exact Center Book Vector */}
-        <div className="relative w-full flex items-center justify-between my-5">
+        <div className="relative w-full flex items-center justify-between mt-5 mb-0 pb-0">
           {/* Left Line Segment with Outer and Inner Cyan Dots */}
           <div className="flex-1 flex items-center">
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
@@ -447,8 +447,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright Line with minimal, balanced bottom padding */}
-        <div className="text-center pt-1 pb-1 text-[15px] sm:text-[16px] md:text-[16.5px] text-white font-normal tracking-wide">
+        {/* Copyright Line with zero extra top/bottom margin or padding */}
+        <div className="text-center pt-0 pb-0 text-[15px] sm:text-[16px] md:text-[16.5px] text-white font-normal tracking-wide">
           © 2026 - All Rights Reserved{" "}
           <span className="text-[#00A3E0] font-normal hover:underline cursor-pointer">
             Infiniti Media INC
