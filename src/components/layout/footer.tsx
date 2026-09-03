@@ -28,8 +28,8 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Main Responsive Shell matching design specifications */}
-      <div className="relative z-10 w-[95%] lg:w-[94%] max-w-[1720px] mx-auto">
+      {/* Main Responsive Shell matching Header width exactly */}
+      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto">
         {/* Main 5-Column Row with Exact Baseline Top-Alignment */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-16">
           
@@ -47,7 +47,7 @@ export function Footer() {
                 </div>
               </Link>
 
-              <p className="text-[13px] sm:text-[13.5px] text-slate-300 leading-relaxed max-w-sm mt-3 font-normal">
+              <p className="text-[13.5px] sm:text-[14px] text-slate-300 leading-relaxed max-w-sm mt-3 font-normal">
                 Best Selling Publisher supports authors with editing, design, formatting, publishing setup, 
                 and marketing services selected in an approved project scope.
               </p>
@@ -314,18 +314,18 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Center Book Icon */}
-        <div className="relative w-full flex items-center justify-between my-6">
+        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Prominent Center Book Icon */}
+        <div className="relative w-full flex items-center justify-between my-8">
           {/* Left Line Segment with Outer and Inner Cyan Dots */}
           <div className="flex-1 flex items-center">
-            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
-            <div className="flex-1 h-[1.5px] bg-[#00A3E0]/85" />
-            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
+            <div className="flex-1 h-[2px] bg-[#00A3E0]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
 
-          {/* Center Book Icon */}
-          <div className="px-5 sm:px-6 flex items-center justify-center shrink-0">
-            <div className="relative w-11 h-7 sm:w-12 sm:h-8">
+          {/* Center Book Icon (Substantial, Prominent Size Matching Reference) */}
+          <div className="px-5 sm:px-7 flex items-center justify-center shrink-0">
+            <div className="relative w-14 h-10 sm:w-18 sm:h-12 md:w-20 md:h-14">
               <Image
                 src="/footer-center-book.png"
                 alt="Center Book Icon"
@@ -337,14 +337,14 @@ export function Footer() {
 
           {/* Right Line Segment with Inner and Outer Cyan Dots */}
           <div className="flex-1 flex items-center">
-            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
-            <div className="flex-1 h-[1.5px] bg-[#00A3E0]/85" />
-            <span className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0] shrink-0" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
+            <div className="flex-1 h-[2px] bg-[#00A3E0]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
         </div>
 
-        {/* Copyright Line matching reference image */}
-        <div className="text-center pt-2 text-[13.5px] sm:text-[14px] text-white font-normal tracking-normal">
+        {/* Copyright Line (Large, Clear, Prominent Typography Matching Reference) */}
+        <div className="text-center pt-3 text-[15px] sm:text-[16px] md:text-[16.5px] text-white font-normal tracking-wide">
           © 2026 - All Rights Reserved{" "}
           <span className="text-[#00A3E0] font-normal hover:underline cursor-pointer">
             Infiniti Media INC
