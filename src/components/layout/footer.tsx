@@ -3,7 +3,6 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -15,6 +14,88 @@ import {
   FaPhone,
 } from "react-icons/fa6";
 
+// Exact Vector Open Book SVG matching reference icon media_1788461810204.png
+function CyanBookIcon({ className = "w-6 h-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 96 70"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${className} shrink-0 drop-shadow-[0_0_8px_rgba(0,163,224,0.9)]`}
+    >
+      {/* Center Spine Line */}
+      <path
+        d="M48 24V52"
+        stroke="#00A3E0"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+
+      {/* Left Inner Page */}
+      <path
+        d="M48 24C41 19 35 15 29 14V42C35 44 41 48 48 52"
+        stroke="#00A3E0"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Right Inner Page */}
+      <path
+        d="M48 24C55 19 61 15 67 14V42C61 44 55 48 48 52"
+        stroke="#00A3E0"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Left Middle Page Layer */}
+      <path
+        d="M29 22H23V46C31 48 39 50 48 52"
+        stroke="#00A3E0"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Right Middle Page Layer */}
+      <path
+        d="M67 22H73V46C65 48 57 50 48 52"
+        stroke="#00A3E0"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Left Outer Cover Layer */}
+      <path
+        d="M23 27H18V50C27 52 37 53 48 54"
+        stroke="#00A3E0"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Right Outer Cover Layer */}
+      <path
+        d="M73 27H78V50C69 52 59 53 48 54"
+        stroke="#00A3E0"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Bottom Center V Notch */}
+      <path
+        d="M48 53L46 56L48 57L50 56L48 53Z"
+        fill="#00A3E0"
+        stroke="#00A3E0"
+        strokeWidth="1"
+      />
+    </svg>
+  );
+}
+
 // Glowing Cyan Line with Center Flare Dot for Column Headers
 function TitleUnderline() {
   return (
@@ -24,21 +105,9 @@ function TitleUnderline() {
   );
 }
 
-// Clean Vector Open Book for the Bottom Center Divider
-function CenterBookDividerIcon({ className = "w-12 h-8" }: { className?: string }) {
-  return (
-    <div className="relative flex items-center justify-center">
-      <BookOpen
-        className={`${className} text-[#00A3E0] drop-shadow-[0_0_10px_rgba(0,163,224,0.9)]`}
-        strokeWidth={1.75}
-      />
-    </div>
-  );
-}
-
 export function Footer() {
   return (
-    <footer className="relative bg-black text-slate-200 pt-24 sm:pt-28 pb-12 overflow-hidden font-sans border-t border-white/5">
+    <footer className="relative bg-black text-slate-200 pt-24 sm:pt-28 pb-4 sm:pb-5 overflow-hidden font-sans border-t border-white/5">
       {/* Background Graphic: Antique Leather Book, Inkwell & Feather Quill (Right Edge) */}
       <div className="absolute right-0 top-0 bottom-0 w-full sm:w-[460px] lg:w-[580px] xl:w-[650px] pointer-events-none select-none z-0 overflow-hidden">
         <div className="relative w-full h-full">
@@ -57,7 +126,7 @@ export function Footer() {
       {/* Main Responsive Shell matching Header width exactly */}
       <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto">
         {/* Main 5-Column Row with Exact Baseline Top-Alignment */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-16">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-12 sm:pb-14">
           
           {/* Column 1: Brand Logo, Narrative Summary & Social Channels (28% Width) */}
           <div className="w-full lg:w-[27%] lg:pr-4 flex flex-col justify-between">
@@ -190,7 +259,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3: OUR SERVICES (Crisp Cyan BookOpen Icon + Generous Spacing) */}
+          {/* Column 3: OUR SERVICES (Exact Cyan Open Book Icon + Generous Spacing) */}
           <div className="w-full lg:w-[18%]">
             <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
               OUR SERVICES
@@ -212,7 +281,7 @@ export function Footer() {
                     href={svc.href}
                     className="flex items-center gap-3 hover:text-[#00A3E0] transition-colors group"
                   >
-                    <BookOpen className="w-4 h-4 text-[#00A3E0] shrink-0" />
+                    <CyanBookIcon className="w-5 h-4 text-[#00A3E0]" />
                     <span>{svc.name}</span>
                   </Link>
                 </li>
@@ -343,8 +412,8 @@ export function Footer() {
             </div>
 
             {/* Cursive Calligraphy Slogan: "Your Story. Our Expertise." */}
-            <div className="mt-7 select-none">
-              <div className="relative w-[175px] h-[90px]">
+            <div className="mt-6 select-none">
+              <div className="relative w-[185px] h-[95px]">
                 <Image
                   src="/footer-slogan.png"
                   alt="Your Story. Our Expertise."
@@ -356,8 +425,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Clean Open Book Vector */}
-        <div className="relative w-full flex items-center justify-between my-8">
+        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Exact Center Book Vector */}
+        <div className="relative w-full flex items-center justify-between my-5">
           {/* Left Line Segment with Outer and Inner Cyan Dots */}
           <div className="flex-1 flex items-center">
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
@@ -365,9 +434,9 @@ export function Footer() {
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
 
-          {/* Center Book Icon (Clean, Professional Vector Open Book Icon) */}
+          {/* Center Book Icon (Exact Glowing Multi-Layered Cyan Open Book from Reference) */}
           <div className="px-5 sm:px-7 flex items-center justify-center shrink-0">
-            <CenterBookDividerIcon className="w-12 h-9 sm:w-14 sm:h-10 md:w-16 md:h-11" />
+            <CyanBookIcon className="w-12 h-9 sm:w-14 sm:h-10 md:w-16 md:h-12" />
           </div>
 
           {/* Right Line Segment with Inner and Outer Cyan Dots */}
@@ -378,8 +447,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright Line (Large, Clear, Prominent Typography Matching Reference) */}
-        <div className="text-center pt-3 text-[15px] sm:text-[16px] md:text-[16.5px] text-white font-normal tracking-wide">
+        {/* Copyright Line with minimal, balanced bottom padding */}
+        <div className="text-center pt-1 pb-1 text-[15px] sm:text-[16px] md:text-[16.5px] text-white font-normal tracking-wide">
           © 2026 - All Rights Reserved{" "}
           <span className="text-[#00A3E0] font-normal hover:underline cursor-pointer">
             Infiniti Media INC

@@ -1,76 +1,70 @@
-"use client";
+import * as React from "react"
+import { Button as ButtonPrimitive } from "@base-ui/react/button"
+import { cva, type VariantProps } from "class-variance-authority"
 
-import * as React from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        outline:
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+        ghost:
+          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default:
+          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        icon: "size-8",
+        "icon-xs":
+          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm":
+          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
 
 export interface ButtonProps
-  extends Omit<HTMLMotionProps<"button">, "children"> {
-  children?: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "glow" | "ghost";
-  size?: "sm" | "md" | "lg";
-  isLoading?: boolean;
-  icon?: React.ReactNode;
+  extends ButtonPrimitive.Props,
+    VariantProps<typeof buttonVariants> {
+  icon?: React.ReactNode
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = "primary",
-      size = "md",
-      isLoading = false,
-      icon,
-      children,
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
-    const sizeClasses = {
-      sm: "px-3.5 py-1.5 text-xs rounded-lg gap-1.5",
-      md: "px-5 py-2.5 text-sm rounded-xl gap-2",
-      lg: "px-7 py-3.5 text-base rounded-2xl gap-2.5",
-    };
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  icon,
+  children,
+  ...props
+}: ButtonProps) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    >
+      {icon && <span className="inline-flex shrink-0 mr-1.5">{icon}</span>}
+      {children}
+    </ButtonPrimitive>
+  )
+}
 
-    const variantClasses = {
-      primary:
-        "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-medium shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:brightness-110",
-      secondary:
-        "bg-slate-800/90 text-slate-100 border border-slate-700/60 hover:bg-slate-700/80 hover:border-slate-600",
-      outline:
-        "bg-transparent border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/10 hover:border-indigo-400",
-      glow:
-        "relative bg-slate-900 text-white font-semibold border border-indigo-500/50 shadow-[0_0_25px_rgba(99,102,241,0.5)] hover:shadow-[0_0_35px_rgba(168,85,247,0.7)] hover:border-purple-400",
-      ghost:
-        "bg-transparent text-slate-300 hover:text-white hover:bg-white/5",
-    };
-
-    return (
-      <motion.button
-        ref={ref}
-        whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
-        whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        disabled={disabled || isLoading}
-        className={cn(
-          "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none",
-          sizeClasses[size],
-          variantClasses[variant],
-          className
-        )}
-        {...props}
-      >
-        {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin text-current" />
-        ) : (
-          icon && <span className="inline-flex shrink-0">{icon}</span>
-        )}
-        {children}
-      </motion.button>
-    );
-  }
-);
-
-Button.displayName = "Button";
+export { Button, buttonVariants }
