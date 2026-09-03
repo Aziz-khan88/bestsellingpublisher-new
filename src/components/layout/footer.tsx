@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Caveat } from "next/font/google";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,6 +14,11 @@ import {
   FaLinkedinIn,
   FaPhone,
 } from "react-icons/fa6";
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 
 // Exact Vector Open Book SVG matching reference icon media_1788461810204.png
 function CyanBookIcon({ className = "w-6 h-5" }: { className?: string }) {
@@ -107,7 +113,7 @@ function TitleUnderline() {
 
 export function Footer() {
   return (
-    <footer className="relative bg-black text-slate-200 pt-24 sm:pt-28 pb-4 sm:pb-5 overflow-hidden font-sans border-t border-white/5">
+    <footer className="relative bg-black text-slate-200 min-h-[750px] pt-20 sm:pt-24 pb-4 sm:pb-5 overflow-hidden font-sans border-t border-white/5 flex flex-col justify-end">
       {/* Background Graphic: Antique Leather Book, Inkwell & Feather Quill (Right Edge) */}
       <div className="absolute right-0 top-0 bottom-0 w-full sm:w-[460px] lg:w-[580px] xl:w-[650px] pointer-events-none select-none z-0 overflow-hidden">
         <div className="relative w-full h-full">
@@ -123,16 +129,16 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Main Responsive Shell matching Header width exactly */}
-      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto">
+      {/* Main Responsive Shell matching Header width exactly (Aligned to end to prevent gap blowout) */}
+      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto flex flex-col justify-end gap-5 sm:gap-6">
         {/* Main 5-Column Row with Exact Baseline Top-Alignment */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-12 sm:pb-14">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-3">
           
           {/* Column 1: Brand Logo, Narrative Summary & Social Channels (28% Width) */}
           <div className="w-full lg:w-[27%] lg:pr-4 flex flex-col justify-between">
             <div>
               <Link href="/" className="inline-block select-none mb-3">
-                <div className="relative w-[210px] sm:w-[235px] h-[48px] sm:h-[54px]">
+                <div className="relative w-[215px] sm:w-[240px] h-[50px] sm:h-[56px]">
                   <Image
                     src="/logo.png"
                     alt="Best Selling Publisher"
@@ -142,75 +148,75 @@ export function Footer() {
                 </div>
               </Link>
 
-              <p className="text-[13.5px] sm:text-[14px] text-slate-300 leading-relaxed max-w-sm mt-3 font-normal">
+              <p className="text-[15px] sm:text-[15.5px] text-slate-200 leading-relaxed max-w-sm mt-4 font-normal">
                 Best Selling Publisher supports authors with editing, design, formatting, publishing setup, 
                 and marketing services selected in an approved project scope.
               </p>
             </div>
 
             {/* 7 Social Media Ring Icons using Official FontAwesome 6 Suite */}
-            <div className="mt-8 flex items-center gap-2.5 flex-wrap">
+            <div className="mt-8 flex items-center gap-3 sm:gap-3.5 flex-wrap">
               {/* Facebook */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="Facebook"
               >
-                <FaFacebookF className="w-3.5 h-3.5" />
+                <FaFacebookF className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* Instagram */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="Instagram"
               >
-                <FaInstagram className="w-3.5 h-3.5" />
+                <FaInstagram className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* X / Twitter */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="X"
               >
-                <FaXTwitter className="w-3.5 h-3.5" />
+                <FaXTwitter className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* Pinterest */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="Pinterest"
               >
-                <FaPinterestP className="w-3.5 h-3.5" />
+                <FaPinterestP className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* TikTok */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="TikTok"
               >
-                <FaTiktok className="w-3.5 h-3.5" />
+                <FaTiktok className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* YouTube */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="YouTube"
               >
-                <FaYoutube className="w-3.5 h-3.5" />
+                <FaYoutube className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
 
               {/* LinkedIn */}
               <a
                 href="#"
-                className="w-8 h-8 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_10px_rgba(0,163,224,0.4)] active:scale-95"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-slate-700/90 bg-black hover:border-[#00A3E0] hover:text-[#00A3E0] text-slate-200 flex items-center justify-center transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,163,224,0.55)] active:scale-95"
                 aria-label="LinkedIn"
               >
-                <FaLinkedinIn className="w-3.5 h-3.5" />
+                <FaLinkedinIn className="w-5 h-5 sm:w-[21px] sm:h-[21px]" />
               </a>
             </div>
           </div>
@@ -222,14 +228,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: QUICK LINKS (Generous Spacing between List Items) */}
+          {/* Column 2: QUICK LINKS (Enlarged Fonts and Generous Vertical Spacing) */}
           <div className="w-full lg:w-[13%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
+            <h4 className="text-[16px] sm:text-[17px] font-bold uppercase tracking-wider text-white">
               QUICK LINKS
             </h4>
             <TitleUnderline />
 
-            <ul className="space-y-6 sm:space-y-6.5 text-[14px] sm:text-[14.5px] text-white pt-1">
+            <ul className="space-y-6 sm:space-y-7 text-[15.5px] sm:text-[16px] text-white pt-1.5">
               {[
                 { name: "Home", href: "/" },
                 { name: "Blogs", href: "/blogs" },
@@ -242,7 +248,7 @@ export function Footer() {
                     href={link.href}
                     className="flex items-center gap-3 hover:text-[#00A3E0] transition-colors group"
                   >
-                    <span className="text-[#00A3E0] font-bold text-sm select-none transition-transform group-hover:translate-x-0.5">
+                    <span className="text-[#00A3E0] font-bold text-base select-none transition-transform group-hover:translate-x-0.5">
                       &gt;
                     </span>
                     <span>{link.name}</span>
@@ -259,14 +265,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3: OUR SERVICES (Exact Cyan Open Book Icon + Generous Spacing) */}
+          {/* Column 3: OUR SERVICES (Enlarged Fonts, Generous Spacing & Exact Cyan Book Icon) */}
           <div className="w-full lg:w-[18%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
+            <h4 className="text-[16px] sm:text-[17px] font-bold uppercase tracking-wider text-white">
               OUR SERVICES
             </h4>
             <TitleUnderline />
 
-            <ul className="space-y-4 sm:space-y-4.5 text-[14px] sm:text-[14.5px] text-white pt-1">
+            <ul className="space-y-4.5 sm:space-y-5 text-[15.5px] sm:text-[16px] text-white pt-1.5">
               {[
                 { name: "Book Publishing", href: "/book-publishing-services" },
                 { name: "Digital Book Publishing", href: "/book-publishing-services" },
@@ -296,17 +302,17 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 4: CONTACT US (Exact Icons, White Text & Generous Spacing) */}
+          {/* Column 4: CONTACT US (Enlarged Fonts, White Text & Generous Spacing) */}
           <div className="w-full lg:w-[19%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
+            <h4 className="text-[16px] sm:text-[17px] font-bold uppercase tracking-wider text-white">
               CONTACT US
             </h4>
             <TitleUnderline />
 
-            <ul className="space-y-5 sm:space-y-5.5 text-[14px] sm:text-[14.5px] text-white pt-1">
+            <ul className="space-y-5.5 sm:space-y-6 text-[15px] sm:text-[15.5px] text-white pt-1.5">
               {/* Email 1 */}
               <li className="flex items-start gap-3">
-                <svg className="w-[18px] h-[14px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[19px] h-[15px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="24" height="18" rx="2" />
                   <path d="M2 2L12 10L22 2" />
                 </svg>
@@ -320,7 +326,7 @@ export function Footer() {
 
               {/* Email 2 */}
               <li className="flex items-start gap-3">
-                <svg className="w-[18px] h-[14px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[19px] h-[15px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="24" height="18" rx="2" />
                   <path d="M2 2L12 10L22 2" />
                 </svg>
@@ -345,7 +351,7 @@ export function Footer() {
 
               {/* Address 1 */}
               <li className="flex items-start gap-3">
-                <svg className="w-4 h-5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
+                <svg className="w-4.5 h-5.5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
                 <span className="leading-snug text-white">
@@ -356,7 +362,7 @@ export function Footer() {
 
               {/* Address 2 */}
               <li className="flex items-start gap-3">
-                <svg className="w-4 h-5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
+                <svg className="w-4.5 h-5.5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
                 <span className="leading-snug text-white">
@@ -370,7 +376,7 @@ export function Footer() {
           {/* Column 5: DMCA & Payment Cards Box + Calligraphy Slogan (23% Width) */}
           <div className="w-full lg:w-[23%] flex flex-col items-start pl-0 lg:pl-3 z-10">
             {/* Interactive DMCA & Payment Cards Box */}
-            <div className="relative w-[240px] rounded-2xl border border-white/20 bg-black/60 backdrop-blur-md p-3.5 shadow-2xl hover:border-[#00A3E0]/50 transition-all select-none">
+            <div className="relative w-[245px] rounded-2xl border border-white/20 bg-black/60 backdrop-blur-md p-3.5 shadow-2xl hover:border-[#00A3E0]/50 transition-all select-none">
               {/* DMCA Badge Header */}
               <div className="border border-amber-400/90 rounded-[5px] overflow-hidden flex items-center h-[34px] shadow-sm bg-black mb-2.5">
                 <div className="bg-gradient-to-r from-lime-600 via-green-600 to-green-500 h-full px-3 flex items-center justify-center text-white font-extrabold text-[12px] tracking-wider shadow-inner">
@@ -412,21 +418,21 @@ export function Footer() {
             </div>
 
             {/* Cursive Calligraphy Slogan: "Your Story. Our Expertise." */}
-            <div className="mt-6 select-none">
-              <div className="relative w-[185px] h-[95px]">
-                <Image
-                  src="/footer-slogan.png"
-                  alt="Your Story. Our Expertise."
-                  fill
-                  className="object-contain object-left"
-                />
+            <div className={`mt-6 select-none ${caveat.className} flex flex-col items-start`}>
+              <div className="text-[36px] sm:text-[40px] leading-[1.05] font-bold text-[#00A3E0] drop-shadow-[0_0_12px_rgba(0,163,224,0.45)]">
+                Your Story.
               </div>
+              <div className="text-[36px] sm:text-[40px] leading-[1.05] font-bold text-white tracking-wide">
+                Our Expertise.
+              </div>
+              {/* Hand-drawn style blue swoop underline */}
+              <div className="w-[190px] h-[2.5px] bg-gradient-to-r from-[#00A3E0] via-[#00A3E0]/70 to-transparent mt-1.5 rounded-full" />
             </div>
           </div>
         </div>
 
-        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Exact Center Book Vector */}
-        <div className="relative w-full flex items-center justify-between mt-5 mb-0 pb-0">
+        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & 100px Center Book Vector */}
+        <div className="relative w-full flex items-center justify-between my-0 py-0">
           {/* Left Line Segment with Outer and Inner Cyan Dots */}
           <div className="flex-1 flex items-center">
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
@@ -434,7 +440,7 @@ export function Footer() {
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
 
-          {/* Center Book Icon (Exact Glowing Multi-Layered Cyan Open Book from Reference) */}
+          {/* Center Book Icon (Exact Glowing Multi-Layered Cyan Open Book 100x100px) */}
           <div className="px-3 sm:px-5 flex items-center justify-center shrink-0">
             <CyanBookIcon className="w-[100px] h-[100px]" />
           </div>

@@ -188,12 +188,12 @@ export function Navbar() {
               background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 315deg, rgba(64, 190, 226, 0.35) 335deg, #40bee2 350deg, #ffffff 357deg, transparent 360deg)`,
             }}
           />
-          {/* Header translucent frosted glass surface inside the border */}
-          <div className="w-full h-full bg-[#02050e]/40 backdrop-blur-2xl rounded-2xl" />
+          {/* Header dark background surface inside the border */}
+          <div className="w-full h-full bg-[#02050e]/95 backdrop-blur-2xl rounded-2xl" />
         </div>
 
-        {/* Crisp cyan ambient border accent with frosted glass layer */}
-        <div className="absolute inset-0 rounded-2xl border border-[#40bee2]/30 bg-black/20 backdrop-blur-xl pointer-events-none" />
+        {/* Crisp cyan ambient border accent */}
+        <div className="absolute inset-0 rounded-2xl border border-[#40bee2]/30 pointer-events-none" />
 
         {/* Inner Header Bar: relative z-20 & overflow-visible */}
         <div className="relative z-20 w-full h-[76px] sm:h-[82px] xl:h-[88px] px-4 sm:px-7 xl:px-9 flex items-center justify-between">
