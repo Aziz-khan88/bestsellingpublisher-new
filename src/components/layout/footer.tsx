@@ -435,8 +435,8 @@ export function Footer() {
           </div>
 
           {/* Center Book Icon (Exact Glowing Multi-Layered Cyan Open Book from Reference) */}
-          <div className="px-5 sm:px-7 flex items-center justify-center shrink-0">
-            <CyanBookIcon className="w-12 h-9 sm:w-14 sm:h-10 md:w-16 md:h-12" />
+          <div className="px-3 sm:px-5 flex items-center justify-center shrink-0">
+            <CyanBookIcon className="w-[100px] h-[100px]" />
           </div>
 
           {/* Right Line Segment with Inner and Outer Cyan Dots */}
