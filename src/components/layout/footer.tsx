@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BookOpen } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,12 +12,29 @@ import {
   FaTiktok,
   FaYoutube,
   FaLinkedinIn,
-  FaAngleRight,
-  FaBookOpen,
-  FaEnvelope,
   FaPhone,
-  FaLocationDot,
 } from "react-icons/fa6";
+
+// Glowing Cyan Line with Center Flare Dot for Column Headers
+function TitleUnderline() {
+  return (
+    <div className="relative w-20 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent my-3.5 flex items-center justify-center">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
+    </div>
+  );
+}
+
+// Clean Vector Open Book for the Bottom Center Divider
+function CenterBookDividerIcon({ className = "w-12 h-8" }: { className?: string }) {
+  return (
+    <div className="relative flex items-center justify-center">
+      <BookOpen
+        className={`${className} text-[#00A3E0] drop-shadow-[0_0_10px_rgba(0,163,224,0.9)]`}
+        strokeWidth={1.75}
+      />
+    </div>
+  );
+}
 
 export function Footer() {
   return (
@@ -135,13 +153,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: QUICK LINKS (13% Width - Compact, No Underline) */}
+          {/* Column 2: QUICK LINKS (Generous Spacing between List Items) */}
           <div className="w-full lg:w-[13%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white mb-6">
+            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
               QUICK LINKS
             </h4>
+            <TitleUnderline />
 
-            <ul className="space-y-3.5 text-[13.5px] sm:text-[14px] text-white">
+            <ul className="space-y-6 sm:space-y-6.5 text-[14px] sm:text-[14.5px] text-white pt-1">
               {[
                 { name: "Home", href: "/" },
                 { name: "Blogs", href: "/blogs" },
@@ -152,9 +171,11 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 hover:text-[#00A3E0] transition-colors group"
+                    className="flex items-center gap-3 hover:text-[#00A3E0] transition-colors group"
                   >
-                    <FaAngleRight className="w-3 h-3 text-[#00A3E0] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                    <span className="text-[#00A3E0] font-bold text-sm select-none transition-transform group-hover:translate-x-0.5">
+                      &gt;
+                    </span>
                     <span>{link.name}</span>
                   </Link>
                 </li>
@@ -169,13 +190,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3: OUR SERVICES (18% Width - Compact, No Underline) */}
+          {/* Column 3: OUR SERVICES (Crisp Cyan BookOpen Icon + Generous Spacing) */}
           <div className="w-full lg:w-[18%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white mb-6">
+            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
               OUR SERVICES
             </h4>
+            <TitleUnderline />
 
-            <ul className="space-y-3.5 text-[13.5px] sm:text-[14px] text-white">
+            <ul className="space-y-4 sm:space-y-4.5 text-[14px] sm:text-[14.5px] text-white pt-1">
               {[
                 { name: "Book Publishing", href: "/book-publishing-services" },
                 { name: "Digital Book Publishing", href: "/book-publishing-services" },
@@ -188,9 +210,9 @@ export function Footer() {
                 <li key={svc.name}>
                   <Link
                     href={svc.href}
-                    className="flex items-center gap-2.5 hover:text-[#00A3E0] transition-colors group"
+                    className="flex items-center gap-3 hover:text-[#00A3E0] transition-colors group"
                   >
-                    <FaBookOpen className="w-3.5 h-3.5 text-[#00A3E0] shrink-0" />
+                    <BookOpen className="w-4 h-4 text-[#00A3E0] shrink-0" />
                     <span>{svc.name}</span>
                   </Link>
                 </li>
@@ -205,15 +227,20 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 4: CONTACT US (19% Width - Compact, No Underline) */}
+          {/* Column 4: CONTACT US (Exact Icons, White Text & Generous Spacing) */}
           <div className="w-full lg:w-[19%]">
-            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white mb-6">
+            <h4 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-white">
               CONTACT US
             </h4>
+            <TitleUnderline />
 
-            <ul className="space-y-3.5 text-[13.5px] sm:text-[14px] text-white">
-              <li className="flex items-start gap-2.5">
-                <FaEnvelope className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-1" />
+            <ul className="space-y-5 sm:space-y-5.5 text-[14px] sm:text-[14.5px] text-white pt-1">
+              {/* Email 1 */}
+              <li className="flex items-start gap-3">
+                <svg className="w-[18px] h-[14px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="24" height="18" rx="2" />
+                  <path d="M2 2L12 10L22 2" />
+                </svg>
                 <a
                   href="mailto:inquiries@bestsellingpublisher.com"
                   className="hover:text-[#00A3E0] transition-colors break-all leading-snug"
@@ -221,8 +248,13 @@ export function Footer() {
                   inquiries@bestsellingpublisher.com
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <FaEnvelope className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-1" />
+
+              {/* Email 2 */}
+              <li className="flex items-start gap-3">
+                <svg className="w-[18px] h-[14px] shrink-0 mt-1" viewBox="0 0 24 18" fill="none" stroke="#00A3E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="24" height="18" rx="2" />
+                  <path d="M2 2L12 10L22 2" />
+                </svg>
                 <a
                   href="mailto:info@bestsellingpublisher.com"
                   className="hover:text-[#00A3E0] transition-colors break-all leading-snug"
@@ -230,25 +262,35 @@ export function Footer() {
                   info@bestsellingpublisher.com
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <FaPhone className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-1" />
+
+              {/* Phone */}
+              <li className="flex items-start gap-3">
+                <FaPhone className="w-4 h-4 text-[#00A3E0] shrink-0 mt-1" />
                 <a
                   href="tel:8556666675"
-                  className="hover:text-[#00A3E0] transition-colors leading-snug"
+                  className="hover:text-[#00A3E0] transition-colors leading-snug font-medium"
                 >
                   (855) 666-6675
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <FaLocationDot className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-1" />
-                <span className="leading-snug text-slate-200">
+
+              {/* Address 1 */}
+              <li className="flex items-start gap-3">
+                <svg className="w-4 h-5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="leading-snug text-white">
                   9518 Mykawa Road,<br />
                   Houston, TX 77048
                 </span>
               </li>
-              <li className="flex items-start gap-2.5">
-                <FaLocationDot className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-1" />
-                <span className="leading-snug text-slate-200">
+
+              {/* Address 2 */}
+              <li className="flex items-start gap-3">
+                <svg className="w-4 h-5 fill-[#00A3E0] shrink-0 mt-0.5" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="leading-snug text-white">
                   445 S Figueroa St,<br />
                   Los Angeles, CA 90071
                 </span>
@@ -314,7 +356,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Prominent Center Book Icon */}
+        {/* Exact Bottom Horizontal Divider with 4 Glowing Cyan Dots & Clean Open Book Vector */}
         <div className="relative w-full flex items-center justify-between my-8">
           {/* Left Line Segment with Outer and Inner Cyan Dots */}
           <div className="flex-1 flex items-center">
@@ -323,16 +365,9 @@ export function Footer() {
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
 
-          {/* Center Book Icon (Substantial, Prominent Size Matching Reference) */}
+          {/* Center Book Icon (Clean, Professional Vector Open Book Icon) */}
           <div className="px-5 sm:px-7 flex items-center justify-center shrink-0">
-            <div className="relative w-14 h-10 sm:w-18 sm:h-12 md:w-20 md:h-14">
-              <Image
-                src="/footer-center-book.png"
-                alt="Center Book Icon"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <CenterBookDividerIcon className="w-12 h-9 sm:w-14 sm:h-10 md:w-16 md:h-11" />
           </div>
 
           {/* Right Line Segment with Inner and Outer Cyan Dots */}

@@ -1,0 +1,24 @@
+<svg width="96" height="72" viewBox="0 0 48 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Book Left -->
+  <path d="M6 14C6 24 9 29 24 32" stroke="#00A3E0" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M6 14V22" stroke="#00A3E0" stroke-width="2.2" stroke-linecap="round"/>
+  
+  <!-- Outer Book Right -->
+  <path d="M42 14C42 24 39 29 24 32" stroke="#00A3E0" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M42 14V22" stroke="#00A3E0" stroke-width="2.2" stroke-linecap="round"/>
+  
+  <!-- Middle Page Layer Left -->
+  <path d="M10 11C10 20 13 25 24 28" stroke="#00A3E0" stroke-width="1.9" stroke-linecap="round"/>
+  
+  <!-- Middle Page Layer Right -->
+  <path d="M38 11C38 20 35 25 24 28" stroke="#00A3E0" stroke-width="1.9" stroke-linecap="round"/>
+  
+  <!-- Inner Page Left -->
+  <path d="M24 28C18 25 15 17 14 7C19 9 22 17 24 28Z" stroke="#00A3E0" stroke-width="1.8" stroke-linejoin="round"/>
+  
+  <!-- Inner Page Right -->
+  <path d="M24 28C30 25 33 17 34 7C29 9 26 17 24 28Z" stroke="#00A3E0" stroke-width="1.8" stroke-linejoin="round"/>
+  
+  <!-- Bottom Spine Notch -->
+  <path d="M24 28L21.5 32L24 34L26.5 32L24 28Z" fill="#00A3E0"/>
+</svg>
