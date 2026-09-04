@@ -239,7 +239,7 @@ export function ConsultationFormSection() {
           <div className="w-full lg:w-[46%] xl:w-[44%] flex flex-col justify-center">
 
             {/* Eyebrow Header with Cyan Line */}
-            <div className="flex items-center gap-2.5 mb-4 select-none">
+            <div className="flex items-center gap-2.5 mb-4">
               <span className="text-[14px] sm:text-[15px] font-bold tracking-widest text-[#00A3E0] uppercase">
                 DISCUSS
               </span>
@@ -298,7 +298,7 @@ export function ConsultationFormSection() {
               <div className="relative z-10 bg-white rounded-[28px] p-7 sm:p-8 lg:p-9 border border-[#e2e8f0]">
                 
                 {/* Form Header matching exact feather badge */}
-                <div className="flex items-center gap-4 mb-6 select-none">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 shadow-sm border border-[#7ec1f3]/50">
                     <Image
                       src="/feather-badge-clean.png"

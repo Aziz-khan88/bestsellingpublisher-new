@@ -277,15 +277,15 @@ export function PublishingSecretSection() {
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center pl-0 lg:pl-2 xl:pl-4">
 
             {/* Eyebrow Header */}
-            <h4 className="text-[17px] sm:text-[19px] font-semibold text-[#009fe3] tracking-wide mb-3 select-none">
+            <h4 className="text-[17px] sm:text-[19px] font-semibold text-[#009fe3] tracking-wide mb-3">
               Would you like to know a secret?
             </h4>
 
-            {/* Main Headline */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-bold text-[#0f172a] leading-[1.18] tracking-tight mb-8">
+            {/* Main Headline (Editorial Serif Display) */}
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-serif font-bold text-[#0f172a] leading-[1.18] tracking-tight mb-8">
               Less Is Never More for Us –
               <br />
-              It Can Be If You Want It to <span className="text-[#00A3E0]">Be!</span>
+              It Can Be If You Want It to <span className="text-[#00A3E0] font-serif">Be!</span>
             </h2>
 
             {/* CTA Buttons Row */}

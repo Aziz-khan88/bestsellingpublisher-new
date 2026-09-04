@@ -36,6 +36,20 @@ export function Navbar() {
   const servicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
   const genreTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
+  const toggleServices = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (genreTimeoutRef.current) clearTimeout(genreTimeoutRef.current);
+    setGenreMenuOpen(false);
+    setServicesMenuOpen((prev) => !prev);
+  };
+
+  const toggleGenre = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (genreTimeoutRef.current) clearTimeout(genreTimeoutRef.current);
+    setServicesMenuOpen(false);
+    setGenreMenuOpen((prev) => !prev);
+  };
+
   const handleServicesEnter = () => {
     if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
     if (genreTimeoutRef.current) clearTimeout(genreTimeoutRef.current);
@@ -46,7 +60,7 @@ export function Navbar() {
   const handleServicesLeave = () => {
     servicesTimeoutRef.current = setTimeout(() => {
       setServicesMenuOpen(false);
-    }, 150);
+    }, 350);
   };
 
   const handleGenreEnter = () => {
@@ -59,8 +73,34 @@ export function Navbar() {
   const handleGenreLeave = () => {
     genreTimeoutRef.current = setTimeout(() => {
       setGenreMenuOpen(false);
-    }, 150);
+    }, 350);
   };
+
+  // Close menus on outside click and on Escape key
+  React.useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("#desktop-navbar-container")) {
+        setServicesMenuOpen(false);
+        setGenreMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setServicesMenuOpen(false);
+        setGenreMenuOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   // Writing Services: The Suite
   const theSuiteItems = [
@@ -177,7 +217,10 @@ export function Navbar() {
   return (
     <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2 sm:px-4">
       {/* 97%-98% Full width container with overflow-visible */}
-      <div className="relative w-[97%] lg:w-[98%] max-w-[1850px] mx-auto pointer-events-auto overflow-visible">
+      <div
+        id="desktop-navbar-container"
+        className="relative w-[97%] lg:w-[98%] max-w-[1850px] mx-auto pointer-events-auto overflow-visible"
+      >
         
         {/* Animated Rotating Laser Border Shell */}
         <div className="absolute inset-0 rounded-2xl p-[1.8px] overflow-hidden pointer-events-none shadow-[0_0_35px_-4px_rgba(64,190,226,0.45)]">
@@ -244,8 +287,10 @@ export function Navbar() {
             >
               <button
                 type="button"
-                className="flex items-center gap-1.5 text-white hover:text-[#40bee2] transition-colors cursor-pointer group"
+                onClick={toggleServices}
+                className="flex items-center gap-1.5 text-white hover:text-[#40bee2] transition-colors cursor-pointer group py-1"
                 aria-haspopup="true"
+                aria-expanded={servicesMenuOpen}
               >
                 <span>Writing Services</span>
                 <ChevronDown
@@ -269,8 +314,10 @@ export function Navbar() {
             >
               <button
                 type="button"
-                className="flex items-center gap-1.5 text-white hover:text-[#40bee2] transition-colors cursor-pointer group"
+                onClick={toggleGenre}
+                className="flex items-center gap-1.5 text-white hover:text-[#40bee2] transition-colors cursor-pointer group py-1"
                 aria-haspopup="true"
+                aria-expanded={genreMenuOpen}
               >
                 <span>Genre</span>
                 <ChevronDown
@@ -379,9 +426,12 @@ export function Navbar() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               onMouseEnter={handleServicesEnter}
               onMouseLeave={handleServicesLeave}
-              className="absolute top-[calc(100%+10px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto"
+              className="absolute top-[calc(100%+8px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto before:absolute before:-top-4 before:left-0 before:right-0 before:h-6 before:content-['']"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+                onClick={() => setServicesMenuOpen(false)}
+              >
                 {/* Column 1: THE SUITE */}
                 <div className="lg:col-span-4">
                   <div className="flex items-center gap-2 mb-4">
@@ -523,9 +573,12 @@ export function Navbar() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               onMouseEnter={handleGenreEnter}
               onMouseLeave={handleGenreLeave}
-              className="absolute top-[calc(100%+10px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto"
+              className="absolute top-[calc(100%+8px)] left-0 right-0 w-full rounded-3xl bg-[#06070a]/98 border border-white/10 backdrop-blur-3xl p-7 sm:p-9 shadow-[0_35px_80px_rgba(0,0,0,0.95)] z-50 text-left pointer-events-auto before:absolute before:-top-4 before:left-0 before:right-0 before:h-6 before:content-['']"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+                onClick={() => setGenreMenuOpen(false)}
+              >
                 {/* Column 1: FICTION & NOVELS */}
                 <div className="lg:col-span-4">
                   <div className="flex items-center gap-2 mb-4">
