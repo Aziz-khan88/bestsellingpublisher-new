@@ -13,7 +13,7 @@ import {
 
 export function MainHeroSection() {
   return (
-    <section className="relative w-full min-h-[850px] bg-[#030611] text-slate-100 overflow-hidden font-sans pt-28 sm:pt-32 lg:pt-36 pb-8 sm:pb-12 lg:pb-14">
+    <section className="relative w-full bg-[#030611] text-slate-100 overflow-hidden font-sans pt-[8rem]">
       
       {/* Floating animation keyframes for central artwork */}
       <style>{`
@@ -193,7 +193,7 @@ export function MainHeroSection() {
         </svg>
       </div>
 
-      <div className="relative max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 z-10">
+      <div className="relative max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 z-10 pb-[3rem]">
         
         {/* 3-Column Main Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-3 xl:gap-6 items-center">
@@ -433,9 +433,9 @@ export function MainHeroSection() {
       </div>
 
       {/* Sweeping Bottom Wave Transition with Flowing Silk Waves & Neon Cyan Glow */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+      <div className="relative w-full overflow-hidden leading-none z-20 pointer-events-none -mt-8 sm:-mt-12">
         <svg
-          className="relative block w-full h-[180px] sm:h-[210px] md:h-[240px] lg:h-[270px] xl:h-[290px]"
+          className="relative block w-full h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px]"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1600 360"
           preserveAspectRatio="none"
@@ -445,10 +445,6 @@ export function MainHeroSection() {
               <feGaussianBlur stdDeviation="8" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
-            <linearGradient id="waveFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#F7FAFD" />
-              <stop offset="100%" stopColor="#FFFFFF" />
-            </linearGradient>
             <linearGradient id="cyanNeonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#00A3E0" stopOpacity="0.4" />
               <stop offset="25%" stopColor="#00D4FF" stopOpacity="0.85" />
@@ -472,12 +468,6 @@ export function MainHeroSection() {
             <path d="M -40,237.6 C 250,267.3 480,172.0 710,172.0 C 950,172.0 1180,272.4 1640,192.9" stroke="#00A3E0" strokeWidth="1.2" opacity="0.41" fill="none" />
             <path d="M -40,240.0 C 250,270.0 480,175.0 710,175.0 C 950,175.0 1180,275.0 1640,195.0" stroke="#00A3E0" strokeWidth="0.8" opacity="0.45" fill="none" />
           </g>
-
-          {/* White Next-Section Fill with Exact Fitted Crest Contour */}
-          <path
-            d="M -40,240.0 C 250,270.0 480,175.0 710,175.0 C 950,175.0 1180,275.0 1640,195.0 L 1640,360 L -40,360 Z"
-            fill="url(#waveFillGrad)"
-          />
 
           {/* Glowing Neon Cyan Wave Rim / Stroke */}
           <path
