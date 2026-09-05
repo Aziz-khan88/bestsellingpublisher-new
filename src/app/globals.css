@@ -211,3 +211,58 @@ body {
     @apply font-sans;
   }
 }
+
+/* Brand 3D Book & Celestial Orbit Keyframes */
+@keyframes floatBook {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-0.3deg);
+  }
+}
+
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.22;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.40;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes orbitDashStream {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -480;
+  }
+}
+
+@keyframes orbitDashStreamReverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 400;
+  }
+}
+
+.animate-float-book {
+  animation: floatBook 7s ease-in-out infinite;
+}
+
+.animate-aura-pulse {
+  animation: auraPulse 5s ease-in-out infinite;
+}
+
+.animate-orbit-dashes {
+  animation: orbitDashStream 12s linear infinite;
+}
+
+.animate-orbit-dashes-reverse {
+  animation: orbitDashStreamReverse 16s linear infinite;
+}

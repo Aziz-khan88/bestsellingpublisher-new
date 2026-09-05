@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Navbar } from "@/components/layout/navbar";
+import { MainHeroSection } from "@/components/sections/main-hero-section";
 import { OneMissionHeroSection } from "@/components/sections/one-mission-hero-section";
 import { AmazonServicesShowcaseSection } from "@/components/sections/amazon-services-showcase-section";
 import { HowWeStructureSection } from "@/components/sections/how-we-structure-section";
@@ -16,7 +17,10 @@ export default function HomePage() {
       {/* 1. Header / Navbar */}
       <Navbar />
 
-      {/* 2. Hero Section 1: One Mission: Your Story, Everywhere (3D Glass Shelves & 4 Books) */}
+      {/* 2. Top Main Hero Section: Prepare Your Book for Every Channel */}
+      <MainHeroSection />
+
+      {/* 3. Hero Section 2: One Mission: Your Story, Everywhere (3D Glass Shelves & 4 Books) */}
       <OneMissionHeroSection />
 
       {/* 3. Hero Section 2: Amazon Publishing Services (Magical 3D Open Book) */}
