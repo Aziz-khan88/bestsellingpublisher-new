@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
 interface ProcessCardItem {
@@ -58,12 +58,12 @@ const processCards: ProcessCardItem[] = [
 
 function ProcessCard({ item }: { item: ProcessCardItem }) {
   return (
-    <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-20 sm:pl-24 lg:pl-22 xl:pl-26 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer h-full">
+    <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-5 sm:pr-8 pl-16 sm:pl-24 lg:pl-22 xl:pl-26 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer h-full">
       {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
       <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
         {/* Outer Dashed Rotating Orbit Ring */}
         <div
-          className="relative w-26 h-26 sm:w-30 sm:h-30 lg:w-32 lg:h-32 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
+          className="relative w-24 h-24 sm:w-30 sm:h-30 lg:w-32 lg:h-32 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
           style={{ animation: "badgeOrbitSpin 32s linear infinite" }}
         >
           <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
@@ -73,7 +73,7 @@ function ProcessCard({ item }: { item: ProcessCardItem }) {
         </div>
 
         {/* White Raised Circular Plate */}
-        <div className="absolute z-10 w-22 h-22 sm:w-26 sm:h-26 lg:w-28 lg:h-28 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+        <div className="absolute z-10 w-20 h-20 sm:w-26 sm:h-26 lg:w-28 lg:h-28 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
           {/* Inner Vibrant Cyan Disc */}
           <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#008de4] to-[#00A3E0] flex items-center justify-center shadow-inner text-white">
             {item.icon}
@@ -81,16 +81,16 @@ function ProcessCard({ item }: { item: ProcessCardItem }) {
         </div>
 
         {/* ENLARGED Number Badge */}
-        <div className="absolute -bottom-1 -right-1 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[13px] sm:text-[15px] flex items-center justify-center shadow-md">
+        <div className="absolute -bottom-1 -right-1 z-30 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[12px] sm:text-[15px] flex items-center justify-center shadow-md">
           {item.step}
         </div>
       </div>
 
       {/* Text Content */}
-      <h3 className="text-[17px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2.5">
+      <h3 className="text-[16px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2">
         {item.title}
       </h3>
-      <p className="text-[13px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
+      <p className="text-[12.5px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
         {item.description}
       </p>
     </div>
@@ -99,22 +99,31 @@ function ProcessCard({ item }: { item: ProcessCardItem }) {
 
 function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
+    align: "center",
     containScroll: "trimSnaps",
     loop: false,
   });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+  const [canScrollPrev, setCanScrollPrev] = React.useState(false);
+  const [canScrollNext, setCanScrollNext] = React.useState(true);
+
+  const onSelect = React.useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
 
   React.useEffect(() => {
     if (!emblaApi) return;
-    setScrollSnaps(emblaApi.scrollSnapList());
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    onSelect();
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
-  }, [emblaApi]);
+  }, [emblaApi, onSelect]);
 
   const scrollTo = React.useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
@@ -122,32 +131,65 @@ function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
   );
 
   return (
-    <div className="w-full block lg:hidden">
-      <div className="overflow-hidden w-full py-4 -my-4" ref={emblaRef}>
-        <div className="flex -ml-4">
+    <div className="w-full block lg:hidden relative">
+      {/* Embla Viewport */}
+      <div
+        className="overflow-hidden w-full py-4 select-none cursor-grab active:cursor-grabbing"
+        ref={emblaRef}
+      >
+        <div
+          className="flex flex-row flex-nowrap -ml-2"
+          style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap" }}
+        >
           {cards.map((item, idx) => (
             <div
               key={idx}
-              className="flex-[0_0_88%] xs:flex-[0_0_82%] sm:flex-[0_0_70%] min-w-0 pl-16 xs:pl-18 sm:pl-20 pr-3 py-2"
+              className="shrink-0 grow-0 min-w-0 pl-14 sm:pl-16 pr-3 py-2"
+              style={{ flex: "0 0 88%", minWidth: 0 }}
             >
               <ProcessCard item={item} />
             </div>
           ))}
         </div>
       </div>
-      {/* Mobile Indicator Dots */}
-      <div className="flex items-center justify-center gap-2 mt-6">
-        {scrollSnaps.map((_, idx) => (
-          <button
-            key={idx}
-            type="button"
-            onClick={() => scrollTo(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              selectedIndex === idx ? "w-7 bg-[#00A3E0]" : "w-2 bg-slate-300"
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
+
+      {/* Mobile Controls: Previous Button, Indicator Dots, Next Button */}
+      <div className="flex items-center justify-center gap-3 mt-4">
+        <button
+          type="button"
+          onClick={() => emblaApi && emblaApi.scrollPrev()}
+          disabled={!canScrollPrev}
+          className="w-8 h-8 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-700 hover:text-[#00A3E0] hover:border-[#00A3E0] disabled:opacity-35 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+          aria-label="Previous card"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-center gap-1.5">
+          {cards.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => scrollTo(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                selectedIndex === idx
+                  ? "w-8 bg-[#00A3E0] shadow-[0_0_8px_rgba(0,163,224,0.6)]"
+                  : "w-2.5 bg-slate-300 hover:bg-slate-400"
+              }`}
+              aria-label={`Go to card ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => emblaApi && emblaApi.scrollNext()}
+          disabled={!canScrollNext}
+          className="w-8 h-8 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-700 hover:text-[#00A3E0] hover:border-[#00A3E0] disabled:opacity-35 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
+          aria-label="Next card"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );
