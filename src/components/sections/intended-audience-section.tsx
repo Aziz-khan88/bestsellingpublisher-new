@@ -410,24 +410,26 @@ export function IntendedAudienceSection() {
         {/* =========================================================================
             CTA BUTTONS: Centered below the 3 Cards
            ========================================================================= */}
-        <div className="mt-14 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-          {/* Button 1: Connect with Us! */}
-          <button
-            type="button"
-            className="h-[46px] sm:h-[48px] px-8 rounded-lg bg-[#009fe3] hover:bg-[#008ac5] text-white font-semibold text-[14.5px] sm:text-[15px] flex items-center justify-center gap-2.5 shadow-[0_6px_20px_rgba(0,159,227,0.32)] hover:shadow-[0_8px_24px_rgba(0,159,227,0.42)] transition-all duration-300 group active:scale-95 cursor-pointer"
-          >
-            <span>Connect with Us!</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-          </button>
+        <div className="mt-14 sm:mt-16 flex justify-center w-full">
+          <div className="cta-btn-group justify-center">
+            {/* Button 1: Connect with Us! */}
+            <a
+              href="#consultation"
+              className="cta-btn-base cta-btn-primary cta-btn-item"
+            >
+              <span>Connect with Us!</span>
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
+            </a>
 
-          {/* Button 2: Call us NOW! (Phone Icon on the Left, matching reference) */}
-          <button
-            type="button"
-            className="h-[46px] sm:h-[48px] px-7 sm:px-8 rounded-lg bg-white border-[1.5px] border-[#00A3E0] hover:bg-[#00A3E0]/5 text-[#00A3E0] font-semibold text-[14.5px] sm:text-[15px] flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-300 group active:scale-95 cursor-pointer"
-          >
-            <Phone className="w-4 h-4 text-[#00A3E0] group-hover:[animation:phoneRing_0.6s_ease-in-out_infinite]" />
-            <span>Call us NOW!</span>
-          </button>
+            {/* Button 2: Call us NOW! */}
+            <a
+              href="tel:+18556666675"
+              className="cta-btn-base cta-btn-outline-light cta-btn-item"
+            >
+              <Phone className="w-4 h-4 flex-shrink-0" />
+              <span>Call us NOW!</span>
+            </a>
+          </div>
         </div>
 
       </div>

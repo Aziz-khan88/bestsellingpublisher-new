@@ -1065,19 +1065,19 @@ export function Navbar() {
             <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#02050e] shrink-0 space-y-2.5">
               <a
                 href="tel:+18556666675"
-                className="w-full py-3 px-4 rounded-xl border-2 border-[#40BEE2] bg-[#40BEE2] hover:bg-transparent text-white hover:text-[#40BEE2] flex items-center justify-center gap-2.5 font-bold text-[14px] shadow-[0_0_20px_rgba(64,190,226,0.35)] transition-all duration-200 active:scale-[0.98]"
+                className="cta-btn-base cta-btn-primary w-full"
               >
-                <Phone className="w-4 h-4 fill-current shrink-0" />
+                <Phone className="w-4 h-4 flex-shrink-0" />
                 <span>Call (855) 666-6675</span>
               </a>
 
               <Link
                 href="#consultation"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-2.5 px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-slate-300 hover:text-white flex items-center justify-center gap-2 text-xs font-semibold transition-all duration-200 active:scale-[0.98]"
+                className="cta-btn-base cta-btn-outline-dark w-full"
               >
                 <span>Free Author Consultation</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#40bee2]" />
+                <ArrowRight className="w-4 h-4 flex-shrink-0 text-[#00A3E0]" />
               </Link>
             </div>
           </motion.div>

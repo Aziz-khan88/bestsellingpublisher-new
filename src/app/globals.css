@@ -273,3 +273,104 @@ body {
 .animate-orbit-dashes-reverse {
   animation: orbitDashStreamReverse 16s linear infinite;
 }
+
+/* ==========================================================================
+   GLOBAL UNIFIED CTA BUTTON SYSTEM
+   ========================================================================== */
+
+.cta-btn-base {
+  height: 48px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 14.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-btn-base:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 640px) {
+  .cta-btn-base {
+    height: 50px;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    font-size: 15.5px;
+  }
+}
+
+.cta-btn-primary {
+  background-color: #00A3E0;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 163, 224, 0.28);
+}
+
+.cta-btn-primary:hover {
+  background-color: #008fc0;
+  box-shadow: 0 8px 24px rgba(0, 163, 224, 0.42);
+  transform: scale(1.01);
+}
+
+.cta-btn-outline-light {
+  background-color: #ffffff;
+  border: 2px solid #00A3E0;
+  color: #00A3E0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.cta-btn-outline-light:hover {
+  background-color: rgba(0, 163, 224, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 163, 224, 0.15);
+  transform: scale(1.01);
+}
+
+.cta-btn-outline-dark {
+  background-color: rgba(3, 13, 29, 0.85);
+  border: 2px solid #00A3E0;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn-outline-dark:hover {
+  background-color: #061833;
+  box-shadow: 0 4px 16px rgba(0, 163, 224, 0.25);
+  transform: scale(1.01);
+}
+
+.cta-btn-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .cta-btn-group {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.cta-btn-item {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .cta-btn-item {
+    width: auto;
+    min-width: 190px;
+  }
+}

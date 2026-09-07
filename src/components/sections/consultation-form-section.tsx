@@ -436,13 +436,13 @@ export function ConsultationFormSection() {
                       </p>
                     </div>
 
-                    {/* Submit Button in exact #0067fe blue */}
+                    {/* Submit Button in unified primary CTA style */}
                     <button
                       type="submit"
-                      className="w-full sm:w-auto h-[46px] px-8 rounded-[10px] bg-[#0067fe] hover:bg-[#0057e0] text-white font-semibold text-[15px] flex items-center justify-center gap-2 shadow-[0_6px_18px_rgba(0,103,254,0.32)] transition-all duration-200 shrink-0 active:scale-95 cursor-pointer"
+                      className="cta-btn-base cta-btn-primary w-full sm:w-auto sm:min-w-[170px]"
                     >
                       <span>Submit</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 flex-shrink-0" />
                     </button>
                   </div>
                 </form>

@@ -423,21 +423,21 @@ export function BuiltAroundManuscriptSection() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="cta-btn-group">
               <a
                 href="#consultation"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-sans font-bold text-sm sm:text-base shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+                className="cta-btn-base cta-btn-primary cta-btn-item"
               >
-                Connect with Us!
-                <ArrowRight className="w-4 h-4" />
+                <span>Connect with Us!</span>
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </a>
 
               <a
-                href="tel:+18000000000"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-[#00A3E0] bg-[#030d1d]/80 hover:bg-[#05152e] text-[#00A3E0] font-sans font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+                href="tel:+18556666675"
+                className="cta-btn-base cta-btn-outline-dark cta-btn-item"
               >
-                <Phone className="w-4 h-4" />
-                Call us NOW!
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <span>Call us NOW!</span>
               </a>
             </div>
           </div>

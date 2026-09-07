@@ -407,22 +407,22 @@ export function MainHeroSection() {
                 From expert editing to global distribution, we handle every step with precision, creativity, and care—so your book makes the impact it deserves.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
+              {/* CTA Buttons - Standardized Global System */}
+              <div className="cta-btn-group mb-6">
                 <a
                   href="#consultation"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-[15px] sm:text-[17px] shadow-md shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="cta-btn-base cta-btn-primary cta-btn-item"
                 >
                   <span>Connect with Us!</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4.5 h-4.5" />
                 </a>
 
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-slate-700/90 bg-[#081220]/80 hover:bg-[#0c1c33] hover:border-cyan-500/50 text-white font-bold text-[15px] sm:text-[17px] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="cta-btn-base cta-btn-outline-dark cta-btn-item"
                 >
                   <span>Explore Our Services</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4.5 h-4.5" />
                 </a>
               </div>
 

@@ -144,11 +144,11 @@ export function OneMissionHeroSection() {
               Choose the editing, design, formatting, publishing setup, and launch-support deliverables your manuscript requires.
             </p>
 
-            {/* CTA Buttons - Increased size */}
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+            {/* CTA Buttons - Standardized Global System */}
+            <div className="cta-btn-group mb-8">
               <a
                 href="#consultation"
-                className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-base sm:text-[17px] shadow-md shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="cta-btn-base cta-btn-primary cta-btn-item"
               >
                 <Users className="w-4.5 h-4.5" />
                 <span>Connect with Us!</span>
@@ -157,7 +157,7 @@ export function OneMissionHeroSection() {
 
               <a
                 href="tel:+18000000000"
-                className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-[#00A3E0] bg-white text-[#00A3E0] hover:bg-cyan-50 font-bold text-base sm:text-[17px] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="cta-btn-base cta-btn-outline-light cta-btn-item"
               >
                 <Phone className="w-4.5 h-4.5" />
                 <span>Call us NOW!</span>

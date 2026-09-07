@@ -872,22 +872,22 @@ export function HowWeStructureSection() {
           </div>
         </div>
 
-        {/* Bottom CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-14 sm:mt-16 relative z-20">
+        {/* Bottom CTA Buttons - Standardized Global System */}
+        <div className="w-full max-w-md mx-auto sm:max-w-none flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-14 sm:mt-16 relative z-20">
           <a
             href="#consultation"
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-sm sm:text-base shadow-md shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+            className="cta-btn-base cta-btn-primary cta-btn-item"
           >
-            Connect with Us!
+            <span>Connect with Us!</span>
             <ArrowRight className="w-4 h-4" />
           </a>
 
           <a
             href="tel:+18000000000"
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl border-2 border-[#00A3E0] bg-white text-[#00A3E0] hover:bg-cyan-50/70 font-bold text-sm sm:text-base shadow-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+            className="cta-btn-base cta-btn-outline-light cta-btn-item"
           >
             <Phone className="w-4 h-4" />
-            Call us NOW!
+            <span>Call us NOW!</span>
           </a>
         </div>
       </div>

@@ -322,21 +322,21 @@ export function AmazonServicesShowcaseSection() {
             <br className="hidden sm:inline" /> so you can focus on what you do best—writing.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="cta-btn-group">
             <a
               href="#consultation"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-sm sm:text-base shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="cta-btn-base cta-btn-primary cta-btn-item"
             >
               <span>Connect with Us!</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </a>
 
             <a
-              href="tel:+18000000000"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl border-2 border-[#00A3E0] bg-[#020d1e] hover:bg-[#00A3E0]/20 text-white font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              href="tel:+18556666675"
+              className="cta-btn-base cta-btn-outline-dark cta-btn-item"
             >
+              <Phone className="w-4 h-4 flex-shrink-0" />
               <span>Call us NOW!</span>
-              <Phone className="w-4 h-4 text-[#00A3E0]" />
             </a>
           </div>
         </div>

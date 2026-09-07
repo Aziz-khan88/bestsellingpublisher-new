@@ -620,24 +620,26 @@ export function AmazonPublishingWorkflowSection() {
           <MobileWorkflowCardsSlider items={packageItems} />
 
           {/* CTA Buttons Row: Sits neatly above the bottom flowing wave */}
-          <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3.5 pb-2">
-            {/* Button 1: Connect with Us! */}
-            <button
-              type="button"
-              className="h-[44px] sm:h-[46px] px-6 sm:px-7 rounded-lg bg-gradient-to-r from-[#0080ff] to-[#00A3E0] hover:from-[#0070ea] hover:to-[#0092db] text-white font-semibold text-[14px] sm:text-[14.5px] font-sans flex items-center justify-center gap-2.5 shadow-[0_6px_18px_rgba(0,128,255,0.32)] hover:shadow-[0_8px_24px_rgba(0,163,224,0.42)] transition-all duration-300 group active:scale-95 cursor-pointer"
-            >
-              <span>Connect with Us!</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </button>
+          <div className="mt-6 sm:mt-8 pb-2">
+            <div className="cta-btn-group">
+              {/* Button 1: Connect with Us! */}
+              <a
+                href="#consultation"
+                className="cta-btn-base cta-btn-primary cta-btn-item"
+              >
+                <span>Connect with Us!</span>
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
+              </a>
 
-            {/* Button 2: Call us NOW! (Phone Icon on the Right, matching reference) */}
-            <button
-              type="button"
-              className="h-[44px] sm:h-[46px] px-5 sm:px-6 rounded-lg bg-white border-[1.5px] border-[#00A3E0] hover:bg-[#00A3E0]/5 text-[#00A3E0] font-semibold text-[14px] sm:text-[14.5px] font-sans flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-300 group active:scale-95 cursor-pointer"
-            >
-              <span>Call us NOW!</span>
-              <Phone className="w-4 h-4 text-[#00A3E0] group-hover:[animation:phoneRing_0.6s_ease-in-out_infinite]" />
-            </button>
+              {/* Button 2: Call us NOW! */}
+              <a
+                href="tel:+18556666675"
+                className="cta-btn-base cta-btn-outline-light cta-btn-item"
+              >
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <span>Call us NOW!</span>
+              </a>
+            </div>
           </div>
 
         </div>

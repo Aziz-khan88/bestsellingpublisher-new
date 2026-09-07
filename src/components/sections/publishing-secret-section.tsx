@@ -289,26 +289,24 @@ export function PublishingSecretSection() {
             </h2>
 
             {/* CTA Buttons Row */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-
+            <div className="cta-btn-group">
               {/* Button 1: Connect with Us! */}
-              <button
-                type="button"
-                className="h-[48px] px-8 rounded-lg bg-gradient-to-r from-[#0080ff] to-[#00a6f4] hover:from-[#0070ea] hover:to-[#0092db] text-white font-semibold text-[15px] flex items-center justify-center gap-2.5 shadow-[0_8px_22px_rgba(0,128,255,0.32)] hover:shadow-[0_10px_28px_rgba(0,163,224,0.45)] transition-all duration-300 group active:scale-95 cursor-pointer"
+              <a
+                href="#consultation"
+                className="cta-btn-base cta-btn-primary cta-btn-item"
               >
                 <span>Connect with Us!</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-              </button>
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
+              </a>
 
               {/* Button 2: Call us NOW! */}
-              <button
-                type="button"
-                className="h-[48px] px-7 rounded-lg bg-white border-[1.5px] border-[#0080ff] hover:bg-[#0080ff]/5 text-[#0080ff] font-semibold text-[15px] flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all duration-300 group active:scale-95 cursor-pointer"
+              <a
+                href="tel:+18556666675"
+                className="cta-btn-base cta-btn-outline-light cta-btn-item"
               >
-                <Phone className="w-4 h-4 group-hover:[animation:phoneRing_0.6s_ease-in-out_infinite]" />
+                <Phone className="w-4 h-4 flex-shrink-0" />
                 <span>Call us NOW!</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
