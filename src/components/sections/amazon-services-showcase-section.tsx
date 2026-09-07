@@ -304,7 +304,7 @@ export function AmazonServicesShowcaseSection() {
       </div>
 
       {/* MAIN CONTAINER CONTENT */}
-      <div className="relative max-w-[1560px] mx-auto z-10">
+      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
         {/* Left Headline & Content Block */}
         <div className="lg:w-[50%] xl:w-[46%] flex flex-col justify-center mb-8 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-bold leading-[1.16] tracking-tight mb-4">

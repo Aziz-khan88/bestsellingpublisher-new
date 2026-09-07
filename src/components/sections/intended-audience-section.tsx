@@ -184,7 +184,7 @@ export function IntendedAudienceSection() {
           </div>
 
           {/* Cards Grid: 3 Equal Columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-14 sm:gap-16 lg:gap-8 xl:gap-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-14 sm:gap-16 lg:gap-8 xl:gap-12 relative z-10 pl-7 sm:pl-10 lg:pl-0 pr-2 sm:pr-4 lg:pr-0">
 
             {/* CARD 01: Publishing Project Coordination */}
             <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-22 sm:pl-26 lg:pl-24 xl:pl-28 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer">

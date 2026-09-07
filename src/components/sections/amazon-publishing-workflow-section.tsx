@@ -484,7 +484,7 @@ export function AmazonPublishingWorkflowSection() {
       {/* =========================================================================
           FOREGROUND CONTENT: Header + 10 Package Cards (5x2) + CTA Buttons
          ========================================================================= */}
-      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[680px] sm:max-w-[740px] xl:max-w-[800px]">
           
           {/* Eyebrow Header */}

@@ -231,8 +231,7 @@ export function ConsultationFormSection() {
       {/* Grid 2: Bottom-Right */}
       <DotGrid cols={8} rows={6} className="absolute bottom-6 right-8 sm:right-16 lg:right-24 z-0" />
 
-      {/* Main Responsive Container matching Header & Footer width exactly (max-w-[1850px]) */}
-      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto px-2 sm:px-4">
+      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 xl:gap-16">
 
           {/* LEFT COLUMN: Editorial Pitch & Book Feature Box */}

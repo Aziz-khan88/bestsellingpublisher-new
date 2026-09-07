@@ -193,7 +193,7 @@ export function PublishingSecretSection() {
       <DotGrid cols={8} rows={6} className="absolute top-8 left-[34%] lg:left-[39%] z-0" />
 
       {/* Main Responsive Container */}
-      <div className="relative z-10 w-[94%] sm:w-[95%] max-w-[1440px] mx-auto px-4">
+      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto px-4">
 
         {/* TOP / MAIN ROW: Circular Portrait + Copy & CTAs */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">

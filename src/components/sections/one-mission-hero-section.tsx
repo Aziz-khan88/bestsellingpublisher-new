@@ -11,6 +11,8 @@ import {
   Globe,
   Rocket,
   ShieldCheck,
+  LayoutGrid,
+  UploadCloud,
 } from "lucide-react";
 
 export function OneMissionHeroSection() {
@@ -83,7 +85,7 @@ export function OneMissionHeroSection() {
         />
       </svg>
 
-      <div className="relative max-w-[1680px] mx-auto z-10 pt-4 sm:pt-6">
+      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10 pt-4 sm:pt-6">
         {/* Top Centered Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           {/* Eyebrow with Cyan Horizontal Dashes */}
@@ -110,175 +112,177 @@ export function OneMissionHeroSection() {
         </div>
 
         {/* 2-Column Main Layout: Left Pitch & Right Pure CSS 3D Glass Shelves & Stands */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 items-center">
           
-          {/* Left Column (5 cols on lg) */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          {/* Left Column (5 cols on xl/2xl, 6 on lg) */}
+          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center">
             {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200/80 text-[#00A3E0] font-bold text-xs tracking-wider uppercase mb-4 w-fit">
-              <BookOpen className="w-3.5 h-3.5 text-[#00A3E0]" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-200/80 text-[#00A3E0] font-bold text-xs sm:text-[13px] tracking-wider uppercase mb-4 w-fit">
+              <BookOpen className="w-4 h-4 text-[#00A3E0]" />
               <span>YOUR STORY, OUR EXPERTISE.</span>
             </div>
 
-            {/* Big Section Headline */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-serif font-bold text-[#0B1B36] leading-[1.12] tracking-tight mb-3">
-              Plan Your<br />
-              <span className="italic font-serif text-[#00A3E0] font-normal">
-                Publishing
-              </span><br />
-              Project
+            {/* Big Section Headline: 2 Lines, No <br /> tags, Increased Font Sizes */}
+            <h2 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[62px] font-serif font-bold text-[#0B1B36] leading-[1.08] tracking-tight mb-4">
+              <span className="block">Plan Your</span>
+              <span className="block">
+                <span className="italic font-serif text-[#00A3E0] font-normal">
+                  Publishing
+                </span>{" "}
+                Project
+              </span>
             </h2>
 
             {/* Cyan Accent Divider with Dot */}
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-[#00A3E0] shadow-sm" />
-              <div className="w-14 h-[2px] bg-[#00A3E0]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-sm" />
+              <div className="w-16 h-[2.5px] bg-[#00A3E0]" />
             </div>
 
-            {/* Description */}
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg mb-6 font-normal">
+            {/* Description - Increased font size */}
+            <p className="text-slate-600 text-base sm:text-lg lg:text-[17px] leading-relaxed max-w-xl mb-6 font-normal">
               Choose the editing, design, formatting, publishing setup, and launch-support deliverables your manuscript requires.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Increased size */}
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <a
                 href="#consultation"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-sm sm:text-base shadow-md shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-base sm:text-[17px] shadow-md shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Users className="w-4 h-4" />
+                <Users className="w-4.5 h-4.5" />
                 <span>Connect with Us!</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4.5 h-4.5" />
               </a>
 
               <a
                 href="tel:+18000000000"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 rounded-xl border-2 border-[#00A3E0] bg-white text-[#00A3E0] hover:bg-cyan-50 font-bold text-sm sm:text-base shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-[#00A3E0] bg-white text-[#00A3E0] hover:bg-cyan-50 font-bold text-base sm:text-[17px] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4.5 h-4.5" />
                 <span>Call us NOW!</span>
               </a>
             </div>
 
-            {/* Bottom 4-Feature Floating Dock */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-[0_8px_24px_-6px_rgba(12,24,42,0.06)] grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl">
+            {/* Bottom 4-Feature Floating Dock - Increased Width & Spacious Layout */}
+            <div className="w-full max-w-2xl xl:max-w-3xl bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-[0_10px_32px_-6px_rgba(12,24,42,0.08)] p-5 sm:p-6 grid grid-cols-2 gap-4 sm:gap-6">
               {/* Feature 1: Editing */}
-              <div className="flex flex-col">
-                <div className="w-9 h-9 rounded-full bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] mb-2.5">
-                  <Edit3 className="w-4 h-4" />
+              <div className="flex flex-col group">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-50 to-cyan-100/60 border border-cyan-200/90 flex items-center justify-center text-[#00A3E0] mb-3 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                  <BookOpen className="w-5 h-5" />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm text-[#0B1B36] mb-1">
-                  Editing
+                <h4 className="font-bold text-sm sm:text-base text-[#0B1B36] mb-1.5 group-hover:text-[#00A3E0] transition-colors">
+                  Manuscript Editing
                 </h4>
-                <p className="text-[11px] sm:text-xs text-slate-500 leading-snug">
-                  Refine your story for clarity, flow, and maximum impact.
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
+                  Refine clarity, tone, flow, and structure with expert feedback.
                 </p>
               </div>
 
               {/* Feature 2: Formatting */}
-              <div className="flex flex-col">
-                <div className="w-9 h-9 rounded-full bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] mb-2.5">
-                  <BookOpen className="w-4 h-4" />
+              <div className="flex flex-col group">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-50 to-cyan-100/60 border border-cyan-200/90 flex items-center justify-center text-[#00A3E0] mb-3 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                  <LayoutGrid className="w-5 h-5" />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm text-[#0B1B36] mb-1">
-                  Formatting
+                <h4 className="font-bold text-sm sm:text-base text-[#0B1B36] mb-1.5 group-hover:text-[#00A3E0] transition-colors">
+                  Design & Layout
                 </h4>
-                <p className="text-[11px] sm:text-xs text-slate-500 leading-snug">
-                  Professional formatting for print and digital excellence.
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
+                  Standard interior typesetting and custom cover design options.
                 </p>
               </div>
 
-              {/* Feature 3: Publishing Setup */}
-              <div className="flex flex-col">
-                <div className="w-9 h-9 rounded-full bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] mb-2.5">
-                  <Globe className="w-4 h-4" />
+              {/* Feature 3: Publishing */}
+              <div className="flex flex-col group">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-50 to-cyan-100/60 border border-cyan-200/90 flex items-center justify-center text-[#00A3E0] mb-3 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                  <UploadCloud className="w-5 h-5" />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm text-[#0B1B36] mb-1">
+                <h4 className="font-bold text-sm sm:text-base text-[#0B1B36] mb-1.5 group-hover:text-[#00A3E0] transition-colors">
                   Publishing Setup
                 </h4>
-                <p className="text-[11px] sm:text-xs text-slate-500 leading-snug">
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
                   Everything you need for a smooth and compliant launch.
                 </p>
               </div>
 
               {/* Feature 4: Launch Support */}
-              <div className="flex flex-col">
-                <div className="w-9 h-9 rounded-full bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] mb-2.5">
-                  <Rocket className="w-4 h-4" />
+              <div className="flex flex-col group">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-50 to-cyan-100/60 border border-cyan-200/90 flex items-center justify-center text-[#00A3E0] mb-3 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                  <Rocket className="w-5 h-5" />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm text-[#0B1B36] mb-1">
+                <h4 className="font-bold text-sm sm:text-base text-[#0B1B36] mb-1.5 group-hover:text-[#00A3E0] transition-colors">
                   Launch Support
                 </h4>
-                <p className="text-[11px] sm:text-xs text-slate-500 leading-snug">
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
                   Strategic guidance to promote and grow your book.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right Column (7 cols on lg): Pure CSS 3D Glass Shelves & Stands holding Books */}
-          <div className="lg:col-span-7 relative flex items-center justify-center">
-            {/* Ambient Cyan Glow behind shelves */}
-            <div className="absolute w-[500px] h-[500px] rounded-full bg-[#00A3E0]/15 blur-3xl pointer-events-none -z-10" />
+          {/* Right Column (7 cols on xl/2xl, 6 on lg): Enlarged 3D Glass Shelves & Stands covering the right side */}
+          <div className="lg:col-span-6 xl:col-span-7 relative flex items-center justify-center lg:justify-end w-full">
+            {/* Expanded Ambient Cyan Glow behind shelves */}
+            <div className="absolute w-[650px] sm:w-[800px] lg:w-[920px] h-[550px] sm:h-[680px] rounded-full bg-gradient-to-tr from-[#00A3E0]/14 via-[#00A3E0]/18 to-cyan-300/10 blur-[90px] pointer-events-none -z-10" />
 
-            {/* Exact 3D Glass Shelves Showcase with Gentle Floating Animation */}
-            <div className="relative w-full max-w-[640px] aspect-[640/520] select-none animate-float-shelves transition-transform duration-500 hover:scale-[1.01]">
+            {/* Enlarged 3D Glass Shelves Showcase covering the right side area */}
+            <div className="relative w-full max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] aspect-[650/510] select-none animate-float-shelves transition-transform duration-500 hover:scale-[1.01]">
               
               {/* Multi-tier 3D Glass Podium Stage Background (SVG) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 640 520" preserveAspectRatio="none">
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 650 510" preserveAspectRatio="none">
                 <defs>
                   {/* Ambient Glow */}
-                  <radialGradient id="stageGlow" cx="55%" cy="55%" r="50%">
-                    <stop offset="0%" stopColor="#00A3E0" stopOpacity="0.18" />
-                    <stop offset="60%" stopColor="#00A3E0" stopOpacity="0.04" />
+                  <radialGradient id="stageGlow" cx="52%" cy="54%" r="52%">
+                    <stop offset="0%" stopColor="#00A3E0" stopOpacity="0.2" />
+                    <stop offset="60%" stopColor="#00A3E0" stopOpacity="0.05" />
                     <stop offset="100%" stopColor="#00A3E0" stopOpacity="0" />
                   </radialGradient>
                   
                   {/* Upper Podium Tier Gradients */}
                   <radialGradient id="stagePodiumTop1" cx="50%" cy="35%" r="55%">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.92" />
-                    <stop offset="60%" stopColor="#f0f9ff" stopOpacity="0.65" />
-                    <stop offset="100%" stopColor="#bfe8fd" stopOpacity="0.35" />
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.94" />
+                    <stop offset="60%" stopColor="#f0f9ff" stopOpacity="0.7" />
+                    <stop offset="100%" stopColor="#bfe8fd" stopOpacity="0.4" />
                   </radialGradient>
                   <linearGradient id="stagePodiumCyl1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#b8e6fc" stopOpacity="0.4" />
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+                    <stop offset="100%" stopColor="#b8e6fc" stopOpacity="0.45" />
                   </linearGradient>
 
                   {/* Lower Podium Tier Gradients */}
                   <radialGradient id="stagePodiumTop2" cx="50%" cy="35%" r="55%">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                    <stop offset="50%" stopColor="#f4fbff" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#aae2fd" stopOpacity="0.35" />
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.96" />
+                    <stop offset="50%" stopColor="#f4fbff" stopOpacity="0.75" />
+                    <stop offset="100%" stopColor="#aae2fd" stopOpacity="0.4" />
                   </radialGradient>
                   <linearGradient id="stagePodiumCyl2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
-                    <stop offset="100%" stopColor="#a1defc" stopOpacity="0.4" />
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#a1defc" stopOpacity="0.45" />
                   </linearGradient>
                 </defs>
 
                 {/* Ambient Center Glow */}
-                <ellipse cx="350" cy="310" rx="290" ry="190" fill="url(#stageGlow)" />
+                <ellipse cx="350" cy="305" rx="300" ry="195" fill="url(#stageGlow)" />
 
                 {/* Concentric Blueprint Wave Lines */}
-                <g stroke="#00A3E0" strokeWidth="1.2" fill="none" opacity="0.22">
-                  <path d="M 110 410 C 230 480, 450 480, 630 360" />
-                  <path d="M 160 435 C 270 495, 470 490, 630 390" />
-                  <path d="M 210 455 C 310 505, 490 500, 630 420" />
-                  <path d="M 260 475 C 350 515, 510 510, 630 445" />
-                  <path d="M 45 280 C 130 180, 250 210, 350 240" strokeDasharray="4 6" />
+                <g stroke="#00A3E0" strokeWidth="1.2" fill="none" opacity="0.24">
+                  <path d="M 80 405 C 220 480, 460 480, 645 355" />
+                  <path d="M 130 430 C 260 495, 480 490, 645 385" />
+                  <path d="M 180 450 C 300 505, 500 500, 645 415" />
+                  <path d="M 230 470 C 340 515, 520 510, 645 440" />
+                  <path d="M 30 275 C 120 175, 250 205, 360 235" strokeDasharray="4 6" />
                 </g>
 
-                {/* Upper Glass Tier (Back Podium) */}
-                <path d="M 90 250 A 250 78 0 0 0 580 250 L 580 280 A 250 78 0 0 1 90 280 Z" fill="url(#stagePodiumCyl1)" />
-                <ellipse cx="335" cy="250" rx="250" ry="78" fill="url(#stagePodiumTop1)" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" />
-                <path d="M 105 258 A 250 78 0 0 0 565 258" stroke="#ffffff" strokeWidth="2" fill="none" opacity="0.85" />
+                {/* Upper Glass Tier (Back Podium - Spanning widely) */}
+                <path d="M 55 245 A 290 82 0 0 0 635 245 L 635 277 A 290 82 0 0 1 55 277 Z" fill="url(#stagePodiumCyl1)" />
+                <ellipse cx="345" cy="245" rx="290" ry="82" fill="url(#stagePodiumTop1)" stroke="rgba(255,255,255,0.92)" strokeWidth="1.5" />
+                <path d="M 70 253 A 290 82 0 0 0 620 253" stroke="#ffffff" strokeWidth="2" fill="none" opacity="0.85" />
 
-                {/* Lower Stepped Glass Tier (Front Podium) */}
-                <g opacity="0.8">
-                  <path d="M 120 335 A 230 72 0 0 0 570 335 L 570 365 A 230 72 0 0 1 120 365 Z" fill="url(#stagePodiumCyl2)" />
-                  <ellipse cx="345" cy="335" rx="230" ry="72" fill="url(#stagePodiumTop2)" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" />
-                  <path d="M 135 344 A 230 72 0 0 0 555 344" stroke="#ffffff" strokeWidth="2" fill="none" opacity="0.9" />
+                {/* Lower Stepped Glass Tier (Front Podium - Spanning widely) */}
+                <g opacity="0.82">
+                  <path d="M 85 330 A 265 76 0 0 0 620 330 L 620 362 A 265 76 0 0 1 85 362 Z" fill="url(#stagePodiumCyl2)" />
+                  <ellipse cx="352" cy="330" rx="265" ry="76" fill="url(#stagePodiumTop2)" stroke="rgba(255,255,255,0.92)" strokeWidth="1.5" />
+                  <path d="M 100 339 A 265 76 0 0 0 605 339" stroke="#ffffff" strokeWidth="2" fill="none" opacity="0.9" />
                 </g>
               </svg>
 
@@ -286,32 +290,32 @@ export function OneMissionHeroSection() {
               <div 
                 className="hero-glass-shelf absolute flex flex-col items-center justify-end"
                 style={{
-                  left: "4.7%",
-                  top: "4.8%",
-                  width: "28.1%",
-                  height: "49.0%",
+                  left: "3.5%",
+                  top: "3.0%",
+                  width: "29.0%",
+                  height: "51.0%",
                   zIndex: 10,
                 }}
               >
                 {/* Shelf Number & Dots */}
-                <div className="absolute top-3.5 left-4 z-20 flex flex-col items-start select-none pointer-events-none">
-                  <span className="text-[#00A3E0] font-bold text-base sm:text-lg tracking-wider font-sans leading-none">
+                <div className="absolute top-3.5 sm:top-4 left-3.5 sm:left-5 z-20 flex flex-col items-start select-none pointer-events-none">
+                  <span className="text-[#00A3E0] font-extrabold text-sm sm:text-xl lg:text-2xl tracking-wider font-sans leading-none">
                     01
                   </span>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
+                  <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
                   </div>
                 </div>
                 {/* Book 1 Container */}
-                <div className="relative z-10 mb-1.5 flex justify-center items-end">
+                <div className="relative z-10 mb-2 flex justify-center items-end w-full px-2">
                   <Image
                     src="/hero-book-1.png"
                     alt="Book 1 - Manuscript By David Sherman"
-                    width={128}
-                    height={202}
-                    className="w-[124px] sm:w-[128px] h-auto object-contain drop-shadow-[0_8px_14px_rgba(0,30,60,0.15)]"
+                    width={240}
+                    height={380}
+                    className="w-[88%] max-w-[210px] h-auto object-contain drop-shadow-[0_12px_22px_rgba(0,30,60,0.18)] transition-transform duration-300 hover:scale-105"
                     priority
                   />
                 </div>
@@ -321,32 +325,32 @@ export function OneMissionHeroSection() {
               <div 
                 className="hero-glass-shelf absolute flex flex-col items-center justify-end"
                 style={{
-                  left: "22.8%",
-                  top: "29.2%",
-                  width: "25.8%",
-                  height: "48.5%",
+                  left: "22.0%",
+                  top: "27.5%",
+                  width: "26.5%",
+                  height: "50.0%",
                   zIndex: 30,
                 }}
               >
                 {/* Shelf Number & Dots */}
-                <div className="absolute top-3.5 left-4 z-20 flex flex-col items-start select-none pointer-events-none">
-                  <span className="text-[#00A3E0] font-bold text-base sm:text-lg tracking-wider font-sans leading-none">
+                <div className="absolute top-3.5 sm:top-4 left-3.5 sm:left-5 z-20 flex flex-col items-start select-none pointer-events-none">
+                  <span className="text-[#00A3E0] font-extrabold text-sm sm:text-xl lg:text-2xl tracking-wider font-sans leading-none">
                     02
                   </span>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
+                  <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
                   </div>
                 </div>
                 {/* Book 2 Container */}
-                <div className="relative z-10 mb-1 flex justify-center items-end">
+                <div className="relative z-10 mb-1.5 flex justify-center items-end w-full px-2">
                   <Image
                     src="/hero-book-2.png"
                     alt="Book 2 - Gemini in Twain by Alyssa K. Farrow"
-                    width={128}
-                    height={215}
-                    className="w-[124px] sm:w-[128px] h-auto object-contain drop-shadow-[0_8px_14px_rgba(0,30,60,0.15)]"
+                    width={240}
+                    height={390}
+                    className="w-[88%] max-w-[210px] h-auto object-contain drop-shadow-[0_12px_22px_rgba(0,30,60,0.18)] transition-transform duration-300 hover:scale-105"
                     priority
                   />
                 </div>
@@ -355,10 +359,10 @@ export function OneMissionHeroSection() {
               <div 
                 className="absolute pointer-events-none"
                 style={{
-                  left: "23.3%",
-                  top: "74.6%",
-                  width: "24.7%",
-                  height: "9.2%",
+                  left: "22.5%",
+                  top: "74.5%",
+                  width: "25.5%",
+                  height: "9.5%",
                   zIndex: 28,
                 }}
               >
@@ -398,67 +402,67 @@ export function OneMissionHeroSection() {
               <div 
                 className="hero-glass-shelf absolute flex flex-col items-center justify-end"
                 style={{
-                  left: "41.4%",
-                  top: "12.5%",
-                  width: "27.8%",
-                  height: "51.9%",
+                  left: "43.5%",
+                  top: "10.5%",
+                  width: "28.5%",
+                  height: "53.0%",
                   zIndex: 12,
                 }}
               >
                 {/* Shelf Number & Dots */}
-                <div className="absolute top-3.5 left-4 z-20 flex flex-col items-start select-none pointer-events-none">
-                  <span className="text-[#00A3E0] font-bold text-base sm:text-lg tracking-wider font-sans leading-none">
+                <div className="absolute top-3.5 sm:top-4 left-3.5 sm:left-5 z-20 flex flex-col items-start select-none pointer-events-none">
+                  <span className="text-[#00A3E0] font-extrabold text-sm sm:text-xl lg:text-2xl tracking-wider font-sans leading-none">
                     03
                   </span>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
+                  <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
                   </div>
                 </div>
                 {/* Book 3 Container */}
-                <div className="relative z-10 mb-1.5 flex justify-center items-end">
+                <div className="relative z-10 mb-2 flex justify-center items-end w-full px-2">
                   <Image
                     src="/hero-book-3.png"
                     alt="Book 3 - Legacy of Love by Dr. Haroon Rasheed Khan"
-                    width={128}
-                    height={219}
-                    className="w-[124px] sm:w-[128px] h-auto object-contain drop-shadow-[0_8px_14px_rgba(0,30,60,0.15)]"
+                    width={240}
+                    height={400}
+                    className="w-[88%] max-w-[210px] h-auto object-contain drop-shadow-[0_12px_22px_rgba(0,30,60,0.18)] transition-transform duration-300 hover:scale-105"
                     priority
                   />
                 </div>
               </div>
 
-              {/* Shelf 04 (Front Right) - Foreground Shelf */}
+              {/* Shelf 04 (Front Right) - Foreground Shelf (Spanning to cover the right side) */}
               <div 
                 className="hero-glass-shelf absolute flex flex-col items-center justify-end"
                 style={{
-                  left: "63.3%",
-                  top: "29.2%",
-                  width: "24.7%",
-                  height: "48.5%",
+                  left: "67.5%",
+                  top: "27.5%",
+                  width: "26.0%",
+                  height: "50.0%",
                   zIndex: 25,
                 }}
               >
                 {/* Shelf Number & Dots */}
-                <div className="absolute top-3.5 left-4 z-20 flex flex-col items-start select-none pointer-events-none">
-                  <span className="text-[#00A3E0] font-bold text-base sm:text-lg tracking-wider font-sans leading-none">
+                <div className="absolute top-3.5 sm:top-4 left-3.5 sm:left-5 z-20 flex flex-col items-start select-none pointer-events-none">
+                  <span className="text-[#00A3E0] font-extrabold text-sm sm:text-xl lg:text-2xl tracking-wider font-sans leading-none">
                     04
                   </span>
-                  <div className="flex items-center gap-1 mt-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00A3E0]" />
+                  <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00A3E0]" />
                   </div>
                 </div>
                 {/* Book 4 Container */}
-                <div className="relative z-10 mb-1 flex justify-center items-end">
+                <div className="relative z-10 mb-1.5 flex justify-center items-end w-full px-2">
                   <Image
                     src="/hero-book-4.png"
                     alt="Book 4 - Mrs. Endurance by Lizar James-Momes"
-                    width={126}
-                    height={217}
-                    className="w-[122px] sm:w-[126px] h-auto object-contain drop-shadow-[0_8px_14px_rgba(0,30,60,0.15)]"
+                    width={240}
+                    height={390}
+                    className="w-[88%] max-w-[210px] h-auto object-contain drop-shadow-[0_12px_22px_rgba(0,30,60,0.18)] transition-transform duration-300 hover:scale-105"
                     priority
                   />
                 </div>
@@ -467,10 +471,10 @@ export function OneMissionHeroSection() {
               <div 
                 className="absolute pointer-events-none"
                 style={{
-                  left: "63.8%",
-                  top: "74.6%",
-                  width: "23.8%",
-                  height: "9.2%",
+                  left: "68.0%",
+                  top: "74.5%",
+                  width: "25.0%",
+                  height: "9.5%",
                   zIndex: 24,
                 }}
               >
@@ -490,18 +494,18 @@ export function OneMissionHeroSection() {
 
               {/* Floating Pill Badge: Trusted by Authors. | Chosen by Stories. */}
               <div 
-                className="absolute z-40 inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-cyan-200/80 shadow-[0_8px_24px_rgba(0,163,224,0.14)]"
+                className="absolute z-40 inline-flex items-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-6 py-1.5 sm:py-3 rounded-full bg-white/95 backdrop-blur-md border border-cyan-200/80 shadow-[0_10px_30px_rgba(0,163,224,0.18)]"
                 style={{
-                  bottom: "3.8%",
-                  right: "2.3%",
+                  bottom: "2.0%",
+                  right: "1.0%",
                 }}
               >
-                <ShieldCheck className="w-4 h-4 text-[#00A3E0]" />
-                <span className="text-[11px] sm:text-xs font-bold text-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 text-[#00A3E0] shrink-0" />
+                <span className="text-[10px] sm:text-sm font-bold text-slate-700 whitespace-nowrap">
                   Trusted by Authors.
                 </span>
-                <span className="w-px h-3.5 bg-slate-300" />
-                <span className="text-[11px] sm:text-xs text-slate-600 font-medium">
+                <span className="w-px h-3 sm:h-3.5 bg-slate-300 shrink-0" />
+                <span className="text-[10px] sm:text-sm text-slate-600 font-medium whitespace-nowrap">
                   Chosen by Stories.
                 </span>
               </div>

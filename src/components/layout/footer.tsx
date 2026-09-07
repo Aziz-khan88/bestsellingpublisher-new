@@ -129,8 +129,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Main Responsive Shell matching Header width exactly (Aligned to end to prevent gap blowout) */}
-      <div className="relative z-10 w-[97%] lg:w-[98%] max-w-[1850px] mx-auto flex flex-col justify-end gap-5 sm:gap-6">
+      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto flex flex-col justify-end gap-5 sm:gap-6">
         {/* Main 5-Column Row with Exact Baseline Top-Alignment */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-3">
           
@@ -440,9 +439,9 @@ export function Footer() {
             <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00A3E0] shadow-[0_0_10px_#00A3E0] shrink-0" />
           </div>
 
-          {/* Center Book Icon (Exact Glowing Multi-Layered Cyan Open Book 100x100px) */}
-          <div className="px-3 sm:px-5 flex items-center justify-center shrink-0">
-            <CyanBookIcon className="w-[100px] h-[100px]" />
+          {/* Center Book Icon (Responsive Glowing Multi-Layered Cyan Open Book) */}
+          <div className="px-2 sm:px-5 flex items-center justify-center shrink-0">
+            <CyanBookIcon className="w-14 h-14 sm:w-20 sm:h-20 lg:w-[100px] lg:h-[100px]" />
           </div>
 
           {/* Right Line Segment with Inner and Outer Cyan Dots */}

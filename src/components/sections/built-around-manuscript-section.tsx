@@ -284,8 +284,7 @@ export function BuiltAroundManuscriptSection() {
       {/* Subtle Star / Dust Particle Atmosphere */}
       <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_0.75px,transparent_1px)] [background-size:32px_32px] opacity-[0.07] pointer-events-none z-0" />
 
-      {/* Main Responsive Container matching Header & Footer width (max-w-[1850px]) */}
-      <div className="relative w-[97%] lg:w-[98%] max-w-[1850px] mx-auto z-10 px-2 sm:px-4 lg:px-6">
+      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10 px-2 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left Column: Heading & Narrative */}
