@@ -84,7 +84,7 @@ const LINE_CLIP_4_B = createWavyLineClip(WAVE_POINTS_B, 60, 1.1);
 export function MainHeroSection() {
   return (
     <div className="relative w-full bg-[#F7FAFD] overflow-hidden">
-      <section className="relative w-full min-h-[820px] sm:min-h-[880px] lg:min-h-[940px] xl:min-h-[980px] bg-[#030611] text-slate-100 font-sans pt-[7rem] sm:pt-[8.5rem] lg:pt-[9.5rem] xl:pt-[10rem] pb-32 sm:pb-28 lg:pb-24 xl:pb-[98px] wavy z-10 overflow-hidden">
+      <section className="relative w-full min-h-0 lg:min-h-[940px] xl:min-h-[980px] bg-[#030611] text-slate-100 font-sans pt-20 sm:pt-24 lg:pt-[9.5rem] xl:pt-[10rem] pb-16 sm:pb-20 lg:pb-24 xl:pb-[98px] wavy z-10 overflow-hidden">
         
         {/* Floating animation keyframes and Wavy clip-path */}
         <style>{`
@@ -368,7 +368,7 @@ export function MainHeroSection() {
         <div className="relative w-[97%] max-w-[1850px] mx-auto px-4 sm:px-6 lg:px-8 z-10">
 
           {/* 3-Column Main Hero Grid with bottom alignment so all content touches down to the clip-path */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 xl:gap-6 items-end">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-4 xl:gap-6 items-end">
 
             {/* ======================================================== */}
             {/* LEFT COLUMN: Pitch, Headline, CTAs, Stats (5 cols)     */}
@@ -377,7 +377,7 @@ export function MainHeroSection() {
             <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-end text-left z-20 pb-2 lg:pb-0 lg:pr-2 lg:translate-y-2 xl:translate-y-3">
 
               {/* Eyebrow with Cyan Line */}
-              <div className="flex items-center gap-3.5 mb-4">
+              <div className="flex items-center gap-3.5 mb-3 sm:mb-4">
                 <span className="w-10 sm:w-12 h-[2.5px] bg-[#00A3E0]" />
                 <span className="text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#00A3E0] uppercase font-sans">
                   YOUR STORY. OUR EXPERTISE. LIMITLESS REACH.
@@ -385,7 +385,7 @@ export function MainHeroSection() {
               </div>
 
               {/* Main Headline (H1) - Responsive across all screens */}
-              <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[50px] xl:text-[56px] 2xl:text-[60px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-4">
+              <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[50px] xl:text-[56px] 2xl:text-[60px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-3 sm:mb-4">
                 Prepare Your Book{" "}
                 <br className="hidden sm:inline" />
                 for{" "}
@@ -395,7 +395,7 @@ export function MainHeroSection() {
               </h1>
 
               {/* Subtitle / Tagline */}
-              <h3 className="text-base sm:text-xl lg:text-[22px] xl:text-[24px] font-serif mb-4 leading-snug">
+              <h3 className="text-base sm:text-xl lg:text-[22px] xl:text-[24px] font-serif mb-3 sm:mb-4 leading-snug">
                 <span className="text-white font-medium">Built to Publish. </span>
                 <span className="italic text-[#00A3E0] font-normal">
                   Ready to Reach Readers.
@@ -403,12 +403,12 @@ export function MainHeroSection() {
               </h3>
 
               {/* Description */}
-              <p className="text-slate-300 text-sm sm:text-base lg:text-[15.5px] xl:text-[16.5px] leading-relaxed max-w-xl mb-6 font-normal">
+              <p className="text-slate-300 text-sm sm:text-base lg:text-[15.5px] xl:text-[16.5px] leading-relaxed max-w-xl mb-5 sm:mb-6 font-normal">
                 From expert editing to global distribution, we handle every step with precision, creativity, and care—so your book makes the impact it deserves.
               </p>
 
               {/* CTA Buttons - Standardized Global System */}
-              <div className="cta-btn-group mb-6">
+              <div className="cta-btn-group mb-5 sm:mb-7 lg:mb-8">
                 <a
                   href="#consultation"
                   className="cta-btn-base cta-btn-primary cta-btn-item"
@@ -427,7 +427,7 @@ export function MainHeroSection() {
               </div>
 
               {/* Stats Counter Bar with Pure Unstacked Large Icons & Increased Font Sizes */}
-              <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-5 xl:gap-6 pt-4 border-t border-slate-800/90">
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-5 xl:gap-6 pt-3.5 sm:pt-4 border-t border-slate-800/90">
                 {/* Stat 1: Books Published */}
                 <div className="flex items-center gap-3 sm:gap-3.5 shrink-0">
                   <BookOpen className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#00A3E0] shrink-0" />
@@ -480,12 +480,12 @@ export function MainHeroSection() {
             {/* CENTER COLUMN: Central 3D Books Artwork & Cosmic Ring   */}
             {/* Sits right down near the wave, sizes enlarged (4 cols)   */}
             {/* ======================================================== */}
-            <div className="lg:col-span-4 xl:col-span-4 relative flex flex-col items-center lg:items-end justify-end self-end z-20 min-h-[420px] sm:min-h-[500px] lg:min-h-[560px] pt-4 lg:translate-x-3 xl:translate-x-5">
+            <div className="lg:col-span-4 xl:col-span-4 relative flex flex-col items-center justify-center lg:items-end lg:justify-end lg:self-end z-20 min-h-0 sm:min-h-0 lg:min-h-[560px] my-1 sm:my-2 lg:my-0 pt-0 lg:pt-4 lg:translate-x-3 xl:translate-x-5">
               {/* Ambient Cyan Radial Backlight - Scaled & centered around the book */}
-              <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] xs:w-[310px] sm:w-[440px] md:w-[500px] lg:w-[550px] xl:w-[590px] 2xl:w-[620px] h-[270px] xs:h-[310px] sm:h-[440px] md:h-[500px] lg:h-[550px] xl:h-[590px] 2xl:h-[620px] rounded-full bg-[#00A3E0]/18 blur-3xl pointer-events-none -z-10 animate-moon-pulse" />
+              <div className="absolute top-1/2 lg:top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] xs:w-[280px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[590px] 2xl:w-[620px] h-[240px] xs:h-[280px] sm:h-[400px] md:h-[480px] lg:h-[550px] xl:h-[590px] 2xl:h-[620px] rounded-full bg-[#00A3E0]/18 blur-3xl pointer-events-none -z-10 animate-moon-pulse" />
 
-              {/* CELESTIAL COSMIC RING & STARBURST FLARE - Framed clearly below the header */}
-              <div className="absolute top-[53%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] xs:w-[300px] sm:w-[430px] md:w-[490px] lg:w-[540px] xl:w-[580px] 2xl:w-[610px] h-[260px] xs:h-[300px] sm:h-[430px] md:h-[490px] lg:h-[540px] xl:h-[580px] 2xl:h-[610px] pointer-events-none z-0">
+              {/* CELESTIAL COSMIC RING & STARBURST FLARE - Centered directly behind the book */}
+              <div className="absolute top-1/2 lg:top-[53%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] xs:w-[280px] sm:w-[390px] md:w-[460px] lg:w-[540px] xl:w-[580px] 2xl:w-[610px] h-[240px] xs:h-[280px] sm:h-[390px] md:h-[460px] lg:h-[540px] xl:h-[580px] 2xl:h-[610px] pointer-events-none z-0">
                 <svg className="w-full h-full" viewBox="0 0 800 800" fill="none">
                   <defs>
                     <filter id="celestialRingGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -553,9 +553,9 @@ export function MainHeroSection() {
               </div>
 
               {/* Distinct 3D Books Cutout Layer resting only some pixels above the wave */}
-              <div className="relative w-full flex items-end justify-center lg:justify-end z-10">
-                <div className="animate-float-hero-book w-full flex items-end justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[450px] md:max-w-[510px] lg:max-w-[570px] xl:max-w-[620px] 2xl:max-w-[650px] origin-bottom translate-y-2 sm:translate-y-3 lg:translate-y-4 xl:translate-y-5 transition-transform duration-500 hover:scale-[1.03]">
+              <div className="relative w-full flex items-center justify-center lg:items-end lg:justify-end z-10">
+                <div className="animate-float-hero-book w-full flex items-center justify-center lg:items-end lg:justify-end">
+                  <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[570px] xl:max-w-[620px] 2xl:max-w-[650px] origin-bottom translate-y-0 sm:translate-y-1 lg:translate-y-4 xl:translate-y-5 transition-transform duration-500 hover:scale-[1.03]">
                     <Image
                       src="/main-hero-books.png"
                       alt="Prepare Your Book for Every Channel - Beyond the Horizon & Chapter One"
@@ -574,16 +574,16 @@ export function MainHeroSection() {
             {/* RIGHT COLUMN: 3 3D-Rotated Glass Cards + Platform Dock   */}
             {/* Sits adjacent to book and touches down right above wave  */}
             {/* ======================================================== */}
-            <div className="lg:col-span-3 xl:col-span-3 flex flex-col gap-3 sm:gap-3.5 justify-end z-20 lg:-translate-x-1 xl:-translate-x-2 lg:translate-y-1.5">
+            <div className="lg:col-span-3 xl:col-span-3 flex flex-col gap-2.5 sm:gap-3.5 justify-end z-20 lg:-translate-x-1 xl:-translate-x-2 lg:translate-y-1.5">
 
               {/* Feature Card 1: Expert Editing (Enlarged Height, Premium Aesthetics) */}
-              <div className="hero-feature-card-rotated p-4 sm:p-5 flex items-start gap-4 min-h-[120px] sm:min-h-[130px] lg:min-h-[136px] cursor-pointer group">
-                <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-gradient-to-br from-cyan-500/25 via-[#00A3E0]/15 to-cyan-950/80 border border-cyan-400/40 flex items-center justify-center text-[#00A3E0] group-hover:text-white group-hover:border-cyan-400/80 group-hover:bg-[#00A3E0]/30 shrink-0 shadow-lg shadow-cyan-950/40 transition-all duration-300 mt-0.5">
-                  <Edit3 className="w-5.5 h-5.5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
+              <div className="hero-feature-card-rotated p-3.5 sm:p-5 flex items-start gap-3.5 sm:gap-4 min-h-0 sm:min-h-[130px] lg:min-h-[136px] cursor-pointer group">
+                <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-gradient-to-br from-cyan-500/25 via-[#00A3E0]/15 to-cyan-950/80 border border-cyan-400/40 flex items-center justify-center text-[#00A3E0] group-hover:text-white group-hover:border-cyan-400/80 group-hover:bg-[#00A3E0]/30 shrink-0 shadow-lg shadow-cyan-950/40 transition-all duration-300 mt-0.5">
+                  <Edit3 className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div className="flex flex-col justify-center flex-1">
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h4 className="font-bold text-[16px] sm:text-[17px] text-white leading-snug group-hover:text-[#00A3E0] transition-colors">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h4 className="font-bold text-[15px] sm:text-[17px] text-white leading-snug group-hover:text-[#00A3E0] transition-colors">
                       Expert Editing
                     </h4>
                     <span className="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/15 text-[#00E5FF] border border-cyan-400/30">
@@ -597,12 +597,12 @@ export function MainHeroSection() {
               </div>
 
               {/* Feature Card 2: Premium Formatting (3D Rotated) */}
-              <div className="hero-feature-card-rotated p-3.5 sm:p-4 flex items-start gap-3.5 min-h-[86px] sm:min-h-[94px] cursor-pointer">
-                <div className="w-10 h-10 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-[#00A3E0] shrink-0 shadow-sm mt-0.5">
-                  <BookMarked className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+              <div className="hero-feature-card-rotated p-3 sm:p-4 flex items-start gap-3 sm:gap-3.5 min-h-0 sm:min-h-[94px] cursor-pointer">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-[#00A3E0] shrink-0 shadow-sm mt-0.5">
+                  <BookMarked className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="flex flex-col justify-center">
-                  <h4 className="font-bold text-sm sm:text-[15px] text-white leading-snug mb-1">
+                  <h4 className="font-bold text-sm sm:text-[15px] text-white leading-snug mb-0.5 sm:mb-1">
                     Premium Formatting
                   </h4>
                   <p className="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed">
@@ -612,12 +612,12 @@ export function MainHeroSection() {
               </div>
 
               {/* Feature Card 3: Global Distribution (3D Rotated) */}
-              <div className="hero-feature-card-rotated p-3.5 sm:p-4 flex items-start gap-3.5 min-h-[86px] sm:min-h-[94px] cursor-pointer">
-                <div className="w-10 h-10 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-[#00A3E0] shrink-0 shadow-sm mt-0.5">
-                  <Globe className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+              <div className="hero-feature-card-rotated p-3 sm:p-4 flex items-start gap-3 sm:gap-3.5 min-h-0 sm:min-h-[94px] cursor-pointer">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-[#00A3E0] shrink-0 shadow-sm mt-0.5">
+                  <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="flex flex-col justify-center">
-                  <h4 className="font-bold text-sm sm:text-[15px] text-white leading-snug mb-1">
+                  <h4 className="font-bold text-sm sm:text-[15px] text-white leading-snug mb-0.5 sm:mb-1">
                     Global Distribution
                   </h4>
                   <p className="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed">
@@ -627,7 +627,7 @@ export function MainHeroSection() {
               </div>
 
               {/* Publishing Platforms Glassmorphic Dock (3D Rotated, touching down right above the wave) */}
-              <div className="hero-platforms-dock-rotated p-3.5 sm:p-4 mt-0.5">
+              <div className="hero-platforms-dock-rotated p-3 sm:p-4 mt-0">
                 <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3">
                   Publishing Platforms
                 </span>

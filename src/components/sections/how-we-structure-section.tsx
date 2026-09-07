@@ -538,7 +538,7 @@ export function HowWeStructureSection() {
   }
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#F5F9FD] via-[#FFFFFF] to-[#EFF7FD] pt-20 pb-28 px-4 sm:px-6 lg:px-10 overflow-hidden font-sans">
+    <section className="relative w-full bg-gradient-to-b from-[#F5F9FD] via-[#FFFFFF] to-[#EFF7FD] pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-10 overflow-hidden font-sans">
       {/* Keyframe animations for flowing pearls inside connected pipeline */}
       <style>{`
         @keyframes flowPearls {
@@ -883,7 +883,7 @@ export function HowWeStructureSection() {
           </a>
 
           <a
-            href="tel:+18000000000"
+            href="tel:+18556666675"
             className="cta-btn-base cta-btn-outline-light cta-btn-item"
           >
             <Phone className="w-4 h-4" />

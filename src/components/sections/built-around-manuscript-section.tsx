@@ -208,7 +208,7 @@ export function BuiltAroundManuscriptSection() {
   ];
 
   return (
-    <section className="relative w-full bg-[#020712] text-white pt-32 sm:pt-40 lg:pt-48 xl:pt-56 pb-32 sm:pb-44 lg:pb-52 px-3 sm:px-6 lg:px-10 overflow-hidden">
+    <section className="relative w-full bg-[#020712] text-white pt-20 sm:pt-28 lg:pt-48 xl:pt-56 pb-16 sm:pb-28 lg:pb-52 px-3 sm:px-6 lg:px-10 overflow-hidden">
       {/* Keyframe animations for orbit rotation and star flare */}
       <style>{`
         @keyframes orbitRotate {

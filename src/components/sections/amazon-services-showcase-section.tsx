@@ -243,7 +243,7 @@ function HeroBookWithAnimatedOrbit() {
 
 export function AmazonServicesShowcaseSection() {
   return (
-    <section className="relative w-full bg-[#010714] text-white pt-14 sm:pt-20 pb-36 sm:pb-44 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans min-h-[800px] lg:min-h-[860px] xl:min-h-[920px]">
+    <section className="relative w-full bg-[#010714] text-white pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-24 lg:pb-36 xl:pb-44 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans min-h-0 lg:min-h-[860px] xl:min-h-[920px]">
       {/* Atmospheric Background Glow & Star Particles */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="absolute top-[38%] right-[14%] -translate-y-1/2 w-[720px] h-[720px] rounded-full bg-[#00A3E0]/18 blur-[150px] animate-aura-pulse" />
@@ -265,8 +265,8 @@ export function AmazonServicesShowcaseSection() {
       {/* MAIN CONTAINER CONTENT */}
       <div className="relative w-full max-w-[1850px] mx-auto z-10">
         {/* Left Headline & Content Block */}
-        <div className="lg:w-[50%] xl:w-[46%] flex flex-col justify-center mb-8 lg:mb-16">
-          <h2 className="text-[28px] xs:text-[34px] sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-bold leading-[1.16] tracking-tight mb-4">
+        <div className="lg:w-[50%] xl:w-[46%] flex flex-col justify-center mb-6 sm:mb-8 lg:mb-16">
+          <h2 className="text-[28px] xs:text-[34px] sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-bold leading-[1.16] tracking-tight mb-3 sm:mb-4">
             <span className="text-white block">Amazon Publishing Services</span>
             <span className="text-[#00A3E0] block font-serif font-bold mt-1.5">
               Editing, Design, and Distribution
@@ -276,7 +276,7 @@ export function AmazonServicesShowcaseSection() {
             </span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-normal font-sans">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-8 font-normal font-sans">
             We handle the technical and creative details of publishing,
             <br className="hidden sm:inline" /> so you can focus on what you do best—writing.
           </p>
@@ -301,7 +301,7 @@ export function AmazonServicesShowcaseSection() {
         </div>
 
         {/* MOBILE/TABLET ONLY INLINE BOOK (< lg) */}
-        <div className="block lg:hidden relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[500px] mx-auto my-8 animate-float-book">
+        <div className="block lg:hidden relative w-full max-w-[260px] xs:max-w-[320px] sm:max-w-[460px] mx-auto my-4 sm:my-6 animate-float-book">
           <HeroBookWithAnimatedOrbit />
         </div>
 
