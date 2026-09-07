@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,13 @@ export const metadata: Metadata = {
     "Tailored publishing solutions, editorial, design, formatting, and worldwide distribution.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#02050e",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -31,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", sansFont.variable, serifFont.variable)}
+      className={cn("h-full", "antialiased", "overflow-x-hidden", "w-full", "max-w-full", sansFont.variable, serifFont.variable)}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#02050e] text-slate-100">
+      <body className="min-h-full flex flex-col font-sans bg-[#02050e] text-slate-100 overflow-x-hidden w-full max-w-full relative">
         {children}
       </body>
     </html>

@@ -83,8 +83,8 @@ const LINE_CLIP_4_B = createWavyLineClip(WAVE_POINTS_B, 60, 1.1);
 
 export function MainHeroSection() {
   return (
-    <div className="relative w-full bg-[#F7FAFD]">
-      <section className="relative w-full min-h-[820px] sm:min-h-[880px] lg:min-h-[940px] xl:min-h-[980px] bg-[#030611] text-slate-100 font-sans pt-[7.5rem] sm:pt-[8.5rem] lg:pt-[9.5rem] xl:pt-[10rem] pb-32 sm:pb-28 lg:pb-24 xl:pb-[98px] wavy z-10">
+    <div className="relative w-full bg-[#F7FAFD] overflow-hidden">
+      <section className="relative w-full min-h-[820px] sm:min-h-[880px] lg:min-h-[940px] xl:min-h-[980px] bg-[#030611] text-slate-100 font-sans pt-[7rem] sm:pt-[8.5rem] lg:pt-[9.5rem] xl:pt-[10rem] pb-32 sm:pb-28 lg:pb-24 xl:pb-[98px] wavy z-10 overflow-hidden">
         
         {/* Floating animation keyframes and Wavy clip-path */}
         <style>{`
@@ -217,19 +217,9 @@ export function MainHeroSection() {
             -webkit-backdrop-filter: blur(16px);
             box-shadow: 0 10px 24px -4px rgba(0, 163, 224, 0.12),
                         inset 0 1px 1px rgba(255, 255, 255, 0.15);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) rotateZ(-1deg);
-            transform-origin: center right;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
           }
-          .hero-feature-card-rotated:hover {
-            transform: perspective(1000px) rotateY(-1deg) rotateX(0.5deg) rotateZ(0deg) translateX(-4px) scale(1.02);
-            border-color: rgba(0, 163, 224, 0.6);
-            background: rgba(12, 28, 52, 0.85);
-            box-shadow: 0 14px 32px -4px rgba(0, 163, 224, 0.25),
-                        inset 0 1px 1px rgba(255, 255, 255, 0.3);
-          }
 
-          /* Publishing Platforms Dock (Rotated) */
           .hero-platforms-dock-rotated {
             border-radius: 16px;
             border: 1px solid rgba(0, 163, 224, 0.32);
@@ -238,19 +228,44 @@ export function MainHeroSection() {
             -webkit-backdrop-filter: blur(16px);
             box-shadow: 0 10px 28px -6px rgba(0, 163, 224, 0.18),
                         inset 0 1px 1px rgba(255, 255, 255, 0.18);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) rotateZ(-1deg);
-            transform-origin: center right;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
           }
-          .hero-platforms-dock-rotated:hover {
-            transform: perspective(1000px) rotateY(-1deg) rotateX(0.5deg) rotateZ(0deg) translateX(-4px);
-            border-color: rgba(0, 163, 224, 0.55);
+
+          @media (max-width: 1023px) {
+            .hero-feature-card-rotated,
+            .hero-platforms-dock-rotated {
+              transform: none !important;
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .hero-feature-card-rotated {
+              transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) rotateZ(-1deg);
+              transform-origin: center right;
+            }
+            .hero-feature-card-rotated:hover {
+              transform: perspective(1000px) rotateY(-1deg) rotateX(0.5deg) rotateZ(0deg) translateX(-4px) scale(1.02);
+              border-color: rgba(0, 163, 224, 0.6);
+              background: rgba(12, 28, 52, 0.85);
+              box-shadow: 0 14px 32px -4px rgba(0, 163, 224, 0.25),
+                          inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            }
+            .hero-platforms-dock-rotated {
+              transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) rotateZ(-1deg);
+              transform-origin: center right;
+            }
+            .hero-platforms-dock-rotated:hover {
+              transform: perspective(1000px) rotateY(-1deg) rotateX(0.5deg) rotateZ(0deg) translateX(-4px);
+              border-color: rgba(0, 163, 224, 0.55);
+            }
           }
         `}</style>
 
         {/* Ambient Cosmic Cyan & Blue Glows */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[550px] sm:h-[700px] rounded-full bg-[#00A3E0]/15 blur-[140px] pointer-events-none -z-10" />
-        <div className="absolute top-1/4 right-8 w-[450px] h-[450px] rounded-full bg-[#006699]/18 blur-[110px] pointer-events-none -z-10" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[900px] h-[450px] sm:h-[700px] rounded-full bg-[#00A3E0]/15 blur-[140px]" />
+          <div className="absolute top-1/4 right-0 sm:right-8 w-[320px] sm:w-[450px] h-[320px] sm:h-[450px] rounded-full bg-[#006699]/18 blur-[110px]" />
+        </div>
 
         {/* Cosmic Starfield Background Particles */}
         <svg
@@ -369,8 +384,8 @@ export function MainHeroSection() {
                 </span>
               </div>
 
-              {/* Main Headline (H1) - Increased font size */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[50px] xl:text-[56px] 2xl:text-[60px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-4">
+              {/* Main Headline (H1) - Responsive across all screens */}
+              <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[50px] xl:text-[56px] 2xl:text-[60px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-4">
                 Prepare Your Book<br />
                 for{" "}
                 <span className="italic font-serif text-[#00A3E0] font-normal">
@@ -378,24 +393,24 @@ export function MainHeroSection() {
                 </span>
               </h1>
 
-              {/* Subtitle / Tagline - Increased font size */}
-              <h3 className="text-lg sm:text-xl lg:text-[22px] xl:text-[24px] font-serif mb-4 leading-snug">
+              {/* Subtitle / Tagline */}
+              <h3 className="text-base sm:text-xl lg:text-[22px] xl:text-[24px] font-serif mb-4 leading-snug">
                 <span className="text-white font-medium">Built to Publish. </span>
                 <span className="italic text-[#00A3E0] font-normal">
                   Ready to Reach Readers.
                 </span>
               </h3>
 
-              {/* Description - Increased font size */}
+              {/* Description */}
               <p className="text-slate-300 text-sm sm:text-base lg:text-[15.5px] xl:text-[16.5px] leading-relaxed max-w-xl mb-6 font-normal">
                 From expert editing to global distribution, we handle every step with precision, creativity, and care—so your book makes the impact it deserves.
               </p>
 
-              {/* CTA Buttons - Increased font size */}
-              <div className="flex flex-wrap items-center gap-4 mb-6">
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
                 <a
                   href="#consultation"
-                  className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-base sm:text-[17px] shadow-md shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008fc0] text-white font-bold text-[15px] sm:text-[17px] shadow-md shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>Connect with Us!</span>
                   <ArrowRight className="w-5 h-5" />
@@ -403,7 +418,7 @@ export function MainHeroSection() {
 
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-slate-700/90 bg-[#081220]/80 hover:bg-[#0c1c33] hover:border-cyan-500/50 text-white font-bold text-base sm:text-[17px] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-slate-700/90 bg-[#081220]/80 hover:bg-[#0c1c33] hover:border-cyan-500/50 text-white font-bold text-[15px] sm:text-[17px] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>Explore Our Services</span>
                   <ArrowRight className="w-5 h-5" />
@@ -411,7 +426,7 @@ export function MainHeroSection() {
               </div>
 
               {/* Stats Counter Bar with Pure Unstacked Large Icons & Increased Font Sizes */}
-              <div className="flex items-center gap-4 sm:gap-5 xl:gap-6 pt-4 border-t border-slate-800/90">
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 sm:gap-5 xl:gap-6 pt-4 border-t border-slate-800/90">
                 {/* Stat 1: Books Published */}
                 <div className="flex items-center gap-3 sm:gap-3.5 shrink-0">
                   <BookOpen className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#00A3E0] shrink-0" />
@@ -426,7 +441,7 @@ export function MainHeroSection() {
                 </div>
 
                 {/* Divider */}
-                <div className="w-[1px] h-9 sm:h-11 bg-slate-800 shrink-0" />
+                <div className="hidden sm:block w-[1px] h-9 sm:h-11 bg-slate-800 shrink-0" />
 
                 {/* Stat 2: Distribution Channels */}
                 <div className="flex items-center gap-3 sm:gap-3.5 shrink-0">
@@ -464,12 +479,12 @@ export function MainHeroSection() {
             {/* CENTER COLUMN: Central 3D Books Artwork & Cosmic Ring   */}
             {/* Sits right down near the wave, sizes enlarged (4 cols)   */}
             {/* ======================================================== */}
-            <div className="lg:col-span-4 xl:col-span-4 relative flex flex-col items-center lg:items-end justify-end self-end z-20 min-h-[460px] sm:min-h-[500px] lg:min-h-[560px] pt-4 lg:translate-x-3 xl:translate-x-5">
+            <div className="lg:col-span-4 xl:col-span-4 relative flex flex-col items-center lg:items-end justify-end self-end z-20 min-h-[420px] sm:min-h-[500px] lg:min-h-[560px] pt-4 lg:translate-x-3 xl:translate-x-5">
               {/* Ambient Cyan Radial Backlight - Scaled & centered around the book */}
-              <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] sm:w-[440px] md:w-[500px] lg:w-[550px] xl:w-[590px] 2xl:w-[620px] h-[380px] sm:h-[440px] md:h-[500px] lg:h-[550px] xl:h-[590px] 2xl:h-[620px] rounded-full bg-[#00A3E0]/18 blur-3xl pointer-events-none -z-10 animate-moon-pulse" />
+              <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[270px] xs:w-[310px] sm:w-[440px] md:w-[500px] lg:w-[550px] xl:w-[590px] 2xl:w-[620px] h-[270px] xs:h-[310px] sm:h-[440px] md:h-[500px] lg:h-[550px] xl:h-[590px] 2xl:h-[620px] rounded-full bg-[#00A3E0]/18 blur-3xl pointer-events-none -z-10 animate-moon-pulse" />
 
               {/* CELESTIAL COSMIC RING & STARBURST FLARE - Framed clearly below the header */}
-              <div className="absolute top-[53%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[370px] sm:w-[430px] md:w-[490px] lg:w-[540px] xl:w-[580px] 2xl:w-[610px] h-[370px] sm:h-[430px] md:h-[490px] lg:h-[540px] xl:h-[580px] 2xl:h-[610px] pointer-events-none z-0">
+              <div className="absolute top-[53%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] xs:w-[300px] sm:w-[430px] md:w-[490px] lg:w-[540px] xl:w-[580px] 2xl:w-[610px] h-[260px] xs:h-[300px] sm:h-[430px] md:h-[490px] lg:h-[540px] xl:h-[580px] 2xl:h-[610px] pointer-events-none z-0">
                 <svg className="w-full h-full" viewBox="0 0 800 800" fill="none">
                   <defs>
                     <filter id="celestialRingGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -539,7 +554,7 @@ export function MainHeroSection() {
               {/* Distinct 3D Books Cutout Layer resting only some pixels above the wave */}
               <div className="relative w-full flex items-end justify-center lg:justify-end z-10">
                 <div className="animate-float-hero-book w-full flex items-end justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[380px] sm:max-w-[450px] md:max-w-[510px] lg:max-w-[570px] xl:max-w-[620px] 2xl:max-w-[650px] origin-bottom translate-y-2 sm:translate-y-3 lg:translate-y-4 xl:translate-y-5 transition-transform duration-500 hover:scale-[1.03]">
+                  <div className="relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[450px] md:max-w-[510px] lg:max-w-[570px] xl:max-w-[620px] 2xl:max-w-[650px] origin-bottom translate-y-2 sm:translate-y-3 lg:translate-y-4 xl:translate-y-5 transition-transform duration-500 hover:scale-[1.03]">
                     <Image
                       src="/main-hero-books.png"
                       alt="Prepare Your Book for Every Channel - Beyond the Horizon & Chapter One"

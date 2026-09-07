@@ -42,7 +42,7 @@ function DotGrid({
 // Exact Translucent Cyan Glass Circles matching reference design bottom-left
 function TranslucentGlassCircles() {
   return (
-    <div className="absolute bottom-0 left-0 w-[420px] sm:w-[500px] lg:w-[600px] h-[360px] sm:h-[440px] pointer-events-none select-none z-0 overflow-hidden">
+    <div className="absolute bottom-0 left-0 w-full max-w-[320px] sm:max-w-[500px] lg:max-w-[600px] h-[280px] sm:h-[440px] pointer-events-none select-none z-0 overflow-hidden">
       <svg
         viewBox="0 0 600 450"
         fill="none"
@@ -231,7 +231,7 @@ export function ConsultationFormSection() {
       {/* Grid 2: Bottom-Right */}
       <DotGrid cols={8} rows={6} className="absolute bottom-6 right-8 sm:right-16 lg:right-24 z-0" />
 
-      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4">
+      <div className="relative z-10 w-full max-w-[1850px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 xl:gap-16">
 
           {/* LEFT COLUMN: Editorial Pitch & Book Feature Box */}
@@ -243,25 +243,23 @@ export function ConsultationFormSection() {
                 DISCUSS
               </span>
               <span className="text-[14px] sm:text-[15px] font-bold tracking-widest text-[#0f172a] uppercase">
-                YOUR IDEAS
+                YOUR GOALS
               </span>
-              <div className="w-12 h-[2.5px] bg-[#00A3E0] ml-1 rounded-full" />
+              <div className="w-10 h-[2px] bg-[#00A3E0] ml-1" />
             </div>
 
-            {/* Main Headline (Editorial Serif Display) */}
-            <h2 className="text-3xl sm:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[58px] font-serif font-bold text-[#0f172a] leading-[1.14] tracking-tight">
-              Do You Have a Story Plot
-              <br />
-              In Mind? <span className="text-[#00A3E0]">Tell Us About It!</span>
+            {/* Main Headline */}
+            <h2 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-serif font-bold text-[#0f172a] leading-[1.15] tracking-tight mb-5">
+              Consultation Registration
             </h2>
 
-            {/* Narrative Body Copy */}
-            <p className="text-[16px] sm:text-[17.5px] text-slate-600 leading-relaxed max-w-xl mt-6">
-              We value your time and energy, which is why we&apos;re here to help you transform your narrative into a beautifully written book.
+            {/* Narrative Description */}
+            <p className="text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-lg mb-8">
+              Discuss your goals with a publishing strategist and explore the best path forward for your book.
             </p>
 
             {/* Feature Badge Box: 3D Hexagon with Reader Icon */}
-            <div className="mt-10 sm:mt-14 flex items-center gap-5 select-none">
+            <div className="mt-8 sm:mt-10 flex items-center gap-5 select-none">
               <ReaderHexBadge />
 
               {/* Vertical Cyan Accent Divider */}
@@ -280,7 +278,7 @@ export function ConsultationFormSection() {
           </div>
 
           {/* RIGHT COLUMN: The Floating Registration Card */}
-          <div className="w-full lg:w-[54%] xl:w-[56%] relative flex items-center justify-center lg:justify-start lg:pl-8 xl:pl-16 2xl:pl-24 pr-2 sm:pr-6">
+          <div className="w-full lg:w-[54%] xl:w-[56%] relative flex items-center justify-center lg:justify-start lg:pl-8 xl:pl-16 2xl:pl-24 px-0 sm:px-4">
 
             {/* Animated Rotating Laser Border Shell */}
             <div className="relative z-10 w-full max-w-[540px] sm:max-w-[560px] xl:max-w-[580px] rounded-[30px] p-[2.5px] overflow-hidden shadow-[0_20px_50px_rgba(0,163,224,0.14)] bg-[#dbeafe]">
@@ -294,7 +292,7 @@ export function ConsultationFormSection() {
               />
 
               {/* Inner Solid White Card Surface */}
-              <div className="relative z-10 bg-white rounded-[28px] p-7 sm:p-8 lg:p-9 border border-[#e2e8f0]">
+              <div className="relative z-10 bg-white rounded-[28px] p-5 sm:p-8 lg:p-9 border border-[#e2e8f0]">
                 
                 {/* Form Header matching exact feather badge */}
                 <div className="flex items-center gap-4 mb-6">

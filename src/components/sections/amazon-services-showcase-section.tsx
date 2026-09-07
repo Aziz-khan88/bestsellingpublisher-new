@@ -286,7 +286,7 @@ export function AmazonServicesShowcaseSection() {
   return (
     <section className="relative w-full bg-[#010714] text-white pt-14 sm:pt-20 pb-36 sm:pb-44 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans min-h-[800px] lg:min-h-[860px] xl:min-h-[920px]">
       {/* Atmospheric Background Glow & Star Particles */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div className="absolute top-[38%] right-[14%] -translate-y-1/2 w-[720px] h-[720px] rounded-full bg-[#00A3E0]/18 blur-[150px] animate-aura-pulse" />
         <div className="absolute top-[48%] right-[18%] -translate-y-1/2 w-[540px] h-[540px] rounded-full bg-blue-600/10 blur-[130px]" />
         
@@ -304,10 +304,10 @@ export function AmazonServicesShowcaseSection() {
       </div>
 
       {/* MAIN CONTAINER CONTENT */}
-      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
+      <div className="relative w-full max-w-[1850px] mx-auto z-10">
         {/* Left Headline & Content Block */}
         <div className="lg:w-[50%] xl:w-[46%] flex flex-col justify-center mb-8 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-bold leading-[1.16] tracking-tight mb-4">
+          <h2 className="text-[28px] xs:text-[34px] sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-bold leading-[1.16] tracking-tight mb-4">
             <span className="text-white block">Amazon Publishing Services</span>
             <span className="text-[#00A3E0] block font-serif font-bold mt-1.5">
               Editing, Design, and Distribution
@@ -342,17 +342,19 @@ export function AmazonServicesShowcaseSection() {
         </div>
 
         {/* MOBILE/TABLET ONLY INLINE BOOK (< lg) */}
-        <div className="block lg:hidden relative w-full max-w-[440px] sm:max-w-[500px] mx-auto my-8 animate-float-book">
+        <div className="block lg:hidden relative w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[500px] mx-auto my-8 animate-float-book">
           <HeroBookWithAnimatedOrbit />
         </div>
 
         {/* 5 BOTTOM SERVICE CARDS */}
-        <div className="lg:w-[62%] xl:w-[58%] 2xl:w-[56%] grid grid-cols-2 sm:grid-cols-5 items-stretch pt-4 sm:pt-6">
+        <div className="lg:w-[62%] xl:w-[58%] 2xl:w-[56%] grid grid-cols-2 sm:grid-cols-5 items-stretch pt-4 sm:pt-6 gap-y-4 sm:gap-y-0">
           {SERVICE_FEATURES.map((feature, idx) => (
             <div
               key={feature.title}
               className={`flex flex-col items-center text-center px-3 sm:px-4 py-3 sm:py-0 ${
-                idx !== SERVICE_FEATURES.length - 1
+                idx === 4 ? "col-span-2 sm:col-span-1" : ""
+              } ${
+                idx !== SERVICE_FEATURES.length - 1 && idx !== 3
                   ? "sm:border-r sm:border-slate-700/60"
                   : ""
               }`}

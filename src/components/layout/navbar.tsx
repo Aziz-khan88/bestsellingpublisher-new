@@ -215,11 +215,11 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2 sm:px-4">
-      {/* 97%-98% Full width container with overflow-visible */}
+    <header className="fixed top-2 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2 sm:px-4">
+      {/* Full width container with max constraint */}
       <div
         id="desktop-navbar-container"
-        className="relative w-[97%] max-w-[1850px] mx-auto pointer-events-auto overflow-visible"
+        className="relative w-full max-w-[1850px] mx-auto pointer-events-auto overflow-visible"
       >
         
         {/* Animated Rotating Laser Border Shell */}
@@ -239,12 +239,12 @@ export function Navbar() {
         <div className="absolute inset-0 rounded-2xl border border-[#40bee2]/30 pointer-events-none" />
 
         {/* Inner Header Bar: relative z-20 & overflow-visible */}
-        <div className="relative z-20 w-full h-[76px] sm:h-[82px] xl:h-[88px] px-4 sm:px-7 xl:px-9 flex items-center justify-between">
+        <div className="relative z-20 w-full h-[64px] sm:h-[82px] xl:h-[88px] px-3 sm:px-7 xl:px-9 flex items-center justify-between">
           
           {/* 1. Left: Brand Logo */}
-          <div className="flex items-center gap-3 xl:gap-6 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 xl:gap-6 shrink-0">
             <Link href="/" className="flex items-center select-none group">
-              <div className="relative w-[155px] sm:w-[225px] xl:w-[245px] h-[38px] sm:h-[52px]">
+              <div className="relative w-[140px] xs:w-[165px] sm:w-[225px] xl:w-[245px] h-[34px] sm:h-[52px]">
                 <Image
                   src="/logo.png"
                   alt="Best Selling Publisher"
@@ -392,7 +392,7 @@ export function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <a
               href="tel:+18556666675"
-              className="h-[38px] sm:h-[46px] px-3 sm:px-6 rounded-xl border-2 border-[#40BEE2] bg-[#40BEE2] hover:bg-transparent text-white hover:text-[#40BEE2] flex items-center gap-2 font-semibold text-[13px] sm:text-[15px] shadow-[0_0_25px_rgba(64,190,226,0.45)] hover:shadow-[0_0_35px_rgba(64,190,226,0.65)] transition-all duration-300 shrink-0 active:scale-95 group"
+              className="h-[36px] sm:h-[46px] px-2.5 sm:px-6 rounded-xl border-2 border-[#40BEE2] bg-[#40BEE2] hover:bg-transparent text-white hover:text-[#40BEE2] flex items-center justify-center gap-2 font-semibold text-[13px] sm:text-[15px] shadow-[0_0_25px_rgba(64,190,226,0.45)] hover:shadow-[0_0_35px_rgba(64,190,226,0.65)] transition-all duration-300 shrink-0 active:scale-95 group"
             >
               <Phone className="w-4 h-4 text-white group-hover:text-[#40BEE2] fill-current shrink-0 transition-colors" />
               <span className="hidden sm:inline whitespace-nowrap font-semibold tracking-tight">
@@ -404,7 +404,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-[#40bee2] hover:border-[#40bee2] transition-colors"
+              className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-[#40bee2] hover:border-[#40bee2] transition-colors shrink-0"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? (

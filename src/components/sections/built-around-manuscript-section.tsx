@@ -277,14 +277,16 @@ export function BuiltAroundManuscriptSection() {
         </svg>
       </div>
 
-      {/* Ambient Radial Mesh Glows */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none z-0" />
+      {/* Ambient Radial Mesh Glows contained to prevent overflow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-1/3 left-1/4 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-cyan-600/10 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 right-1/4 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-blue-600/10 rounded-full blur-[160px]" />
+      </div>
 
       {/* Subtle Star / Dust Particle Atmosphere */}
       <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_0.75px,transparent_1px)] [background-size:32px_32px] opacity-[0.07] pointer-events-none z-0" />
 
-      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10 px-2 sm:px-4 lg:px-6">
+      <div className="relative w-full max-w-[1850px] mx-auto z-10 px-2 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left Column: Heading & Narrative */}
@@ -298,7 +300,7 @@ export function BuiltAroundManuscriptSection() {
             </div>
 
             {/* Main Headline (in Editorial Serif) */}
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-[54px] xl:text-[62px] font-normal leading-[1.12] tracking-tight text-white mb-2">
+            <h2 className="font-serif text-[32px] xs:text-[38px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-normal leading-[1.12] tracking-tight text-white mb-2">
               Built Around
               <br />
               <span className="text-[#00A3E0] font-serif">Your Manuscript</span>
@@ -346,20 +348,20 @@ export function BuiltAroundManuscriptSection() {
           <div className="lg:col-span-7 relative flex items-center justify-center py-10 sm:py-14 lg:py-16 xl:py-20">
             
             {/* Circular Orbit Ring with Moving Dots circumscribing the 4 Cards (Fully Centered, Generous Clearance) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden lg:overflow-visible">
               
               {/* 1. Static Ambient Cyan Glow Behind the Orbit Circle */}
-              <div className="w-[560px] sm:w-[660px] lg:w-[740px] xl:w-[820px] h-[560px] sm:h-[660px] lg:h-[740px] xl:h-[820px] rounded-full bg-[radial-gradient(circle,rgba(0,163,224,0.15)_0%,rgba(0,163,224,0.03)_60%,transparent_80%)] blur-2xl pointer-events-none" />
+              <div className="w-[300px] xs:w-[350px] sm:w-[660px] lg:w-[740px] xl:w-[820px] h-[300px] xs:h-[350px] sm:h-[660px] lg:h-[740px] xl:h-[820px] rounded-full bg-[radial-gradient(circle,rgba(0,163,224,0.15)_0%,rgba(0,163,224,0.03)_60%,transparent_80%)] blur-2xl pointer-events-none" />
 
               {/* 2. Main Glowing Circle Orbit Track */}
-              <div className="absolute w-[520px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[520px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full border border-cyan-400/40 shadow-[0_0_28px_rgba(0,163,224,0.25)] pointer-events-none" />
+              <div className="absolute w-[280px] xs:w-[320px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[280px] xs:h-[320px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full border border-cyan-400/40 shadow-[0_0_28px_rgba(0,163,224,0.25)] pointer-events-none" />
 
               {/* 3. Secondary Faint Dashed Outer Accent Orbit */}
-              <div className="absolute w-[570px] sm:w-[680px] lg:w-[760px] xl:w-[840px] h-[570px] sm:h-[680px] lg:h-[760px] xl:h-[840px] rounded-full border border-dashed border-cyan-500/18 pointer-events-none" />
+              <div className="absolute w-[290px] xs:w-[340px] sm:w-[680px] lg:w-[760px] xl:w-[840px] h-[290px] xs:h-[340px] sm:h-[680px] lg:h-[760px] xl:h-[840px] rounded-full border border-dashed border-cyan-500/18 pointer-events-none" />
 
               {/* 4. Primary Rotating Orbit with Moving Dots & 4-Point Lens Flare Star */}
               <div
-                className="absolute w-[520px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[520px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full pointer-events-none"
+                className="absolute w-[280px] xs:w-[320px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[280px] xs:h-[320px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full pointer-events-none"
                 style={{ animation: "orbitRotate 28s linear infinite" }}
               >
                 {/* Moving Dot 1: Top (12 o'clock) */}
@@ -396,7 +398,7 @@ export function BuiltAroundManuscriptSection() {
 
               {/* 5. Counter-Rotating Orbit Ring with Secondary Micro-Dots */}
               <div
-                className="absolute w-[520px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[520px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full pointer-events-none"
+                className="absolute w-[280px] xs:w-[320px] sm:w-[620px] lg:w-[700px] xl:w-[780px] h-[280px] xs:h-[320px] sm:h-[620px] lg:h-[700px] xl:h-[780px] rounded-full pointer-events-none"
                 style={{ animation: "orbitCounter 38s linear infinite" }}
               >
                 <span className="absolute top-[28%] left-[5%] w-2 h-2 rounded-full bg-cyan-200 shadow-[0_0_8px_#38bdf8]" />

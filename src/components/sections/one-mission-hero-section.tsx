@@ -122,8 +122,8 @@ export function OneMissionHeroSection() {
               <span>YOUR STORY, OUR EXPERTISE.</span>
             </div>
 
-            {/* Big Section Headline: 2 Lines, No <br /> tags, Increased Font Sizes */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[62px] font-serif font-bold text-[#0B1B36] leading-[1.08] tracking-tight mb-4">
+            {/* Big Section Headline: 2 Lines, No <br /> tags, Responsive Font Sizes */}
+            <h2 className="text-[30px] xs:text-[36px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-serif font-bold text-[#0B1B36] leading-[1.08] tracking-tight mb-4">
               <span className="block">Plan Your</span>
               <span className="block">
                 <span className="italic font-serif text-[#00A3E0] font-normal">
@@ -222,8 +222,10 @@ export function OneMissionHeroSection() {
 
           {/* Right Column (7 cols on xl/2xl, 6 on lg): Enlarged 3D Glass Shelves & Stands covering the right side */}
           <div className="lg:col-span-6 xl:col-span-7 relative flex items-center justify-center lg:justify-end w-full">
-            {/* Expanded Ambient Cyan Glow behind shelves */}
-            <div className="absolute w-[650px] sm:w-[800px] lg:w-[920px] h-[550px] sm:h-[680px] rounded-full bg-gradient-to-tr from-[#00A3E0]/14 via-[#00A3E0]/18 to-cyan-300/10 blur-[90px] pointer-events-none -z-10" />
+            {/* Expanded Ambient Cyan Glow behind shelves contained to prevent overflow */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 flex items-center justify-center">
+              <div className="w-[320px] sm:w-[800px] lg:w-[920px] h-[320px] sm:h-[680px] rounded-full bg-gradient-to-tr from-[#00A3E0]/14 via-[#00A3E0]/18 to-cyan-300/10 blur-[90px] pointer-events-none" />
+            </div>
 
             {/* Enlarged 3D Glass Shelves Showcase covering the right side area */}
             <div className="relative w-full max-w-[760px] xl:max-w-[880px] 2xl:max-w-[980px] aspect-[650/510] select-none animate-float-shelves transition-transform duration-500 hover:scale-[1.01]">

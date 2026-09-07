@@ -13,7 +13,7 @@ import { Footer } from "@/components/layout/footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#04060f] text-slate-100">
+    <div className="min-h-screen flex flex-col bg-[#04060f] text-slate-100 overflow-x-hidden w-full max-w-full">
       {/* 1. Header / Navbar */}
       <Navbar />
 

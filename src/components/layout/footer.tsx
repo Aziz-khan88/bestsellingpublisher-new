@@ -129,12 +129,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto flex flex-col justify-end gap-5 sm:gap-6">
+      <div className="relative z-10 w-full max-w-[1850px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end gap-5 sm:gap-6">
         {/* Main 5-Column Row with Exact Baseline Top-Alignment */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row items-start justify-between gap-10 lg:gap-0 pb-3">
           
           {/* Column 1: Brand Logo, Narrative Summary & Social Channels (28% Width) */}
-          <div className="w-full lg:w-[27%] lg:pr-4 flex flex-col justify-between">
+          <div className="w-full sm:col-span-2 lg:col-span-1 lg:w-[27%] lg:pr-4 flex flex-col justify-between">
             <div>
               <Link href="/" className="inline-block select-none mb-3">
                 <div className="relative w-[215px] sm:w-[240px] h-[50px] sm:h-[56px]">

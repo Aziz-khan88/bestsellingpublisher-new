@@ -193,7 +193,7 @@ export function PublishingSecretSection() {
       <DotGrid cols={8} rows={6} className="absolute top-8 left-[34%] lg:left-[39%] z-0" />
 
       {/* Main Responsive Container */}
-      <div className="relative z-10 w-[97%] max-w-[1850px] mx-auto px-4">
+      <div className="relative z-10 w-full max-w-[1850px] mx-auto px-4 sm:px-6">
 
         {/* TOP / MAIN ROW: Circular Portrait + Copy & CTAs */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
@@ -201,8 +201,8 @@ export function PublishingSecretSection() {
           {/* LEFT COLUMN: Circular Author Portrait with Orbit, White Disc & Badge */}
           <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center lg:justify-start xl:pl-2">
             
-            {/* Outer Concentric Orbit Ring Container (Enlarged) */}
-            <div className="relative w-[380px] sm:w-[460px] lg:w-[490px] xl:w-[530px] h-[380px] sm:h-[460px] lg:h-[490px] xl:h-[530px] flex items-center justify-center select-none">
+            {/* Outer Concentric Orbit Ring Container (Responsive) */}
+            <div className="relative w-[280px] xs:w-[330px] sm:w-[460px] lg:w-[490px] xl:w-[530px] h-[280px] xs:h-[330px] sm:h-[460px] lg:h-[490px] xl:h-[530px] flex items-center justify-center select-none">
               
               {/* 1. Outermost Rotating Cyan Orbit Ring */}
               <div
@@ -219,14 +219,14 @@ export function PublishingSecretSection() {
 
               {/* 2. Secondary Inner Dashed Accent Ring (Rotating in Reverse) */}
               <div
-                className="absolute inset-6 sm:inset-7 rounded-full border border-dashed border-[#7dd3fc]/35 pointer-events-none"
+                className="absolute inset-5 sm:inset-7 rounded-full border border-dashed border-[#7dd3fc]/35 pointer-events-none"
                 style={{ animation: "orbitCounter 48s linear infinite" }}
               >
                 <span className="absolute top-1/2 -right-[3px] w-2 h-2 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
               </div>
 
               {/* 3. Middle Layer: Pure White Circular Disc with Animated Cyan Laser Rim */}
-              <div className="relative z-10 w-[320px] sm:w-[390px] lg:w-[420px] xl:w-[455px] h-[320px] sm:h-[390px] lg:h-[420px] xl:h-[455px] rounded-full p-[2.5px] overflow-hidden shadow-[0_20px_55px_rgba(0,163,224,0.18)] bg-[#dbeafe]">
+              <div className="relative z-10 w-[235px] xs:w-[275px] sm:w-[390px] lg:w-[420px] xl:w-[455px] h-[235px] xs:h-[275px] sm:h-[390px] lg:h-[420px] xl:h-[455px] rounded-full p-[2.5px] overflow-hidden shadow-[0_20px_55px_rgba(0,163,224,0.18)] bg-[#dbeafe]">
                 
                 {/* 360deg Rotating Laser Border Sweep */}
                 <div
@@ -237,7 +237,7 @@ export function PublishingSecretSection() {
                 />
 
                 {/* Inner White Disc Surface */}
-                <div className="relative z-10 w-full h-full rounded-full bg-white flex items-center justify-center p-4 sm:p-5 lg:p-5.5 border border-[#cbe5fb]">
+                <div className="relative z-10 w-full h-full rounded-full bg-white flex items-center justify-center p-3 sm:p-5 lg:p-5.5 border border-[#cbe5fb]">
                   
                   {/* Exact Author Circular Photo */}
                   <div className="relative w-full h-full rounded-full overflow-hidden shadow-inner group cursor-pointer">
@@ -254,7 +254,7 @@ export function PublishingSecretSection() {
 
               {/* 4. Interactive Book Badge (Scaled up to match enlarged circle) */}
               <div
-                className="absolute right-4 sm:right-6 lg:right-6 bottom-7 sm:bottom-9 lg:bottom-10 z-30 w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-gradient-to-tr from-[#0070ea] to-[#00a3e0] border-4 border-white shadow-[0_12px_28px_rgba(0,163,224,0.5)] flex items-center justify-center cursor-pointer hover:scale-115 transition-all duration-300 group"
+                className="absolute right-2 sm:right-6 lg:right-6 bottom-4 sm:bottom-9 lg:bottom-10 z-30 w-13 h-13 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-gradient-to-tr from-[#0070ea] to-[#00a3e0] border-3 sm:border-4 border-white shadow-[0_12px_28px_rgba(0,163,224,0.5)] flex items-center justify-center cursor-pointer hover:scale-115 transition-all duration-300 group"
                 style={{ animation: "floatSlow 4s ease-in-out infinite" }}
                 title="Best Selling Publisher"
               >
