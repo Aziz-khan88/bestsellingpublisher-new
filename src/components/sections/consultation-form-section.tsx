@@ -428,8 +428,8 @@ export function ConsultationFormSection() {
                         />
                       </div>
                       <p className="text-[11px] sm:text-[11.5px] text-slate-500 leading-tight">
-                        We use your details only to respond to your request.
-                        <br />
+                        We use your details only to respond to your request.{" "}
+                        <br className="hidden sm:inline" />
                         <span className="hover:underline cursor-pointer text-slate-600">
                           See our privacy policy.
                         </span>

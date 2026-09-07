@@ -386,7 +386,8 @@ export function MainHeroSection() {
 
               {/* Main Headline (H1) - Responsive across all screens */}
               <h1 className="text-[32px] xs:text-[38px] sm:text-5xl lg:text-[50px] xl:text-[56px] 2xl:text-[60px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-4">
-                Prepare Your Book<br />
+                Prepare Your Book{" "}
+                <br className="hidden sm:inline" />
                 for{" "}
                 <span className="italic font-serif text-[#00A3E0] font-normal">
                   Every Channel.

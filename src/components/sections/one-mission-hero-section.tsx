@@ -122,10 +122,10 @@ export function OneMissionHeroSection() {
               <span>YOUR STORY, OUR EXPERTISE.</span>
             </div>
 
-            {/* Big Section Headline: 2 Lines, No <br /> tags, Responsive Font Sizes */}
+            {/* Big Section Headline: Responsive Font Sizes, No forced breaks on mobile */}
             <h2 className="text-[30px] xs:text-[36px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-serif font-bold text-[#0B1B36] leading-[1.08] tracking-tight mb-4">
-              <span className="block">Plan Your</span>
-              <span className="block">
+              <span className="inline sm:block">Plan Your </span>
+              <span className="inline sm:block">
                 <span className="italic font-serif text-[#00A3E0] font-normal">
                   Publishing
                 </span>{" "}

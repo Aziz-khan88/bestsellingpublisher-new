@@ -50,7 +50,7 @@ function ServiceGlassCard({
                 {title}
                 {subtitle && (
                   <>
-                    <br />
+                    <br className="hidden sm:inline" />{" "}
                     <span>{subtitle}</span>
                   </>
                 )}
@@ -369,8 +369,8 @@ export function BuiltAroundManuscriptSection() {
 
             {/* Main Headline (in Editorial Serif) */}
             <h2 className="font-serif text-[32px] xs:text-[38px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-normal leading-[1.12] tracking-tight text-white mb-2">
-              Built Around
-              <br />
+              Built Around{" "}
+              <br className="hidden sm:inline" />
               <span className="text-[#00A3E0] font-serif">Your Manuscript</span>
             </h2>
 

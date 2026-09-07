@@ -559,8 +559,8 @@ export function AmazonPublishingWorkflowSection() {
 
           {/* Main Headline (Editorial Serif Display matching other sections) */}
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[50px] font-serif font-bold text-[#0f172a] leading-[1.14] tracking-tight">
-            Prepare Your Book for
-            <br />
+            Prepare Your Book for{" "}
+            <br className="hidden sm:inline" />
             <span className="text-[#00A3E0] font-serif">Amazon Publishing</span>
           </h2>
 

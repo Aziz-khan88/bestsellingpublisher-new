@@ -283,8 +283,8 @@ export function PublishingSecretSection() {
 
             {/* Main Headline (Editorial Serif Display) */}
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-serif font-bold text-[#0f172a] leading-[1.18] tracking-tight mb-8">
-              Less Is Never More for Us –
-              <br />
+              Less Is Never More for Us –{" "}
+              <br className="hidden sm:inline" />
               It Can Be If You Want It to <span className="text-[#00A3E0] font-serif">Be!</span>
             </h2>
 

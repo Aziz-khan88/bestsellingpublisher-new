@@ -325,8 +325,8 @@ export function IntendedAudienceSection() {
 
           {/* Headline (Editorial Serif font matching Playfair Display) */}
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-serif font-normal text-[#0c182a] leading-[1.18] tracking-tight">
-            Prepare Your Work for Its Intended
-            <br />
+            Prepare Your Work for Its Intended{" "}
+            <br className="hidden sm:inline" />
             <span className="text-[#00A3E0] relative inline-block">
               Audience and Channels
               {/* Cyan Underline Stroke */}
