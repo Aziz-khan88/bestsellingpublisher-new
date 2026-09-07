@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { ArrowRight, Phone } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 // Top/Side Dotted Matrix Grid with Individual Sparkling Animation (".. animation")
 function DotGrid({
@@ -126,6 +127,68 @@ const packageItems = [
     ),
   },
 ];
+
+function MobileWorkflowCardsSlider({ items }: { items: typeof packageItems }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    loop: false,
+  });
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = React.useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  return (
+    <div className="w-full sm:hidden">
+      <div className="overflow-hidden w-full py-2" ref={emblaRef}>
+        <div className="flex -ml-2.5">
+          {items.map((item, idx) => (
+            <div key={idx} className="flex-[0_0_54%] xs:flex-[0_0_46%] min-w-0 pl-2.5">
+              <div className="bg-white rounded-xl p-3.5 flex flex-col items-center text-center border border-slate-100 shadow-[0_3px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_20px_rgba(0,163,224,0.18)] hover:border-[#00A3E0]/50 transition-all duration-300 justify-between h-full min-h-[126px]">
+                {/* Cyan Outline Circular Icon Badge */}
+                <div className="w-11 h-11 rounded-full border-[1.5px] border-[#00A3E0] bg-[#f0f9ff]/60 flex items-center justify-center mb-2 shrink-0 shadow-sm">
+                  {item.icon}
+                </div>
+                {/* Title */}
+                <span className="font-sans text-[12px] font-semibold text-[#0f172a] leading-[1.3] text-center line-clamp-3">
+                  {item.title}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Mobile Indicator Dots */}
+      <div className="flex items-center justify-center gap-1.5 mt-4">
+        {scrollSnaps.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => scrollTo(idx)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              selectedIndex === idx ? "w-6 bg-[#00A3E0]" : "w-1.5 bg-slate-300"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function AmazonPublishingWorkflowSection() {
   return (
@@ -513,8 +576,8 @@ export function AmazonPublishingWorkflowSection() {
             </span>
           </div>
 
-          {/* 7 Package Service Cards: Responsive Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-[660px] xl:max-w-[740px]">
+          {/* 7 Package Service Cards: Desktop/Tablet Grid */}
+          <div className="hidden sm:grid sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-[660px] xl:max-w-[740px]">
             {packageItems.map((item, idx) => (
               <div
                 key={idx}
@@ -532,6 +595,9 @@ export function AmazonPublishingWorkflowSection() {
               </div>
             ))}
           </div>
+
+          {/* Mobile Embla Carousel Slider */}
+          <MobileWorkflowCardsSlider items={packageItems} />
 
           {/* CTA Buttons Row: Sits neatly above the bottom flowing wave */}
           <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3.5 pb-2">

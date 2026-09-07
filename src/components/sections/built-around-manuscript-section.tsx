@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { ArrowRight, Phone, PenTool, LayoutGrid, Rocket, Globe } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface ServiceGlassCardProps {
   icon: React.ReactNode;
@@ -69,6 +70,73 @@ function ServiceGlassCard({
             {description}
           </p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+interface CardItem {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  description: string;
+  bgImage: string;
+}
+
+function MobileManuscriptCardsSlider({ cards }: { cards: CardItem[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "center",
+    containScroll: "trimSnaps",
+    loop: false,
+  });
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = React.useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  return (
+    <div className="w-full">
+      <div className="overflow-hidden w-full px-1" ref={emblaRef}>
+        <div className="flex -ml-3">
+          {cards.map((card, idx) => (
+            <div key={idx} className="flex-[0_0_88%] min-w-0 pl-3">
+              <ServiceGlassCard
+                icon={card.icon}
+                title={card.title}
+                subtitle={card.subtitle}
+                description={card.description}
+                bgImage={card.bgImage}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Mobile Indicator Dots */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        {scrollSnaps.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => scrollTo(idx)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              selectedIndex === idx ? "w-7 bg-[#00A3E0]" : "w-2 bg-slate-600/70"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
@@ -407,8 +475,8 @@ export function BuiltAroundManuscriptSection() {
               </div>
             </div>
 
-            {/* 4 Cards Grid - Substantial, Luxurious Height */}
-            <div className="relative z-10 w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            {/* Desktop & Tablet: 2x2 Grid (>= sm) */}
+            <div className="hidden sm:grid relative z-10 w-full grid-cols-2 gap-5 sm:gap-6">
               {cards.map((card, idx) => (
                 <ServiceGlassCard
                   key={idx}
@@ -419,6 +487,11 @@ export function BuiltAroundManuscriptSection() {
                   bgImage={card.bgImage}
                 />
               ))}
+            </div>
+
+            {/* Mobile: Embla Swipeable Slider (< sm) */}
+            <div className="block sm:hidden relative z-10 w-full">
+              <MobileManuscriptCardsSlider cards={cards} />
             </div>
           </div>
 

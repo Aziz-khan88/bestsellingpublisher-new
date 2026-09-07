@@ -2,6 +2,156 @@
 
 import * as React from "react";
 import { ArrowRight, Phone } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+
+interface ProcessCardItem {
+  step: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+const processCards: ProcessCardItem[] = [
+  {
+    step: "01",
+    title: "Publishing Project Coordination",
+    description: "We coordinate the editing, design, formatting, metadata, publishing setup, and review checkpoints included in the approved project scope.",
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="16" cy="11" r="4" />
+        <path d="M9.5 24.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" />
+        <circle cx="7.5" cy="13.5" r="2.8" />
+        <path d="M2.5 24.5c0-2.8 2.2-5 5-5" />
+        <circle cx="24.5" cy="13.5" r="2.8" />
+        <path d="M24.5 19.5c2.8 0 5 2.2 5 5" />
+      </svg>
+    ),
+  },
+  {
+    step: "02",
+    title: "Assigned Project Roles",
+    description: "The project plan identifies the roles responsible for each deliverable and the author approvals required before final release.",
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="15" cy="11" r="5" />
+        <path d="M6.5 26c0-4.8 3.8-8.5 8.5-8.5s8.5 3.7 8.5 8.5" />
+        <polygon points="23,17 24.5,20.2 28,20.7 25.5,23.2 26,26.8 23,25.1 20,26.8 20.5,23.2 18,20.7 21.5,20.2" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    step: "03",
+    title: "Defined Scope and Quote",
+    description: "Services can be combined into a project-specific scope. Deliverables, revision rounds, schedule, and pricing are confirmed in the approved order.",
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 5a2 2 0 0 1 2-2h10l6 6v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5z" />
+        <line x1="11" y1="12" x2="16" y2="12" strokeWidth="2.2" />
+        <line x1="11" y1="16" x2="19" y2="16" strokeWidth="2.2" />
+        <line x1="11" y1="20" x2="15" y2="20" strokeWidth="2.2" />
+        <circle cx="21.5" cy="21.5" r="5" fill="#00A3E0" stroke="white" strokeWidth="2.2" />
+        <path d="M19.5 21.5l1.5 1.5 3-3" stroke="white" strokeWidth="2" />
+      </svg>
+    ),
+  },
+];
+
+function ProcessCard({ item }: { item: ProcessCardItem }) {
+  return (
+    <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-20 sm:pl-24 lg:pl-22 xl:pl-26 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer h-full">
+      {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
+      <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+        {/* Outer Dashed Rotating Orbit Ring */}
+        <div
+          className="relative w-26 h-26 sm:w-30 sm:h-30 lg:w-32 lg:h-32 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
+          style={{ animation: "badgeOrbitSpin 32s linear infinite" }}
+        >
+          <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
+          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
+          <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
+        </div>
+
+        {/* White Raised Circular Plate */}
+        <div className="absolute z-10 w-22 h-22 sm:w-26 sm:h-26 lg:w-28 lg:h-28 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+          {/* Inner Vibrant Cyan Disc */}
+          <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#008de4] to-[#00A3E0] flex items-center justify-center shadow-inner text-white">
+            {item.icon}
+          </div>
+        </div>
+
+        {/* ENLARGED Number Badge */}
+        <div className="absolute -bottom-1 -right-1 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[13px] sm:text-[15px] flex items-center justify-center shadow-md">
+          {item.step}
+        </div>
+      </div>
+
+      {/* Text Content */}
+      <h3 className="text-[17px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2.5">
+        {item.title}
+      </h3>
+      <p className="text-[13px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
+        {item.description}
+      </p>
+    </div>
+  );
+}
+
+function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    loop: false,
+  });
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  const scrollTo = React.useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  return (
+    <div className="w-full block lg:hidden">
+      <div className="overflow-hidden w-full py-4 -my-4" ref={emblaRef}>
+        <div className="flex -ml-4">
+          {cards.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex-[0_0_88%] xs:flex-[0_0_82%] sm:flex-[0_0_70%] min-w-0 pl-16 xs:pl-18 sm:pl-20 pr-3 py-2"
+            >
+              <ProcessCard item={item} />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Mobile Indicator Dots */}
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {scrollSnaps.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => scrollTo(idx)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              selectedIndex === idx ? "w-7 bg-[#00A3E0]" : "w-2 bg-slate-300"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function IntendedAudienceSection() {
   return (
@@ -183,156 +333,15 @@ export function IntendedAudienceSection() {
             </svg>
           </div>
 
-          {/* Cards Grid: 3 Equal Columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-14 sm:gap-16 lg:gap-8 xl:gap-12 relative z-10 pl-7 sm:pl-10 lg:pl-0 pr-2 sm:pr-4 lg:pr-0">
-
-            {/* CARD 01: Publishing Project Coordination */}
-            <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-22 sm:pl-26 lg:pl-24 xl:pl-28 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer">
-              
-              {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
-              <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-                
-                {/* Outer Dashed Rotating Orbit Ring */}
-                <div
-                  className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-34 lg:h-34 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
-                  style={{ animation: "badgeOrbitSpin 32s linear infinite" }}
-                >
-                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                  <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                </div>
-
-                {/* White Raised Circular Plate */}
-                <div className="absolute z-10 w-24 h-24 sm:w-27 sm:h-27 lg:w-29 lg:h-29 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  {/* Inner Vibrant Cyan Disc */}
-                  <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#008de4] to-[#00A3E0] flex items-center justify-center shadow-inner text-white">
-                    {/* ENLARGED 3 Users Icon */}
-                    <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      {/* Center User */}
-                      <circle cx="16" cy="11" r="4" />
-                      <path d="M9.5 24.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" />
-                      {/* Left User */}
-                      <circle cx="7.5" cy="13.5" r="2.8" />
-                      <path d="M2.5 24.5c0-2.8 2.2-5 5-5" />
-                      {/* Right User */}
-                      <circle cx="24.5" cy="13.5" r="2.8" />
-                      <path d="M24.5 19.5c2.8 0 5 2.2 5 5" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* ENLARGED Number Badge: 01 */}
-                <div className="absolute -bottom-1 -right-1 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[14px] sm:text-[15px] flex items-center justify-center shadow-md">
-                  01
-                </div>
-              </div>
-
-              {/* Text Content */}
-              <h3 className="text-[17px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2.5">
-                Publishing Project Coordination
-              </h3>
-              <p className="text-[13px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
-                We coordinate the editing, design, formatting, metadata, publishing setup, and review checkpoints included in the approved project scope.
-              </p>
-            </div>
-
-            {/* CARD 02: Assigned Project Roles */}
-            <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-22 sm:pl-26 lg:pl-24 xl:pl-28 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer">
-              
-              {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
-              <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-                
-                {/* Outer Dashed Rotating Orbit Ring */}
-                <div
-                  className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-34 lg:h-34 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
-                  style={{ animation: "badgeOrbitSpin 32s linear infinite" }}
-                >
-                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                  <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                </div>
-
-                {/* White Raised Circular Plate */}
-                <div className="absolute z-10 w-24 h-24 sm:w-27 sm:h-27 lg:w-29 lg:h-29 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  {/* Inner Vibrant Cyan Disc */}
-                  <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#008de4] to-[#00A3E0] flex items-center justify-center shadow-inner text-white">
-                    {/* ENLARGED User with Star Icon */}
-                    <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="15" cy="11" r="5" />
-                      <path d="M6.5 26c0-4.8 3.8-8.5 8.5-8.5s8.5 3.7 8.5 8.5" />
-                      {/* Star Badge at bottom-right */}
-                      <polygon points="23,17 24.5,20.2 28,20.7 25.5,23.2 26,26.8 23,25.1 20,26.8 20.5,23.2 18,20.7 21.5,20.2" fill="currentColor" stroke="none" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* ENLARGED Number Badge: 02 */}
-                <div className="absolute -bottom-1 -right-1 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[14px] sm:text-[15px] flex items-center justify-center shadow-md">
-                  02
-                </div>
-              </div>
-
-              {/* Text Content */}
-              <h3 className="text-[17px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2.5">
-                Assigned Project Roles
-              </h3>
-              <p className="text-[13px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
-                The project plan identifies the roles responsible for each deliverable and the author approvals required before final release.
-              </p>
-            </div>
-
-            {/* CARD 03: Defined Scope and Quote */}
-            <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-6 sm:pr-8 pl-22 sm:pl-26 lg:pl-24 xl:pl-28 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer">
-              
-              {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
-              <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-                
-                {/* Outer Dashed Rotating Orbit Ring */}
-                <div
-                  className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-34 lg:h-34 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
-                  style={{ animation: "badgeOrbitSpin 32s linear infinite" }}
-                >
-                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00A3E0] shadow-[0_0_8px_#00A3E0]" />
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                  <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
-                </div>
-
-                {/* White Raised Circular Plate */}
-                <div className="absolute z-10 w-24 h-24 sm:w-27 sm:h-27 lg:w-29 lg:h-29 rounded-full bg-white p-2 shadow-[0_10px_30px_rgba(0,163,224,0.32)] border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  {/* Inner Vibrant Cyan Disc */}
-                  <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#008de4] to-[#00A3E0] flex items-center justify-center shadow-inner text-white">
-                    {/* ENLARGED Document with Checkmark Icon */}
-                    <svg viewBox="0 0 32 32" fill="none" className="w-12 h-12 sm:w-13 sm:h-13 lg:w-14 lg:h-14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M7 5a2 2 0 0 1 2-2h10l6 6v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5z" />
-                      <line x1="11" y1="12" x2="16" y2="12" strokeWidth="2.2" />
-                      <line x1="11" y1="16" x2="19" y2="16" strokeWidth="2.2" />
-                      <line x1="11" y1="20" x2="15" y2="20" strokeWidth="2.2" />
-                      {/* Checkmark Circle */}
-                      <circle cx="21.5" cy="21.5" r="5" fill="#00A3E0" stroke="white" strokeWidth="2.2" />
-                      <path d="M19.5 21.5l1.5 1.5 3-3" stroke="white" strokeWidth="2" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* ENLARGED Number Badge: 03 */}
-                <div className="absolute -bottom-1 -right-1 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#00A3E0] text-[#00A3E0] font-bold text-[14px] sm:text-[15px] flex items-center justify-center shadow-md">
-                  03
-                </div>
-              </div>
-
-              {/* Text Content */}
-              <h3 className="text-[17px] sm:text-[18px] lg:text-[18.5px] font-bold text-[#0f172a] group-hover:text-[#0080ff] transition-colors leading-snug mb-2.5">
-                Defined Scope and Quote
-              </h3>
-              <p className="text-[13px] sm:text-[13.5px] lg:text-[14px] text-slate-600 leading-[1.55]">
-                Services can be combined into a project-specific scope. Deliverables, revision rounds, schedule, and pricing are confirmed in the approved order.
-              </p>
-            </div>
-
+          {/* Desktop 3-Column Grid */}
+          <div className="hidden lg:grid grid-cols-3 gap-8 xl:gap-12 relative z-10">
+            {processCards.map((item, idx) => (
+              <ProcessCard key={idx} item={item} />
+            ))}
           </div>
+
+          {/* Mobile & Tablet Embla Carousel Slider */}
+          <MobileProcessCardsSlider cards={processCards} />
         </div>
 
         {/* =========================================================================
