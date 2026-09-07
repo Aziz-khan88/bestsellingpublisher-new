@@ -28,6 +28,7 @@ interface StepCardProps {
   isCompleted?: boolean;
   isHovered?: boolean;
   hasArrivalBurst?: boolean;
+  className?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onClick?: () => void;
@@ -44,6 +45,7 @@ function StepCard({
   isCompleted,
   isHovered,
   hasArrivalBurst,
+  className = "",
   onMouseEnter,
   onMouseLeave,
   onClick,
@@ -61,7 +63,7 @@ function StepCard({
           : isCompleted
           ? "border border-cyan-200/80 shadow-[0_4px_16px_-4px_rgba(12,24,42,0.06)] hover:border-cyan-300 hover:shadow-[0_8px_22px_-6px_rgba(0,163,224,0.14)] hover:-translate-y-1"
           : "border border-slate-200/90 shadow-[0_3px_14px_-4px_rgba(12,24,42,0.05)] hover:border-cyan-300/80 hover:shadow-[0_8px_20px_-6px_rgba(0,163,224,0.12)] hover:-translate-y-1"
-      }`}
+      } ${className}`}
     >
       {/* Horizontal Micro-Dock Stem anchoring the pin directly to the card border */}
       <div
@@ -793,14 +795,20 @@ export function HowWeStructureSection() {
             </svg>
           )}
 
-          {/* Cards 2-Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-28 lg:gap-y-10 relative z-10">
+          {/* Cards 2-Column Grid on Desktop, Sequential 01-06 Stack on Mobile */}
+          <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-x-28 lg:gap-y-10 relative z-10">
             {/* Left Column (01, 03, 05) */}
-            <div className="flex flex-col gap-6 lg:gap-10">
+            <div className="contents lg:flex lg:flex-col lg:gap-10">
               {leftSteps.map((step) => {
                 const isCardActive = activeStep === step.stepIdx;
                 const isCardCompleted = activeStep > step.stepIdx;
                 const isCardBurst = burstPin === step.stepIdx;
+                const mobileOrderClass =
+                  step.stepIdx === 0
+                    ? "order-1 lg:order-none"
+                    : step.stepIdx === 2
+                    ? "order-3 lg:order-none"
+                    : "order-5 lg:order-none";
 
                 return (
                   <StepCard
@@ -809,6 +817,7 @@ export function HowWeStructureSection() {
                     icon={step.icon}
                     title={step.title}
                     description={step.description}
+                    className={mobileOrderClass}
                     pinRef={(el) => {
                       pinRefs.current[step.stepIdx] = el;
                     }}
@@ -825,11 +834,17 @@ export function HowWeStructureSection() {
             </div>
 
             {/* Right Column (02, 04, 06) */}
-            <div className="flex flex-col gap-6 lg:gap-10 lg:pt-14">
+            <div className="contents lg:flex lg:flex-col lg:gap-10 lg:pt-14">
               {rightSteps.map((step) => {
                 const isCardActive = activeStep === step.stepIdx;
                 const isCardCompleted = activeStep > step.stepIdx;
                 const isCardBurst = burstPin === step.stepIdx;
+                const mobileOrderClass =
+                  step.stepIdx === 1
+                    ? "order-2 lg:order-none"
+                    : step.stepIdx === 3
+                    ? "order-4 lg:order-none"
+                    : "order-6 lg:order-none";
 
                 return (
                   <StepCard
@@ -839,6 +854,7 @@ export function HowWeStructureSection() {
                     title={step.title}
                     description={step.description}
                     isRightCol
+                    className={mobileOrderClass}
                     pinRef={(el) => {
                       pinRefs.current[step.stepIdx] = el;
                     }}
