@@ -58,9 +58,9 @@ const processCards: ProcessCardItem[] = [
 
 function ProcessCard({ item }: { item: ProcessCardItem }) {
   return (
-    <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] hover:-translate-y-1.5 transition-all duration-300 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-5 sm:pr-8 pl-16 sm:pl-24 lg:pl-22 xl:pl-26 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer h-full">
+    <div className="relative bg-white rounded-[24px] sm:rounded-[28px] border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_48px_rgba(0,163,224,0.2)] lg:hover:-translate-y-1.5 transition-shadow duration-200 pt-7 sm:pt-8 pb-7 sm:pb-8 pr-5 sm:pr-8 pl-16 sm:pl-24 lg:pl-22 xl:pl-26 flex flex-col justify-center min-h-[175px] sm:min-h-[190px] group cursor-pointer h-full select-none">
       {/* ENLARGED Circular Icon Badge (82% of card height, centered on left edge) */}
-      <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+      <div className="absolute left-0 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-none">
         {/* Outer Dashed Rotating Orbit Ring */}
         <div
           className="relative w-24 h-24 sm:w-30 sm:h-30 lg:w-32 lg:h-32 rounded-full border border-dashed border-[#00A3E0]/70 flex items-center justify-center pointer-events-none"
@@ -102,6 +102,8 @@ function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
     align: "center",
     containScroll: "trimSnaps",
     loop: false,
+    duration: 20,
+    skipSnaps: true,
   });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
@@ -126,25 +128,44 @@ function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
   }, [emblaApi, onSelect]);
 
   const scrollTo = React.useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => {
+      if (!emblaApi) return;
+      setSelectedIndex(index);
+      emblaApi.scrollTo(index);
+    },
     [emblaApi]
   );
+
+  const handlePrev = React.useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const handleNext = React.useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
 
   return (
     <div className="w-full block lg:hidden relative">
       {/* Embla Viewport */}
       <div
-        className="overflow-hidden w-full py-4 select-none cursor-grab active:cursor-grabbing"
+        className="overflow-hidden w-full py-4 select-none cursor-grab active:cursor-grabbing touch-pan-y"
         ref={emblaRef}
       >
         <div
-          className="flex flex-row flex-nowrap -ml-2"
-          style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap" }}
+          className="flex flex-row flex-nowrap -ml-2 will-change-transform"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            touchAction: "pan-y pinch-zoom",
+          }}
         >
           {cards.map((item, idx) => (
             <div
               key={idx}
-              className="shrink-0 grow-0 min-w-0 pl-14 sm:pl-16 pr-3 py-2"
+              className="shrink-0 grow-0 min-w-0 pl-14 sm:pl-16 pr-3 py-2 select-none"
               style={{ flex: "0 0 88%", minWidth: 0 }}
             >
               <ProcessCard item={item} />
@@ -157,7 +178,7 @@ function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
       <div className="flex items-center justify-center gap-3 mt-4">
         <button
           type="button"
-          onClick={() => emblaApi && emblaApi.scrollPrev()}
+          onClick={handlePrev}
           disabled={!canScrollPrev}
           className="w-8 h-8 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-700 hover:text-[#00A3E0] hover:border-[#00A3E0] disabled:opacity-35 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
           aria-label="Previous card"
@@ -183,7 +204,7 @@ function MobileProcessCardsSlider({ cards }: { cards: ProcessCardItem[] }) {
 
         <button
           type="button"
-          onClick={() => emblaApi && emblaApi.scrollNext()}
+          onClick={handleNext}
           disabled={!canScrollNext}
           className="w-8 h-8 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-700 hover:text-[#00A3E0] hover:border-[#00A3E0] disabled:opacity-35 disabled:cursor-not-allowed active:scale-95 transition-all cursor-pointer"
           aria-label="Next card"

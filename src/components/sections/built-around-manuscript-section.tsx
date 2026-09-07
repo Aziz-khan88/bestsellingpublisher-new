@@ -11,6 +11,7 @@ interface ServiceGlassCardProps {
   subtitle?: string;
   description: string;
   bgImage: string;
+  isMobileSlider?: boolean;
 }
 
 function ServiceGlassCard({
@@ -19,17 +20,25 @@ function ServiceGlassCard({
   subtitle,
   description,
   bgImage,
+  isMobileSlider = false,
 }: ServiceGlassCardProps) {
   return (
-    <div className="group relative rounded-2xl border border-cyan-500/35 hover:border-cyan-300/90 bg-[#030c1e]/90 backdrop-blur-md overflow-hidden p-7 sm:p-8 xl:p-9 min-h-[250px] sm:min-h-[270px] xl:min-h-[295px] flex flex-col justify-between shadow-[0_0_24px_rgba(0,163,224,0.14)] hover:shadow-[0_0_36px_rgba(0,163,224,0.35)] transition-all duration-500 transform hover:-translate-y-1">
+    <div
+      className={`group relative rounded-2xl border border-cyan-500/35 hover:border-cyan-300/90 bg-[#030c1e]/90 backdrop-blur-md overflow-hidden p-7 sm:p-8 xl:p-9 min-h-[250px] sm:min-h-[270px] xl:min-h-[295px] flex flex-col justify-between shadow-[0_0_24px_rgba(0,163,224,0.14)] hover:shadow-[0_0_36px_rgba(0,163,224,0.35)] select-none ${
+        isMobileSlider
+          ? "transition-colors duration-200"
+          : "transition-all duration-500 transform hover:-translate-y-1"
+      }`}
+    >
       {/* Real Background Image with Dark Vignette Overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <Image
           src={bgImage}
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
-          className="object-cover object-center opacity-30 group-hover:opacity-45 group-hover:scale-105 transition-all duration-700 mix-blend-screen"
+          className="object-cover object-center opacity-30 group-hover:opacity-45 group-hover:scale-105 transition-all duration-700 mix-blend-screen pointer-events-none select-none"
+          draggable={false}
         />
         {/* Gradients for deep contrast and crisp typography */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#020712] via-[#030e22]/90 to-[#04142e]/75" />
@@ -88,6 +97,8 @@ function MobileManuscriptCardsSlider({ cards }: { cards: CardItem[] }) {
     align: "center",
     containScroll: "trimSnaps",
     loop: false,
+    duration: 20,
+    skipSnaps: true,
   });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
@@ -96,29 +107,48 @@ function MobileManuscriptCardsSlider({ cards }: { cards: CardItem[] }) {
     if (!emblaApi) return;
     setScrollSnaps(emblaApi.scrollSnapList());
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    onSelect();
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi]);
 
   const scrollTo = React.useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => {
+      if (!emblaApi) return;
+      setSelectedIndex(index);
+      emblaApi.scrollTo(index);
+    },
     [emblaApi]
   );
 
   return (
     <div className="w-full">
-      <div className="overflow-hidden w-full px-1" ref={emblaRef}>
-        <div className="flex -ml-3">
+      <div
+        className="overflow-hidden w-full px-1 touch-pan-y select-none cursor-grab active:cursor-grabbing"
+        ref={emblaRef}
+      >
+        <div
+          className="flex -ml-3 will-change-transform"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            touchAction: "pan-y pinch-zoom",
+          }}
+        >
           {cards.map((card, idx) => (
-            <div key={idx} className="flex-[0_0_88%] min-w-0 pl-3">
+            <div key={idx} className="flex-[0_0_88%] min-w-0 pl-3 select-none">
               <ServiceGlassCard
                 icon={card.icon}
                 title={card.title}
                 subtitle={card.subtitle}
                 description={card.description}
                 bgImage={card.bgImage}
+                isMobileSlider
               />
             </div>
           ))}
@@ -131,8 +161,8 @@ function MobileManuscriptCardsSlider({ cards }: { cards: CardItem[] }) {
             key={idx}
             type="button"
             onClick={() => scrollTo(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              selectedIndex === idx ? "w-7 bg-[#00A3E0]" : "w-2 bg-slate-600/70"
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              selectedIndex === idx ? "w-7 bg-[#00A3E0]" : "w-2 bg-slate-600/70 hover:bg-slate-500"
             }`}
             aria-label={`Go to slide ${idx + 1}`}
           />

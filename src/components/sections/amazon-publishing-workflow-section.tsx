@@ -133,6 +133,8 @@ function MobileWorkflowCardsSlider({ items }: { items: typeof packageItems }) {
     align: "start",
     containScroll: "trimSnaps",
     loop: false,
+    duration: 20,
+    skipSnaps: true,
   });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
@@ -141,30 +143,48 @@ function MobileWorkflowCardsSlider({ items }: { items: typeof packageItems }) {
     if (!emblaApi) return;
     setScrollSnaps(emblaApi.scrollSnapList());
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    onSelect();
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi]);
 
   const scrollTo = React.useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => {
+      if (!emblaApi) return;
+      setSelectedIndex(index);
+      emblaApi.scrollTo(index);
+    },
     [emblaApi]
   );
 
   return (
     <div className="w-full sm:hidden">
-      <div className="overflow-hidden w-full py-2" ref={emblaRef}>
-        <div className="flex -ml-2.5">
+      <div
+        className="overflow-hidden w-full py-2 touch-pan-y select-none cursor-grab active:cursor-grabbing"
+        ref={emblaRef}
+      >
+        <div
+          className="flex -ml-2.5 will-change-transform"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            touchAction: "pan-y pinch-zoom",
+          }}
+        >
           {items.map((item, idx) => (
-            <div key={idx} className="flex-[0_0_54%] xs:flex-[0_0_46%] min-w-0 pl-2.5">
-              <div className="bg-white rounded-xl p-3.5 flex flex-col items-center text-center border border-slate-100 shadow-[0_3px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_20px_rgba(0,163,224,0.18)] hover:border-[#00A3E0]/50 transition-all duration-300 justify-between h-full min-h-[126px]">
+            <div key={idx} className="flex-[0_0_54%] xs:flex-[0_0_46%] min-w-0 pl-2.5 select-none">
+              <div className="bg-white rounded-xl p-3.5 flex flex-col items-center text-center border border-slate-100 shadow-[0_3px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_20px_rgba(0,163,224,0.18)] hover:border-[#00A3E0]/50 transition-colors duration-200 justify-between h-full min-h-[126px]">
                 {/* Cyan Outline Circular Icon Badge */}
-                <div className="w-11 h-11 rounded-full border-[1.5px] border-[#00A3E0] bg-[#f0f9ff]/60 flex items-center justify-center mb-2 shrink-0 shadow-sm">
+                <div className="w-11 h-11 rounded-full border-[1.5px] border-[#00A3E0] bg-[#f0f9ff]/60 flex items-center justify-center mb-2 shrink-0 shadow-sm pointer-events-none">
                   {item.icon}
                 </div>
                 {/* Title */}
-                <span className="font-sans text-[12px] font-semibold text-[#0f172a] leading-[1.3] text-center line-clamp-3">
+                <span className="font-sans text-[12px] font-semibold text-[#0f172a] leading-[1.3] text-center line-clamp-3 pointer-events-none">
                   {item.title}
                 </span>
               </div>
@@ -179,8 +199,8 @@ function MobileWorkflowCardsSlider({ items }: { items: typeof packageItems }) {
             key={idx}
             type="button"
             onClick={() => scrollTo(idx)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              selectedIndex === idx ? "w-6 bg-[#00A3E0]" : "w-1.5 bg-slate-300"
+            className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+              selectedIndex === idx ? "w-6 bg-[#00A3E0]" : "w-1.5 bg-slate-300 hover:bg-slate-400"
             }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
