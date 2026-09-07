@@ -105,11 +105,11 @@ function TravelingPearl({
   );
 }
 
-// 3D Hero Book Graphic with Layered Orbital Ring
+// 3D Hero Book Graphic with Complete Orbit Behind Book (Foreground Layering)
 function HeroBookWithAnimatedOrbit() {
   return (
     <div className="relative w-full aspect-[1045/713] select-none">
-      {/* 1. LAYER BEHIND BOOK (z-0): Back arc of orbital circle */}
+      {/* 1. LAYER BEHIND BOOK (z-0): Complete 360 Orbital Ring, Continuous Particles, Swirl & Flares */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
         viewBox="0 0 1045 713"
@@ -144,18 +144,18 @@ function HeroBookWithAnimatedOrbit() {
         </radialGradient>
         <ellipse cx="520" cy="565" rx="480" ry="220" fill="url(#bookBackGlow)" />
 
-        {/* Back Arc: Faint Guide Rail */}
+        {/* Full 360 Orbit: Faint Guide Rail */}
         <path
-          d={ORBIT_PATHS.back}
+          d={ORBIT_PATHS.full}
           stroke="#00A3E0"
           strokeWidth="1.5"
           strokeOpacity="0.3"
           fill="none"
         />
 
-        {/* Back Arc: Primary Animated Dotted Ring */}
+        {/* Full 360 Orbit: Primary Animated Dotted Ring */}
         <path
-          d={ORBIT_PATHS.back}
+          d={ORBIT_PATHS.full}
           stroke="#00FFFF"
           strokeWidth="2.6"
           strokeDasharray="4 18"
@@ -165,62 +165,9 @@ function HeroBookWithAnimatedOrbit() {
           opacity="0.95"
         />
 
-        {/* Back Arc: Secondary Reverse Micro-Dots */}
+        {/* Full 360 Orbit: Secondary Reverse Micro-Dots */}
         <path
-          d={ORBIT_PATHS.back}
-          stroke="#38BDF8"
-          strokeWidth="1.4"
-          strokeDasharray="3 14"
-          strokeLinecap="round"
-          className="animate-orbit-dashes-reverse"
-          opacity="0.5"
-        />
-      </svg>
-
-      {/* 2. MIDDLE LAYER (z-10): The Isolated 3D Magic Book */}
-      <div className="absolute inset-0 w-full h-full z-10">
-        <Image
-          src="/isolated_magic_book_clean.png"
-          alt="Amazon Publishing Services - 3D Open Book"
-          fill
-          sizes="(max-width: 1024px) 90vw, 600px"
-          className="object-contain drop-shadow-[0_20px_50px_rgba(0,163,224,0.35)]"
-          priority
-        />
-      </div>
-
-      {/* 3. LAYER IN FRONT OF BOOK (z-20): Front arc, swirls, and starburst flares */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-20"
-        viewBox="0 0 1045 713"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        {/* Front Arc: Guide Rail */}
-        <path
-          d={ORBIT_PATHS.front}
-          stroke="#00A3E0"
-          strokeWidth="1.5"
-          strokeOpacity="0.3"
-          fill="none"
-        />
-
-        {/* Front Arc: Primary Animated Dotted Ring */}
-        <path
-          d={ORBIT_PATHS.front}
-          stroke="#00FFFF"
-          strokeWidth="2.6"
-          strokeDasharray="4 18"
-          strokeLinecap="round"
-          className="animate-orbit-dashes"
-          filter="url(#orbitCyanGlow)"
-          opacity="0.95"
-        />
-
-        {/* Front Arc: Secondary Reverse Micro-Dots */}
-        <path
-          d={ORBIT_PATHS.front}
+          d={ORBIT_PATHS.full}
           stroke="#38BDF8"
           strokeWidth="1.4"
           strokeDasharray="3 14"
@@ -272,12 +219,24 @@ function HeroBookWithAnimatedOrbit() {
           </g>
         ))}
 
-        {/* 4 Traveling Starburst Pearls along the 360 Orbit */}
+        {/* 4 Traveling Starburst Pearls along the 360 Orbit (Continuous behind-the-book occlusion) */}
         <TravelingPearl delay="0s" size={3.5} />
         <TravelingPearl delay="2.25s" size={3} />
         <TravelingPearl delay="4.5s" size={3.5} />
         <TravelingPearl delay="6.75s" size={3} />
       </svg>
+
+      {/* 2. FOREGROUND LAYER (z-20): The Isolated 3D Magic Book (Always clearly in front) */}
+      <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
+        <Image
+          src="/isolated_magic_book_clean.png"
+          alt="Amazon Publishing Services - 3D Open Book"
+          fill
+          sizes="(max-width: 1024px) 90vw, 600px"
+          className="object-contain drop-shadow-[0_20px_50px_rgba(0,163,224,0.35)]"
+          priority
+        />
+      </div>
     </div>
   );
 }
