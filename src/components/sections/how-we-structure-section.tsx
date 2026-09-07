@@ -24,6 +24,7 @@ interface StepCardProps {
   description: string;
   isRightCol?: boolean;
   pinRef?: (el: HTMLDivElement | null) => void;
+  cardRef?: (el: HTMLDivElement | null) => void;
   isActive?: boolean;
   isCompleted?: boolean;
   isHovered?: boolean;
@@ -41,6 +42,7 @@ function StepCard({
   description,
   isRightCol,
   pinRef,
+  cardRef,
   isActive,
   isCompleted,
   isHovered,
@@ -54,6 +56,7 @@ function StepCard({
 
   return (
     <div
+      ref={cardRef}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -223,6 +226,7 @@ function approximateLength(
 export function HowWeStructureSection() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const pinRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
   // Coordinates & Segment geometry
   const [segments, setSegments] = React.useState<Segment[]>([]);
@@ -230,20 +234,15 @@ export function HowWeStructureSection() {
 
   // User interaction & animation state
   const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
-  const [activeStep, setActiveStep] = React.useState<number>(0);
   const [burstPin, setBurstPin] = React.useState<number | null>(null);
-  const [isAutoPlaying, setIsAutoPlaying] = React.useState<boolean>(true);
+  const [isAutoPlaying, setIsAutoPlaying] = React.useState<boolean>(false);
 
-  // Animation phase state: exactly drives traveling dot and progressive connection
-  const [animProgress, setAnimProgress] = React.useState<{
-    phase: "dwelling" | "traveling" | "celebrating";
-    currentSeg: number;
-    progress: number; // 0.0 to 1.0 along currentSeg
-  }>({
-    phase: "dwelling",
-    currentSeg: 0,
-    progress: 0,
-  });
+  // Continuous progress from 0.0 (Step 01) to 5.0 (Step 06) driven by scroll
+  const [progress, setProgress] = React.useState<number>(0);
+
+  const targetProgressRef = React.useRef<number>(0);
+  const currentProgressRef = React.useRef<number>(0);
+  const lastActiveStepRef = React.useRef<number>(0);
 
   const stepsData = [
     {
@@ -375,137 +374,133 @@ export function HowWeStructureSection() {
     };
   }, [calculateGeometry]);
 
-  // Unified animation state machine ensuring 100% synchronization:
-  // - Traveling takes 3.2s (calm, elegant, never rushed)
-  // - Dwelling at each card takes 2.2s (comfortable time to read)
-  // - THE INSTANT the dot reaches the destination card (progress >= 1.0), activeStep triggers immediately!
-  const animRef = React.useRef({
-    phase: "dwelling" as "dwelling" | "traveling" | "celebrating",
-    step: 0,
-    elapsed: 0,
-    currentSeg: 0,
-    lastNow: 0,
-  });
+  // Calculate target progress [0.0 to 5.0] strictly from user scroll position
+  // When scrolling DOWN -> progresses 0.0 -> 5.0 (Step 01 down to Step 06)
+  // When scrolling UP   -> reverses 5.0 -> 0.0 (Step 06 back to Step 01)
+  const calculateTargetFromScroll = React.useCallback(() => {
+    if (!containerRef.current) return 0;
 
-  React.useEffect(() => {
-    let animFrame: number;
+    // Focal eye-level reading line in the viewport (48% from top)
+    const focusY = window.innerHeight * 0.48;
 
-    const TRAVEL_MS = 3200; // 3.2 seconds travel time (calm, graceful speed)
-    const DWELL_MS = 2200; // 2.2 seconds dwell time at each card
-    const CELEBRATE_MS = 4200; // 4.2 seconds celebrate when all 6 cards connected
-
-    const loop = (now: number) => {
-      if (!animRef.current.lastNow) {
-        animRef.current.lastNow = now;
+    // Check individual card centers
+    const cardCenters: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      const el = cardRefs.current[i];
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        cardCenters.push(rect.top + rect.height * 0.45);
       }
-      const dt = Math.min(now - animRef.current.lastNow, 80);
-      animRef.current.lastNow = now;
+    }
 
-      // Pause if user is hovering over any card or toggled pause
-      const isPaused = !isAutoPlaying || hoveredIdx !== null;
+    if (cardCenters.length === 6) {
+      if (focusY <= cardCenters[0]) {
+        return 0;
+      }
+      if (focusY >= cardCenters[5]) {
+        return 5.0;
+      }
+      for (let i = 0; i < 5; i++) {
+        const topY = cardCenters[i];
+        const botY = cardCenters[i + 1];
+        if (focusY >= topY && focusY <= botY) {
+          const span = botY - topY;
+          return span > 0 ? i + (focusY - topY) / span : i;
+        }
+      }
+    }
 
-      if (!isPaused) {
-        animRef.current.elapsed += dt;
+    // Fallback if cards not yet measured
+    const cRect = containerRef.current.getBoundingClientRect();
+    const totalH = cRect.height;
+    if (totalH <= 0) return 0;
+    const raw = ((focusY - cRect.top) / totalH) * 5.0;
+    return Math.max(0, Math.min(5, raw));
+  }, []);
 
-        if (animRef.current.phase === "dwelling") {
-          if (animRef.current.elapsed >= DWELL_MS) {
-            if (animRef.current.step < 5) {
-              // Begin traveling to next step
-              animRef.current.phase = "traveling";
-              animRef.current.currentSeg = animRef.current.step;
-              animRef.current.elapsed = 0;
-              setAnimProgress({
-                phase: "traveling",
-                currentSeg: animRef.current.step,
-                progress: 0,
-              });
-            } else {
-              // All 6 reached! Switch to celebrating
-              animRef.current.phase = "celebrating";
-              animRef.current.elapsed = 0;
-              setAnimProgress({
-                phase: "celebrating",
-                currentSeg: 4,
-                progress: 1,
-              });
-            }
-          }
-        } else if (animRef.current.phase === "traveling") {
-          const rawProgress = Math.min(1.0, animRef.current.elapsed / TRAVEL_MS);
-          // Organic ease-in-out curve
-          const easeProgress =
-            rawProgress < 0.5
-              ? 2 * rawProgress * rawProgress
-              : -1 + (4 - 2 * rawProgress) * rawProgress;
+  // Jump or smooth scroll to specific step when user clicks an interactive pill or card
+  const handleSelectStep = (stepIdx: number) => {
+    const el = cardRefs.current[stepIdx];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      targetProgressRef.current = stepIdx;
+    }
+  };
 
-          // Check if dot has arrived at the destination card
-          if (rawProgress >= 1.0) {
-            const nextStep = animRef.current.currentSeg + 1;
-            animRef.current.phase = "dwelling";
-            animRef.current.step = nextStep;
-            animRef.current.elapsed = 0;
+  // Scroll tracking and smooth damping (lerp) engine:
+  // Liquid-smooth inertia so notched scroll wheels glide continuously
+  React.useEffect(() => {
+    let animId: number;
 
-            // THE MOMENT THE DOT TOUCHES THE CARD:
-            setActiveStep(nextStep);
-            setBurstPin(nextStep);
-            setTimeout(() => setBurstPin(null), 800);
+    const onScroll = () => {
+      targetProgressRef.current = calculateTargetFromScroll();
+    };
 
-            setAnimProgress({
-              phase: "dwelling",
-              currentSeg: animRef.current.currentSeg,
-              progress: 1,
-            });
-          } else {
-            setAnimProgress({
-              phase: "traveling",
-              currentSeg: animRef.current.currentSeg,
-              progress: easeProgress,
-            });
-          }
-        } else if (animRef.current.phase === "celebrating") {
-          if (animRef.current.elapsed >= CELEBRATE_MS) {
-            // Reset back to Step 0 smoothly
-            animRef.current.phase = "dwelling";
-            animRef.current.step = 0;
-            animRef.current.currentSeg = 0;
-            animRef.current.elapsed = 0;
-            setActiveStep(0);
-            setBurstPin(0);
-            setTimeout(() => setBurstPin(null), 800);
+    // Any manual wheel or touch interaction pauses auto-tour
+    const onUserInteract = () => {
+      if (isAutoPlaying) {
+        setIsAutoPlaying(false);
+      }
+    };
 
-            setAnimProgress({
-              phase: "dwelling",
-              currentSeg: 0,
-              progress: 0,
-            });
-          }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onUserInteract, { passive: true });
+    window.addEventListener("touchmove", onUserInteract, { passive: true });
+
+    // Initial check
+    const initialTarget = calculateTargetFromScroll();
+    targetProgressRef.current = initialTarget;
+    currentProgressRef.current = initialTarget;
+    setProgress(initialTarget);
+
+    const LERP = 0.14; // smooth fluid damping
+
+    const tick = () => {
+      const target = targetProgressRef.current;
+      const diff = target - currentProgressRef.current;
+
+      if (Math.abs(diff) > 0.001) {
+        currentProgressRef.current += diff * LERP;
+        const p = currentProgressRef.current;
+        setProgress(p);
+
+        // Detect step change to trigger burst on pin
+        const activeIdx = Math.min(5, Math.max(0, Math.floor(p + 0.15)));
+        if (activeIdx !== lastActiveStepRef.current) {
+          setBurstPin(activeIdx);
+          setTimeout(() => setBurstPin(null), 700);
+          lastActiveStepRef.current = activeIdx;
         }
       }
 
-      animFrame = requestAnimationFrame(loop);
+      animId = requestAnimationFrame(tick);
     };
 
-    animFrame = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animFrame);
-  }, [isAutoPlaying, hoveredIdx]);
+    animId = requestAnimationFrame(tick);
 
-  // Jump to specific step when user clicks an interactive pill or card
-  const handleSelectStep = (stepIdx: number) => {
-    setActiveStep(stepIdx);
-    setBurstPin(stepIdx);
-    setTimeout(() => setBurstPin(null), 800);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onUserInteract);
+      window.removeEventListener("touchmove", onUserInteract);
+      cancelAnimationFrame(animId);
+    };
+  }, [calculateTargetFromScroll, isAutoPlaying]);
 
-    animRef.current.step = stepIdx;
-    animRef.current.elapsed = 0;
-    animRef.current.phase = "dwelling";
-    animRef.current.currentSeg = Math.min(stepIdx, 4);
+  // Optional auto-tour timer if user clicks play
+  React.useEffect(() => {
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      const next = (lastActiveStepRef.current + 1) % 6;
+      handleSelectStep(next);
+    }, 3400);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying]);
 
-    setAnimProgress({
-      phase: "dwelling",
-      currentSeg: Math.min(stepIdx, 4),
-      progress: stepIdx > 0 ? 1 : 0,
-    });
-  };
+  // Geometry derivations for current step, segment, and moving dot
+  const currentSeg = Math.min(4, Math.floor(progress));
+  const segProgress = Math.min(1.0, Math.max(0, progress - currentSeg));
+  const activeStep = Math.min(5, Math.max(0, Math.floor(progress + 0.15)));
 
   // Compute current dot coordinates along the active bezier curve
   let dotPos: { x: number; y: number } | null = null;
@@ -513,25 +508,27 @@ export function HowWeStructureSection() {
   let trail2Pos: { x: number; y: number } | null = null;
 
   if (segments.length === 5 && pts.length === 6) {
-    if (animProgress.phase === "dwelling" || animProgress.phase === "celebrating") {
-      dotPos = pts[activeStep] || null;
-    } else if (animProgress.phase === "traveling") {
-      const seg = segments[animProgress.currentSeg];
+    if (progress <= 0.01) {
+      dotPos = pts[0];
+    } else if (progress >= 4.99) {
+      dotPos = pts[5];
+    } else {
+      const seg = segments[currentSeg];
       if (seg) {
-        dotPos = getCubicBezier(seg.p0, seg.p1, seg.p2, seg.p3, animProgress.progress);
+        dotPos = getCubicBezier(seg.p0, seg.p1, seg.p2, seg.p3, segProgress);
         trail1Pos = getCubicBezier(
           seg.p0,
           seg.p1,
           seg.p2,
           seg.p3,
-          Math.max(0, animProgress.progress - 0.05)
+          Math.max(0, segProgress - 0.05)
         );
         trail2Pos = getCubicBezier(
           seg.p0,
           seg.p1,
           seg.p2,
           seg.p3,
-          Math.max(0, animProgress.progress - 0.1)
+          Math.max(0, segProgress - 0.1)
         );
       }
     }
@@ -629,7 +626,7 @@ export function HowWeStructureSection() {
             <button
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-cyan-50 hover:text-[#00A3E0] transition-colors"
-              title={isAutoPlaying ? "Pause Auto-Tour" : "Resume Auto-Tour"}
+              title={isAutoPlaying ? "Pause Auto-Tour (Scroll is always active)" : "Resume Auto-Tour (or scroll down)"}
             >
               {isAutoPlaying ? (
                 <>
@@ -639,7 +636,7 @@ export function HowWeStructureSection() {
               ) : (
                 <>
                   <Play className="w-3.5 h-3.5 text-[#00A3E0]" />
-                  <span>Auto-Tour: Paused</span>
+                  <span>Scroll / Auto-Tour</span>
                 </>
               )}
             </button>
@@ -649,7 +646,7 @@ export function HowWeStructureSection() {
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-3">
             {stepsData.map((step) => {
               const isPillActive = activeStep === step.stepIdx;
-              const isPillCompleted = activeStep > step.stepIdx;
+              const isPillCompleted = progress >= step.stepIdx + 0.85;
               return (
                 <button
                   key={step.number}
@@ -692,7 +689,7 @@ export function HowWeStructureSection() {
 
               {/* 2. Completed Segments: Crisp Vivid Cyan Conduit with Slow Gliding Pearls */}
               {segments.map((seg, idx) => {
-                const isCompletedSeg = idx < activeStep;
+                const isCompletedSeg = idx < currentSeg;
                 if (!isCompletedSeg) return null;
 
                 return (
@@ -722,33 +719,32 @@ export function HowWeStructureSection() {
               })}
 
               {/* 3. In-Progress Segment: Crisp progressive draw up to current dot position */}
-              {animProgress.phase === "traveling" &&
-                segments[animProgress.currentSeg] && (
-                  <g key="drawing-seg">
-                    <path
-                      d={segments[animProgress.currentSeg].pathD}
-                      fill="none"
-                      stroke="#00A3E0"
-                      strokeWidth="3.2"
-                      strokeLinecap="round"
-                      strokeDasharray={segments[animProgress.currentSeg].len}
-                      strokeDashoffset={
-                        segments[animProgress.currentSeg].len * (1 - animProgress.progress)
-                      }
-                    />
-                    <path
-                      d={segments[animProgress.currentSeg].pathD}
-                      fill="none"
-                      stroke="#FFFFFF"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeDasharray={segments[animProgress.currentSeg].len}
-                      strokeDashoffset={
-                        segments[animProgress.currentSeg].len * (1 - animProgress.progress)
-                      }
-                    />
-                  </g>
-                )}
+              {segments[currentSeg] && (
+                <g key="drawing-seg">
+                  <path
+                    d={segments[currentSeg].pathD}
+                    fill="none"
+                    stroke="#00A3E0"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                    strokeDasharray={segments[currentSeg].len}
+                    strokeDashoffset={
+                      segments[currentSeg].len * (1 - segProgress)
+                    }
+                  />
+                  <path
+                    d={segments[currentSeg].pathD}
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeDasharray={segments[currentSeg].len}
+                    strokeDashoffset={
+                      segments[currentSeg].len * (1 - segProgress)
+                    }
+                  />
+                </g>
+              )}
 
               {/* 4. The Celestial Courier Spark (Moving Dot) - Crisp, luminous, no dirty blur */}
               {dotPos && (
@@ -800,8 +796,10 @@ export function HowWeStructureSection() {
             {/* Left Column (01, 03, 05) */}
             <div className="contents lg:flex lg:flex-col lg:gap-10">
               {leftSteps.map((step) => {
-                const isCardActive = activeStep === step.stepIdx;
-                const isCardCompleted = activeStep > step.stepIdx;
+                const isCardCompleted = progress >= step.stepIdx + 0.85;
+                const isCardActive =
+                  (activeStep === step.stepIdx && !isCardCompleted) ||
+                  (step.stepIdx === 0 && progress < 0.85);
                 const isCardBurst = burstPin === step.stepIdx;
                 const mobileOrderClass =
                   step.stepIdx === 0
@@ -821,6 +819,9 @@ export function HowWeStructureSection() {
                     pinRef={(el) => {
                       pinRefs.current[step.stepIdx] = el;
                     }}
+                    cardRef={(el) => {
+                      cardRefs.current[step.stepIdx] = el;
+                    }}
                     isActive={isCardActive}
                     isCompleted={isCardCompleted}
                     hasArrivalBurst={isCardBurst}
@@ -836,8 +837,10 @@ export function HowWeStructureSection() {
             {/* Right Column (02, 04, 06) */}
             <div className="contents lg:flex lg:flex-col lg:gap-10 lg:pt-14">
               {rightSteps.map((step) => {
-                const isCardActive = activeStep === step.stepIdx;
-                const isCardCompleted = activeStep > step.stepIdx;
+                const isCardCompleted = progress >= step.stepIdx + 0.85;
+                const isCardActive =
+                  (activeStep === step.stepIdx && !isCardCompleted) ||
+                  (step.stepIdx === 0 && progress < 0.85);
                 const isCardBurst = burstPin === step.stepIdx;
                 const mobileOrderClass =
                   step.stepIdx === 1
@@ -857,6 +860,9 @@ export function HowWeStructureSection() {
                     className={mobileOrderClass}
                     pinRef={(el) => {
                       pinRefs.current[step.stepIdx] = el;
+                    }}
+                    cardRef={(el) => {
+                      cardRefs.current[step.stepIdx] = el;
                     }}
                     isActive={isCardActive}
                     isCompleted={isCardCompleted}
