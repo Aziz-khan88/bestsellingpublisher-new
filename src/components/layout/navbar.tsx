@@ -6,6 +6,7 @@ import Image from "next/image";
 import {
   Phone,
   ChevronDown,
+  ChevronRight,
   Menu,
   X,
   Search,
@@ -26,12 +27,46 @@ import {
   Palette,
   BookMarked,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+
+const drawerNavContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.035,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const drawerNavItemVariants: Variants = {
+  hidden: { opacity: 0, x: 22 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.28, ease: "easeOut" },
+  },
+};
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = React.useState(false);
+  const [mobileGenreOpen, setMobileGenreOpen] = React.useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = React.useState(false);
   const [genreMenuOpen, setGenreMenuOpen] = React.useState(false);
+
+  // Prevent background page from scrolling while mobile drawer is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const servicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
   const genreTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -215,7 +250,8 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-2 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2 sm:px-4">
+    <>
+      <header className="fixed top-2 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2 sm:px-4">
       {/* Full width container with max constraint */}
       <div
         id="desktop-navbar-container"
@@ -400,18 +436,27 @@ export function Navbar() {
               </span>
             </a>
 
-            {/* Mobile Menu Toggle Button */}
+            {/* Mobile Menu Toggle Button with smooth transformation */}
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-[#40bee2] hover:border-[#40bee2] transition-colors shrink-0"
-              aria-label="Toggle Navigation Menu"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="lg:hidden relative w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:text-[#40bee2] hover:border-[#40bee2] flex items-center justify-center transition-colors shrink-0 active:scale-95 cursor-pointer"
+              aria-label={mobileMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
             >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5 sm:w-6 sm:h-6" />
-              ) : (
-                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
-              )}
+              <motion.div
+                key={mobileMenuOpen ? "open" : "closed"}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+                className="flex items-center justify-center"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#40bee2]" />
+                ) : (
+                  <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                )}
+              </motion.div>
             </button>
           </div>
         </div>
@@ -710,122 +755,335 @@ export function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* Mobile Drawer */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden mt-2.5 p-6 rounded-2xl bg-[#02050e]/98 border border-[#40bee2]/35 backdrop-blur-2xl shadow-2xl flex flex-col gap-3 font-sans max-h-[80vh] overflow-y-auto"
-            >
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <span className="text-xs uppercase font-bold tracking-widest text-[#40bee2]">Navigation</span>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-white hover:text-[#40bee2] text-2xl"
-                >
-                  ×
-                </button>
-              </div>
+      </div>
+    </header>
 
+    {/* =========================================================================
+        MODERN OFF-CANVAS RIGHT-SIDE SLIDE-IN MOBILE NAVIGATION DRAWER
+       ========================================================================= */}
+    <AnimatePresence>
+      {mobileMenuOpen && (
+        <>
+          {/* Subtle Dark / Blurred Backdrop Overlay */}
+          <motion.div
+            key="mobile-drawer-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[99] pointer-events-auto cursor-pointer"
+            aria-hidden="true"
+          />
+
+          {/* Right-Side Off-Canvas Drawer */}
+          <motion.div
+            key="mobile-drawer-panel"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="fixed top-0 right-0 bottom-0 h-[100dvh] w-[85%] xs:w-[82%] sm:w-[380px] max-w-[420px] bg-[#02050e]/98 border-l border-[#40bee2]/30 rounded-l-[28px] shadow-[-14px_0_50px_rgba(0,0,0,0.9)] z-[100] pointer-events-auto flex flex-col font-sans overflow-hidden"
+          >
+            {/* Ambient Cyan Glow Line along curved left edge */}
+            <div className="absolute top-0 bottom-0 left-0 w-[2px] bg-gradient-to-b from-transparent via-[#40bee2]/60 to-transparent pointer-events-none" />
+
+            {/* Top Drawer Header: Brand Logo + Close (×) Button */}
+            <div className="flex items-center justify-between px-5 sm:px-6 py-5 border-b border-white/[0.08] bg-white/[0.02] shrink-0">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-[#40bee2] font-semibold text-base py-1"
+                className="flex items-center gap-2 select-none"
               >
-                Home
-              </Link>
-              <Link
-                href="/about-us"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                About
-              </Link>
-
-              {/* Mobile Writing Services */}
-              <div className="border-t border-slate-800 pt-2.5">
-                <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">Writing Services</span>
-                <div className="grid grid-cols-2 gap-2 mt-2 pl-2">
-                  {[...theSuiteItems, ...extensionsItems].map((item) => (
-                    <Link
-                      key={item.title}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-300 hover:text-[#40bee2] py-1"
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
+                <div className="relative w-[135px] xs:w-[155px] h-[34px]">
+                  <Image
+                    src="/logo.png"
+                    alt="Best Selling Publisher"
+                    fill
+                    priority
+                    className="object-contain object-left drop-shadow-[0_0_12px_rgba(64,190,226,0.35)]"
+                  />
                 </div>
-              </div>
+              </Link>
 
-              {/* Mobile Genre */}
-              <div className="border-t border-slate-800 pt-2.5">
-                <span className="text-xs uppercase tracking-wider text-[#40bee2] font-bold">Genre</span>
-                <div className="grid grid-cols-2 gap-2 mt-2 pl-2">
-                  {[...fictionGenres, ...nonFictionGenres].map((item) => (
-                    <Link
-                      key={item.title}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs text-slate-300 hover:text-[#40bee2] py-1"
+              {/* Clear Close Button */}
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-10 h-10 rounded-full bg-white/[0.05] hover:bg-[#40bee2]/20 border border-white/10 hover:border-[#40bee2]/40 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 active:scale-90 cursor-pointer shadow-sm"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5 text-[#40bee2]" />
+              </button>
+            </div>
+
+            {/* Navigation Items (Scrollable Body with Staggered Entrance) */}
+            <motion.div
+              variants={drawerNavContainerVariants}
+              initial="hidden"
+              animate="show"
+              className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-800"
+            >
+              {/* 1. Home */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-[#40bee2] font-semibold text-[15px] hover:bg-[#40bee2]/10 transition-colors active:scale-[0.98]"
+                >
+                  <span>Home</span>
+                  <span className="w-2 h-2 rounded-full bg-[#40bee2] shadow-[0_0_8px_#40bee2]" />
+                </Link>
+              </motion.div>
+
+              {/* 2. About Us */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/about-us"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>About Us</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 3. Writing Services (Accordion) */}
+              <motion.div variants={drawerNavItemVariants} className="rounded-xl overflow-hidden bg-white/[0.02] border border-white/[0.04]">
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-3 text-left text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.03] transition-colors font-medium text-[15px] active:scale-[0.98] cursor-pointer"
+                  aria-expanded={mobileServicesOpen}
+                >
+                  <span className="flex items-center gap-2">
+                    <span>Writing Services</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#40bee2]/15 text-[#40bee2] border border-[#40bee2]/30">
+                      8 Services
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-300 ${
+                      mobileServicesOpen ? "rotate-180 text-[#40bee2]" : "text-slate-400"
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      className="overflow-hidden border-t border-white/[0.06] bg-black/40 px-2.5 py-2 space-y-1"
                     >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                      <div className="text-[10px] font-bold tracking-[0.16em] text-[#40bee2] uppercase px-2 pt-1 pb-1">
+                        The Suite
+                      </div>
+                      {theSuiteItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] text-slate-300 hover:text-[#40bee2] hover:bg-white/[0.05] transition-colors"
+                          >
+                            <Icon className="w-3.5 h-3.5 text-[#40bee2]/80 shrink-0" />
+                            <span>{item.title}</span>
+                          </Link>
+                        );
+                      })}
 
-              <Link
-                href="/book-marketing"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Marketing
-              </Link>
-              <Link
-                href="/book-publishing-services"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Publication
-              </Link>
-              <Link
-                href="/book-printing"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Printing
-              </Link>
-              <Link
-                href="/book-cover-design"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Cover Design
-              </Link>
-              <Link
-                href="/portfolio"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/contact-us"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white hover:text-[#40bee2] text-sm py-1"
-              >
-                Contact Us
-              </Link>
+                      <div className="text-[10px] font-bold tracking-[0.16em] text-[#40bee2] uppercase px-2 pt-2.5 pb-1 border-t border-white/[0.04]">
+                        Extensions
+                      </div>
+                      {extensionsItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] text-slate-300 hover:text-[#40bee2] hover:bg-white/[0.05] transition-colors"
+                          >
+                            <Icon className="w-3.5 h-3.5 text-[#40bee2]/80 shrink-0" />
+                            <span>{item.title}</span>
+                          </Link>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* 4. Genre (Accordion) */}
+              <motion.div variants={drawerNavItemVariants} className="rounded-xl overflow-hidden bg-white/[0.02] border border-white/[0.04]">
+                <button
+                  type="button"
+                  onClick={() => setMobileGenreOpen(!mobileGenreOpen)}
+                  className="w-full flex items-center justify-between px-3.5 py-3 text-left text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.03] transition-colors font-medium text-[15px] active:scale-[0.98] cursor-pointer"
+                  aria-expanded={mobileGenreOpen}
+                >
+                  <span className="flex items-center gap-2">
+                    <span>Genre</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#40bee2]/15 text-[#40bee2] border border-[#40bee2]/30">
+                      Catalog
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-300 ${
+                      mobileGenreOpen ? "rotate-180 text-[#40bee2]" : "text-slate-400"
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {mobileGenreOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      className="overflow-hidden border-t border-white/[0.06] bg-black/40 px-2.5 py-2 space-y-1"
+                    >
+                      <div className="text-[10px] font-bold tracking-[0.16em] text-[#40bee2] uppercase px-2 pt-1 pb-1">
+                        Fiction & Novels
+                      </div>
+                      {fictionGenres.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] text-slate-300 hover:text-[#40bee2] hover:bg-white/[0.05] transition-colors"
+                          >
+                            <Icon className="w-3.5 h-3.5 text-[#40bee2]/80 shrink-0" />
+                            <span>{item.title}</span>
+                          </Link>
+                        );
+                      })}
+
+                      <div className="text-[10px] font-bold tracking-[0.16em] text-[#40bee2] uppercase px-2 pt-2.5 pb-1 border-t border-white/[0.04]">
+                        Non-Fiction & Specialty
+                      </div>
+                      {nonFictionGenres.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] text-slate-300 hover:text-[#40bee2] hover:bg-white/[0.05] transition-colors"
+                          >
+                            <Icon className="w-3.5 h-3.5 text-[#40bee2]/80 shrink-0" />
+                            <span>{item.title}</span>
+                          </Link>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* 5. Marketing */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/book-marketing"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Marketing</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 6. Publication */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/book-publishing-services"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Publication</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 7. Printing */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/book-printing"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Printing</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 8. Cover Design */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/book-cover-design"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Cover Design</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 9. Portfolio */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/portfolio"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Portfolio</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
+
+              {/* 10. Contact Us */}
+              <motion.div variants={drawerNavItemVariants}>
+                <Link
+                  href="/contact-us"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
+                >
+                  <span>Contact Us</span>
+                  <ChevronRight className="w-4 h-4 text-slate-500" />
+                </Link>
+              </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </header>
+
+            {/* Bottom Drawer Action Dock: Phone Call & Consultation */}
+            <div className="p-4 sm:p-5 border-t border-white/[0.08] bg-[#02050e] shrink-0 space-y-2.5">
+              <a
+                href="tel:+18556666675"
+                className="w-full py-3 px-4 rounded-xl border-2 border-[#40BEE2] bg-[#40BEE2] hover:bg-transparent text-white hover:text-[#40BEE2] flex items-center justify-center gap-2.5 font-bold text-[14px] shadow-[0_0_20px_rgba(64,190,226,0.35)] transition-all duration-200 active:scale-[0.98]"
+              >
+                <Phone className="w-4 h-4 fill-current shrink-0" />
+                <span>Call (855) 666-6675</span>
+              </a>
+
+              <Link
+                href="#consultation"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-2.5 px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-slate-300 hover:text-white flex items-center justify-center gap-2 text-xs font-semibold transition-all duration-200 active:scale-[0.98]"
+              >
+                <span>Free Author Consultation</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#40bee2]" />
+              </Link>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  </>
   );
 }
