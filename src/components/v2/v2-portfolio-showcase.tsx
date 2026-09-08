@@ -326,7 +326,8 @@ export function V2PortfolioShowcase() {
       {/* Background Decorative Ambient Accent */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-cyan-100/40 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
+      {/* Standard Width Container (Clean, Non-Stretchy Grid) */}
+      <div className="relative w-full max-w-7xl mx-auto z-10">
         
         {/* ======================================================== */}
         {/* SECTION HEADER                                           */}
@@ -338,7 +339,7 @@ export function V2PortfolioShowcase() {
             <span>Official Best Selling Publisher Portfolio</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif font-bold text-[#0B1B36] tracking-tight leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-[#0B1B36] tracking-tight leading-tight mb-3">
             Browse Books Across Genres
           </h2>
 
@@ -350,7 +351,7 @@ export function V2PortfolioShowcase() {
         {/* ======================================================== */}
         {/* GENRE FILTER PILLS                                       */}
         {/* ======================================================== */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 sm:mb-12">
           {GENRE_TABS.map((genre) => {
             const isSelected = selectedGenre === genre;
             return (
@@ -370,11 +371,11 @@ export function V2PortfolioShowcase() {
         </div>
 
         {/* ======================================================== */}
-        {/* INTERACTIVE BOOK CARDS GRID                              */}
+        {/* INTERACTIVE BOOK CARDS GRID (Standard 4-Col Layout)      */}
         {/* ======================================================== */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-7"
         >
           <AnimatePresence>
             {filteredBooks.map((book) => (
@@ -385,13 +386,13 @@ export function V2PortfolioShowcase() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35 }}
-                className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-[0_6px_24px_-6px_rgba(12,24,42,0.08)] hover:shadow-[0_20px_40px_-10px_rgba(0,163,224,0.25)] hover:border-cyan-400/60 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300"
+                className="group relative bg-white rounded-2xl border border-slate-200/90 shadow-[0_6px_24px_-6px_rgba(12,24,42,0.08)] hover:shadow-[0_20px_40px_-10px_rgba(0,163,224,0.25)] hover:border-cyan-400/60 p-5 flex flex-col justify-between transition-all duration-300 w-full max-w-[320px] mx-auto sm:max-w-none"
               >
                 {/* Top Badge */}
-                <div className="flex items-center justify-between gap-2 mb-4">
+                <div className="flex items-center justify-between gap-2 mb-3.5">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold tracking-wide uppercase bg-amber-50 border border-amber-200 text-amber-800">
                     <Award className="w-3 h-3 text-amber-600 shrink-0" />
-                    <span className="truncate max-w-[140px]">{book.badge}</span>
+                    <span className="truncate max-w-[130px]">{book.badge}</span>
                   </span>
                   <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">
                     {book.genre}
