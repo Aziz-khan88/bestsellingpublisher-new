@@ -592,7 +592,7 @@ export function HowWeStructureSection() {
         />
       </svg>
 
-      <div className="relative max-w-6xl mx-auto z-10">
+      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <p className="text-sm sm:text-base font-semibold text-[#00A3E0] tracking-wide mb-2">
