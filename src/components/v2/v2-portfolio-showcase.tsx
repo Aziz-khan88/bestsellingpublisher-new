@@ -92,7 +92,7 @@ const PORTFOLIO_BOOKS: BookItem[] = [
     title: "Beyond the Horizon",
     author: "James Walker",
     genre: "Sci-Fi & Fantasy",
-    image: "/main-hero-books.png",
+    image: "/portfolio-horizon.jpg",
     badge: "Barnes & Noble Top Pick",
     rating: 4.9,
     reviewsCount: 618,
@@ -111,7 +111,7 @@ const PORTFOLIO_BOOKS: BookItem[] = [
     title: "The Art of Resilience",
     author: "David Sherman",
     genre: "Memoir & Non-Fiction",
-    image: "/hero-book-1.png",
+    image: "/portfolio-resilience.jpg",
     badge: "USA Today Recommended",
     rating: 4.9,
     reviewsCount: 340,
@@ -130,7 +130,7 @@ const PORTFOLIO_BOOKS: BookItem[] = [
     title: "Shadows of the Past",
     author: "Arthur C. Morgan",
     genre: "Thriller & Mystery",
-    image: "/hero-book-2.png",
+    image: "/portfolio-shadows.jpg",
     badge: "#1 New Release in Mystery",
     rating: 4.7,
     reviewsCount: 284,
@@ -240,26 +240,36 @@ export function V2PortfolioShowcase() {
                   </span>
                 </div>
 
-                {/* 3D Realistic Book Presentation on Display Stage */}
-                <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-slate-50 via-slate-100/50 to-slate-200/60 rounded-xl flex items-center justify-center p-4 overflow-hidden mb-5 group-hover:bg-cyan-50/40 transition-colors">
-                  {/* Subtle pedestal shadow */}
-                  <div className="absolute bottom-3 w-[75%] h-5 bg-slate-950/15 rounded-full blur-md" />
+                {/* High-Impact Realistic Book Cover Display (2:3 Standard Book Ratio) */}
+                <div className="relative w-full aspect-[2/3] rounded-r-xl rounded-l-xs shadow-[0_18px_38px_-10px_rgba(10,25,50,0.3)] hover:shadow-[0_26px_50px_-10px_rgba(0,163,224,0.38)] transition-all duration-500 group-hover:-translate-y-2 overflow-hidden mb-6 bg-slate-900 border-r-2 border-r-amber-50/50">
+                  
+                  {/* Physical Book Spine Highlight & Depth Crease */}
+                  <div className="absolute left-0 top-0 bottom-0 w-[14px] bg-gradient-to-r from-black/55 via-black/25 to-transparent z-10 pointer-events-none" />
+                  <div className="absolute left-[14px] top-0 bottom-0 w-[1.5px] bg-white/20 z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 pointer-events-none z-10" />
 
-                  <div className="relative w-full h-full max-w-[220px] flex items-center justify-center filter drop-shadow-[0_16px_28px_rgba(0,20,50,0.22)] transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
-                    <Image
-                      src={book.image}
-                      alt={book.title}
-                      width={380}
-                      height={570}
-                      className="w-auto h-full max-h-[250px] object-contain rounded-md"
-                    />
+                  {/* Full-Bleed 2:3 Cover Image */}
+                  <Image
+                    src={book.image}
+                    alt={book.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+
+                  {/* Top-Right Bestseller Seal on Cover */}
+                  <div className="absolute top-3 right-3 z-20">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wide uppercase bg-slate-950/85 backdrop-blur-md border border-amber-400/60 text-amber-300 shadow-xl">
+                      <Award className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      <span>{book.badge}</span>
+                    </span>
                   </div>
 
                   {/* Hover Quick Action Overlay */}
-                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end p-5 sm:p-6 z-20">
                     <button
                       onClick={() => setSelectedBook(book)}
-                      className="px-4 py-2.5 rounded-xl bg-white text-[#0B1B36] font-bold text-xs shadow-lg hover:bg-[#00A3E0] hover:text-white transition-all transform hover:scale-105 flex items-center gap-1.5 cursor-pointer"
+                      className="w-full py-3 px-4 rounded-xl bg-[#00A3E0] hover:bg-cyan-400 text-white font-bold text-xs uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 transform transition-all hover:scale-[1.02] cursor-pointer"
                     >
                       <BookOpen className="w-4 h-4" />
                       <span>View Publishing Details</span>
@@ -267,38 +277,38 @@ export function V2PortfolioShowcase() {
                   </div>
                 </div>
 
-                {/* Book Details */}
+                {/* Book Metadata & Deliverables Summary */}
                 <div>
-                  <h3 className="font-serif font-bold text-lg sm:text-xl text-[#0B1B36] leading-snug mb-1 group-hover:text-[#00A3E0] transition-colors">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
+                      {book.genre}
+                    </span>
+                    <div className="flex items-center gap-1 text-xs text-amber-500 font-bold">
+                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <span>{book.rating}</span>
+                      <span className="text-slate-400 font-normal">({book.reviewsCount})</span>
+                    </div>
+                  </div>
+
+                  <h3 className="font-serif font-bold text-xl sm:text-2xl text-[#0B1B36] leading-tight mb-1 group-hover:text-[#00A3E0] transition-colors">
                     {book.title}
                   </h3>
-                  <p className="text-xs sm:text-[13px] font-medium text-slate-500 mb-3">
+                  <p className="text-xs sm:text-sm font-medium text-slate-500 mb-3">
                     By <span className="text-slate-800 font-semibold">{book.author}</span>
                   </p>
 
-                  {/* Rating & Reviews */}
-                  <div className="flex items-center gap-1.5 text-xs text-slate-600 mb-4 pb-3 border-b border-slate-100">
-                    <div className="flex items-center text-amber-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <span className="font-bold text-slate-800">{book.rating}</span>
-                    <span className="text-slate-400">({book.reviewsCount} reviews)</span>
-                  </div>
-
                   {/* Available Formats */}
-                  <div className="text-[11px] text-slate-500 flex items-center gap-1.5 mb-4 font-normal">
-                    <Layers className="w-3.5 h-3.5 text-[#00A3E0]" />
-                    <span>{book.formats}</span>
+                  <div className="text-[11.5px] text-slate-600 flex items-center gap-2 mb-4 font-normal py-2 px-3 rounded-lg bg-slate-50 border border-slate-100">
+                    <Layers className="w-3.5 h-3.5 text-[#00A3E0] shrink-0" />
+                    <span className="truncate">{book.formats}</span>
                   </div>
 
                   {/* Card Button */}
                   <button
                     onClick={() => setSelectedBook(book)}
-                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 text-slate-700 hover:border-[#00A3E0] hover:text-[#00A3E0] hover:bg-cyan-50/50 font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-300 hover:border-[#00A3E0] hover:text-[#00A3E0] hover:bg-cyan-50/50 text-slate-800 font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
-                    <span>Read Author Success Story</span>
+                    <span>Explore Scope & Case Study</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -351,13 +361,15 @@ export function V2PortfolioShowcase() {
 
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
                 <div className="sm:col-span-5 flex justify-center">
-                  <div className="filter drop-shadow-[0_14px_24px_rgba(0,0,0,0.25)] max-w-[180px]">
+                  <div className="relative w-full max-w-[230px] aspect-[2/3] rounded-r-lg rounded-l-xs shadow-[0_20px_40px_rgba(0,0,0,0.35)] overflow-hidden bg-slate-900 border-r-2 border-r-amber-100/50">
+                    <div className="absolute left-0 top-0 bottom-0 w-[12px] bg-gradient-to-r from-black/55 via-black/20 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute left-[12px] top-0 bottom-0 w-[1.5px] bg-white/20 z-10 pointer-events-none" />
                     <Image
                       src={selectedBook.image}
                       alt={selectedBook.title}
-                      width={320}
-                      height={480}
-                      className="w-full h-auto object-contain rounded"
+                      fill
+                      sizes="240px"
+                      className="object-cover"
                     />
                   </div>
                 </div>

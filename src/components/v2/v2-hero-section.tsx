@@ -199,16 +199,16 @@ export function V2HeroSection() {
               }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[490px] aspect-[1/1] flex items-center justify-center cursor-pointer select-none"
+              className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px] flex items-center justify-center cursor-pointer select-none"
             >
-              {/* Realistic 3D Book Graphic */}
-              <div className="relative w-full rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,163,224,0.35)] border border-cyan-500/30 transition-transform duration-300 hover:scale-[1.02] bg-[#020713]">
+              {/* Realistic 3D Book Graphic (Pure Isolated Cutout - No Box Background) */}
+              <div className="relative w-full flex items-center justify-center filter drop-shadow-[0_25px_50px_rgba(0,163,224,0.35)] transition-transform duration-300 hover:scale-[1.03]">
                 <Image
-                  src="/hero-bestseller-book.jpg"
+                  src="/hero-bestseller-transparent.png"
                   alt="The Art of the Bestseller - Best Selling Publisher"
-                  width={680}
-                  height={680}
-                  className="w-full h-auto object-cover rounded-2xl"
+                  width={663}
+                  height={926}
+                  className="w-auto h-auto max-h-[500px] sm:max-h-[560px] lg:max-h-[600px] object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
                   priority
                 />
               </div>
