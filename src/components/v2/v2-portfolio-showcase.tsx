@@ -371,11 +371,11 @@ export function V2PortfolioShowcase() {
         </div>
 
         {/* ======================================================== */}
-        {/* INTERACTIVE BOOK CARDS GRID (Responsive up to 6 Cols)     */}
+        {/* INTERACTIVE BOOK CARDS GRID (5 Cards Max Per Row)        */}
         {/* ======================================================== */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-6 lg:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-6 lg:gap-6"
         >
           <AnimatePresence>
             {filteredBooks.map((book) => (
@@ -412,7 +412,7 @@ export function V2PortfolioShowcase() {
                     src={book.image}
                     alt={book.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                   />
 
