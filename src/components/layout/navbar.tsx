@@ -328,7 +328,7 @@ export function Navbar() {
                 aria-haspopup="true"
                 aria-expanded={servicesMenuOpen}
               >
-                <span>Writing Services</span>
+                <span>Services</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     servicesMenuOpen ? "rotate-180 text-[#40bee2]" : "text-slate-300"
@@ -419,7 +419,7 @@ export function Navbar() {
               href="/contact-us"
               className="relative py-2 text-white hover:text-[#40bee2] transition-colors group"
             >
-              <span>Contact Us</span>
+              <span>Contact</span>
               <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#40bee2] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-full" />
             </Link>
           </nav>
@@ -843,7 +843,7 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
                 >
-                  <span>About Us</span>
+                  <span>About</span>
                   <ChevronRight className="w-4 h-4 text-slate-500" />
                 </Link>
               </motion.div>
@@ -857,7 +857,7 @@ export function Navbar() {
                   aria-expanded={mobileServicesOpen}
                 >
                   <span className="flex items-center gap-2">
-                    <span>Writing Services</span>
+                    <span>Services</span>
                     <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#40bee2]/15 text-[#40bee2] border border-[#40bee2]/30">
                       8 Services
                     </span>
@@ -1055,7 +1055,7 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-200 hover:text-[#40bee2] hover:bg-white/[0.04] transition-colors font-medium text-[15px] active:scale-[0.98]"
                 >
-                  <span>Contact Us</span>
+                  <span>Contact</span>
                   <ChevronRight className="w-4 h-4 text-slate-500" />
                 </Link>
               </motion.div>

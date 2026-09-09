@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Star,
 } from "lucide-react";
+import { V2ThreeHeroBook } from "./v2-three-hero-book";
 
 export function V2HeroSection() {
   // Framer Motion mouse-tilt physics for the hero 3D book
@@ -44,7 +45,7 @@ export function V2HeroSection() {
   };
 
   return (
-    <section className="relative w-full bg-[#030611] text-slate-100 font-sans pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
+    <section className="relative w-full bg-[#020818] text-slate-100 font-sans pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
       {/* Background Ambient Glow & Blueprint Accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Top-center soft cyan glow */}
@@ -179,78 +180,29 @@ export function V2HeroSection() {
                   Verified Reviews
                 </div>
               </div>
+              <div className="w-[1px] h-7 bg-slate-800" />
+              <div>
+                <div className="text-xl sm:text-2xl font-bold font-serif text-[#00E5FF] leading-none mb-1">
+                  190+
+                </div>
+                <div className="text-[11px] sm:text-xs text-slate-400 font-sans">
+                  Countries Projected
+                </div>
+              </div>
             </div>
           </div>
 
           {/* ======================================================== */}
-          {/* RIGHT COLUMN: Interactive 3D Perspective Tilt Book       */}
+          {/* RIGHT COLUMN: Real-Time Three.js 3D Hardcover Book Stage */}
           {/* ======================================================== */}
-          <div className="lg:col-span-5 flex justify-center items-center relative">
-            
+          <div className="lg:col-span-5 flex justify-center items-center relative min-h-[520px] sm:min-h-[600px] lg:min-h-[680px]">
             {/* Ambient Radial Backlight */}
-            <div className="absolute w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] rounded-full bg-gradient-to-tr from-[#00A3E0]/25 via-cyan-500/10 to-transparent blur-[80px] pointer-events-none" />
+            <div className="absolute w-[400px] sm:w-[540px] h-[400px] sm:h-[540px] rounded-full bg-gradient-to-tr from-[#00A3E0]/25 via-cyan-500/10 to-transparent blur-[90px] pointer-events-none" />
 
-            {/* Interactive 3D Tilt Card */}
-            <motion.div
-              style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-              }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px] flex items-center justify-center cursor-pointer select-none"
-            >
-              {/* Realistic 3D Book Graphic (Pure Isolated Cutout - No Box Background) */}
-              <div className="relative w-full flex items-center justify-center filter drop-shadow-[0_25px_50px_rgba(0,163,224,0.35)] transition-transform duration-300 hover:scale-[1.03]">
-                <Image
-                  src="/hero-bestseller-transparent.png"
-                  alt="The Art of the Bestseller - Best Selling Publisher"
-                  width={663}
-                  height={926}
-                  className="w-auto h-auto max-h-[500px] sm:max-h-[560px] lg:max-h-[600px] object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
-                  priority
-                />
-              </div>
-
-              {/* Floating Live Badge 1: Top Right Amazon Bestseller */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-3 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-200/80 text-slate-900 flex items-center gap-2.5 z-20"
-              >
-                <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 flex items-center justify-center font-bold">
-                  <Award className="w-4 h-4 text-amber-600" />
-                </div>
-                <div>
-                  <span className="block text-[9.5px] uppercase font-bold tracking-wider text-slate-400">
-                    Amazon Certified
-                  </span>
-                  <span className="block text-xs font-bold text-slate-900">
-                    #1 Category Bestseller
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Floating Live Badge 2: Bottom Left Royalty Seal */}
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-3 -left-2 sm:-left-4 bg-[#030d22]/90 backdrop-blur-md rounded-xl p-2.5 sm:p-3 shadow-xl border border-cyan-500/40 text-white flex items-center gap-2.5 z-20"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#00A3E0]/20 text-[#00E5FF] flex items-center justify-center font-bold">
-                  <ShieldCheck className="w-4 h-4 text-[#00E5FF]" />
-                </div>
-                <div>
-                  <span className="block text-[9.5px] uppercase font-bold tracking-wider text-cyan-400">
-                    Author Protection
-                  </span>
-                  <span className="block text-xs font-bold text-white">
-                    100% Royalties & Rights
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
+            {/* Three.js Interactive 3D Hardcover Book & Stage */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <V2ThreeHeroBook />
+            </div>
           </div>
         </div>
 

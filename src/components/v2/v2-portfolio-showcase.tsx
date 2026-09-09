@@ -326,8 +326,8 @@ export function V2PortfolioShowcase() {
       {/* Background Decorative Ambient Accent */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-cyan-100/40 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Standard Width Container (Clean, Non-Stretchy Grid) */}
-      <div className="relative w-full max-w-7xl mx-auto z-10">
+      {/* Full Width Container (Matching V2 Standard Max-Width) */}
+      <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
         
         {/* ======================================================== */}
         {/* SECTION HEADER                                           */}
@@ -371,11 +371,11 @@ export function V2PortfolioShowcase() {
         </div>
 
         {/* ======================================================== */}
-        {/* INTERACTIVE BOOK CARDS GRID (Standard 4-Col Layout)      */}
+        {/* INTERACTIVE BOOK CARDS GRID (Responsive up to 6 Cols)     */}
         {/* ======================================================== */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-7"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-6 lg:gap-6"
         >
           <AnimatePresence>
             {filteredBooks.map((book) => (

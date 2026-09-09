@@ -124,24 +124,24 @@ const SERVICES_DATA: ServiceCardData[] = [
 
 export function V2CoreServicesSection() {
   return (
-    <section className="relative w-full bg-[#030611] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+    <section className="relative w-full bg-[#F8FAFC] text-slate-800 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-slate-200/80">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#00A3E0]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#00A3E0]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="relative w-[97%] max-w-[1850px] mx-auto z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-[#00E5FF] text-xs font-bold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200/80 text-[#00A3E0] text-xs font-bold uppercase tracking-wider mb-3">
             <BookOpen className="w-3.5 h-3.5 text-[#00A3E0]" />
             <span>Comprehensive Publishing Services</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif font-bold text-white tracking-tight leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif font-bold text-[#0B1B36] tracking-tight leading-tight mb-3">
             Everything Required to Publish with Prestige
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             Whether you need a standalone service or complete end-to-end publishing, every deliverable is defined in an agreed scope and reviewed with author checkpoints before release.
           </p>
         </div>
@@ -155,40 +155,40 @@ export function V2CoreServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="group relative bg-[#070e20]/90 backdrop-blur-md rounded-2xl border border-slate-800 hover:border-cyan-400/60 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_12px_32px_-6px_rgba(0,163,224,0.22)] hover:-translate-y-1"
+              className="group relative bg-white rounded-2xl border border-slate-200/90 hover:border-cyan-400/60 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,163,224,0.15)] hover:-translate-y-1"
             >
               <div>
                 {/* Top Number & Icon */}
                 <div className="flex items-center justify-between gap-3 mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-[#00A3E0] group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 shadow-xs">
                     {service.icon}
                   </div>
-                  <span className="font-serif text-3xl font-bold text-slate-700 group-hover:text-[#00A3E0]/70 transition-colors">
+                  <span className="font-serif text-3xl font-bold text-slate-300 group-hover:text-[#00A3E0]/50 transition-colors">
                     {service.number}
                   </span>
                 </div>
 
                 {/* Optional Badge */}
                 {service.badge && (
-                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-cyan-500/15 text-[#00E5FF] border border-cyan-400/30 mb-3">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 mb-3">
                     {service.badge}
                   </span>
                 )}
 
                 {/* Title */}
-                <h3 className="font-bold text-lg sm:text-xl text-white mb-2 leading-snug group-hover:text-[#00A3E0] transition-colors">
+                <h3 className="font-bold text-lg sm:text-xl text-[#0B1B36] mb-2 leading-snug group-hover:text-[#00A3E0] transition-colors">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-slate-400 text-xs sm:text-[13px] leading-relaxed mb-5 font-normal">
+                <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-5 font-normal">
                   {service.description}
                 </p>
 
                 {/* Deliverables Checklist */}
-                <ul className="space-y-2 mb-6 pb-6 border-b border-slate-800/80">
+                <ul className="space-y-2 mb-6 pb-6 border-b border-slate-100">
                   {service.checkmarks.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
@@ -199,7 +199,7 @@ export function V2CoreServicesSection() {
               {/* Bottom Link */}
               <Link
                 href={service.link}
-                className="inline-flex items-center justify-between text-xs font-bold text-[#00E5FF] group-hover:text-white transition-colors"
+                className="inline-flex items-center justify-between text-xs font-bold text-[#00A3E0] group-hover:text-[#0082b3] transition-colors"
               >
                 <span>Explore Service Details</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -210,7 +210,7 @@ export function V2CoreServicesSection() {
 
         {/* Bottom Scope CTA Banner */}
         <div className="mt-12 sm:mt-16 text-center">
-          <p className="text-xs sm:text-sm text-slate-400 mb-4">
+          <p className="text-xs sm:text-sm text-slate-600 mb-4">
             Need a custom package tailored specifically to your manuscript?
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -223,7 +223,7 @@ export function V2CoreServicesSection() {
             </a>
             <a
               href="tel:+18556666675"
-              className="cta-btn-base cta-btn-outline-light"
+              className="cta-btn-base cta-btn-secondary"
             >
               <span>Speak to a Senior Editor</span>
             </a>
