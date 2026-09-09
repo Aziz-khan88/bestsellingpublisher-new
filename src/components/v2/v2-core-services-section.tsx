@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
+import { V2TiltCard } from "./v2-tilt-card";
 
 interface ServiceCardData {
   id: string;
@@ -30,7 +31,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "amazon-publishing",
     number: "01",
-    icon: <Sparkles className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <Sparkles className="w-6 h-6" />,
     title: "Amazon Publishing & KDP Setup",
     badge: "Most Requested",
     description:
@@ -46,7 +47,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "book-editing",
     number: "02",
-    icon: <Edit3 className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <Edit3 className="w-6 h-6" />,
     title: "Professional Editing & Proofreading",
     description:
       "Comprehensive developmental critique, line editing, syntax polishing, and proofreading following the Chicago Manual of Style.",
@@ -61,7 +62,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "cover-design",
     number: "03",
-    icon: <Palette className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <Palette className="w-6 h-6" />,
     title: "Custom Book Cover Design",
     badge: "Award-Winning Team",
     description:
@@ -77,7 +78,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "interior-typesetting",
     number: "04",
-    icon: <FileText className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <FileText className="w-6 h-6" />,
     title: "Interior Formatting & Typesetting",
     description:
       "Impeccable book layout with custom chapter headers, drop caps, widow/orphan control, and responsive digital reflowable EPUB.",
@@ -92,7 +93,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "printing-distribution",
     number: "05",
-    icon: <Printer className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <Printer className="w-6 h-6" />,
     title: "Global Printing & Distribution",
     badge: "40,000+ Retailers",
     description:
@@ -108,7 +109,7 @@ const SERVICES_DATA: ServiceCardData[] = [
   {
     id: "book-marketing",
     number: "06",
-    icon: <TrendingUp className="w-6 h-6 text-[#00A3E0]" />,
+    icon: <TrendingUp className="w-6 h-6" />,
     title: "Book Marketing & Bestseller PR",
     description:
       "Targeted marketing strategies, Amazon Ads management, press release syndication, and promotional campaigns to drive reader discovery.",
@@ -146,7 +147,7 @@ export function V2CoreServicesSection() {
           </p>
         </div>
 
-        {/* 6 Services Grid */}
+        {/* 6 Services Grid with 3D Tilt & Cursor Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {SERVICES_DATA.map((service, index) => (
             <motion.div
@@ -155,55 +156,78 @@ export function V2CoreServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="group relative bg-white rounded-2xl border border-slate-200/90 hover:border-cyan-400/60 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(0,163,224,0.15)] hover:-translate-y-1"
+              className="h-full"
             >
-              <div>
-                {/* Top Number & Icon */}
-                <div className="flex items-center justify-between gap-3 mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 shadow-xs">
-                    {service.icon}
+              <V2TiltCard
+                tiltAmount={7}
+                spotlightColor="rgba(0, 163, 224, 0.14)"
+                isLight={true}
+                className="group bg-white rounded-2xl border border-slate-200/90 hover:border-cyan-400/80 p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-10px_rgba(0,163,224,0.22)]"
+              >
+                <div>
+                  {/* Top Number & Icon with 3D Pop */}
+                  <div
+                    style={{ transform: "translateZ(18px)" }}
+                    className="flex items-center justify-between gap-3 mb-5 transition-transform duration-200"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200/80 flex items-center justify-center text-[#00A3E0] group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 shadow-xs [&_svg]:text-current [&_svg]:group-hover:text-white">
+                      {service.icon}
+                    </div>
+                    <span className="font-serif text-3xl font-bold text-slate-300 group-hover:text-[#00A3E0]/60 transition-colors">
+                      {service.number}
+                    </span>
                   </div>
-                  <span className="font-serif text-3xl font-bold text-slate-300 group-hover:text-[#00A3E0]/50 transition-colors">
-                    {service.number}
-                  </span>
+
+                  {/* Optional Badge */}
+                  {service.badge && (
+                    <div style={{ transform: "translateZ(14px)" }} className="mb-3">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">
+                        {service.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Title with 3D Depth */}
+                  <h3
+                    style={{ transform: "translateZ(12px)" }}
+                    className="font-bold text-lg sm:text-xl text-[#0B1B36] mb-2 leading-snug group-hover:text-[#00A3E0] transition-colors"
+                  >
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    style={{ transform: "translateZ(8px)" }}
+                    className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-5 font-normal"
+                  >
+                    {service.description}
+                  </p>
+
+                  {/* Deliverables Checklist */}
+                  <ul
+                    style={{ transform: "translateZ(10px)" }}
+                    className="space-y-2 mb-6 pb-6 border-b border-slate-100"
+                  >
+                    {service.checkmarks.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Optional Badge */}
-                {service.badge && (
-                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 mb-3">
-                    {service.badge}
-                  </span>
-                )}
-
-                {/* Title */}
-                <h3 className="font-bold text-lg sm:text-xl text-[#0B1B36] mb-2 leading-snug group-hover:text-[#00A3E0] transition-colors">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-5 font-normal">
-                  {service.description}
-                </p>
-
-                {/* Deliverables Checklist */}
-                <ul className="space-y-2 mb-6 pb-6 border-b border-slate-100">
-                  {service.checkmarks.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#00A3E0] shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bottom Link */}
-              <Link
-                href={service.link}
-                className="inline-flex items-center justify-between text-xs font-bold text-[#00A3E0] group-hover:text-[#0082b3] transition-colors"
-              >
-                <span>Explore Service Details</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+                {/* Bottom Link with 3D Pop */}
+                <div style={{ transform: "translateZ(16px)" }}>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center justify-between w-full text-xs font-bold text-[#00A3E0] group-hover:text-[#0082b3] transition-colors"
+                  >
+                    <span>Explore Service Details</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </V2TiltCard>
             </motion.div>
           ))}
         </div>

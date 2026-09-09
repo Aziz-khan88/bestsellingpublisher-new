@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import * as THREE from "three";
-import { RotateCw, ChevronLeft, ChevronRight, Award, BookOpen } from "lucide-react";
+import { RotateCw, ChevronLeft, ChevronRight, Award, BookOpen, Sparkles } from "lucide-react";
 
 export interface RealBookTheme {
   id: string;
@@ -210,12 +211,17 @@ export function V2ThreeHeroBook() {
     const container = mountRef.current;
     if (!container) return;
 
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+
     const scene = new THREE.Scene();
     const width = container.clientWidth || 550;
-    const height = container.clientHeight || 650;
+    const height = container.clientHeight || 700;
 
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-    camera.position.set(0, 0.35, 4.3);
+    // Camera positioned closer with optimized FOV for larger book prominence
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    camera.position.set(0, 0.15, 4.05);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -233,78 +239,79 @@ export function V2ThreeHeroBook() {
     // ==========================================
     // LIGHTING RIG
     // ==========================================
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xfff5e6, 2.4);
-    keyLight.position.set(3, 4, 3.5);
+    const keyLight = new THREE.DirectionalLight(0xfff5e6, 2.5);
+    keyLight.position.set(3.2, 4.2, 3.5);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0x00e5ff, 1.5);
+    const fillLight = new THREE.DirectionalLight(0x00e5ff, 1.6);
     fillLight.position.set(-3.5, 2.5, 2);
     scene.add(fillLight);
 
-    const stageUplight = new THREE.SpotLight(0x00e5ff, 4.5, 6, Math.PI / 4, 0.4);
-    stageUplight.position.set(0, -1.8, 0.2);
+    const stageUplight = new THREE.SpotLight(0x00e5ff, 4.8, 6, Math.PI / 4, 0.35);
+    stageUplight.position.set(0, -1.8, 0.3);
     stageUplight.target.position.set(0, 0, 0);
     scene.add(stageUplight);
     scene.add(stageUplight.target);
     spotLightRef.current = stageUplight;
 
     // ==========================================
-    // NEON STAGE / PEDESTAL
+    // NEON STAGE / DOCKED PEDESTAL
     // ==========================================
     const stageGroup = new THREE.Group();
-    stageGroup.position.set(0, -1.25, 0);
+    stageGroup.position.set(0, -1.36, 0);
 
-    const baseGeo = new THREE.CylinderGeometry(1.65, 1.8, 0.25, 48);
+    const baseGeo = new THREE.CylinderGeometry(1.85, 2.05, 0.22, 64);
     const baseMat = new THREE.MeshStandardMaterial({
-      color: 0x050e1f,
-      metalness: 0.85,
-      roughness: 0.25,
+      color: 0x040d1c,
+      metalness: 0.88,
+      roughness: 0.2,
     });
     const baseMesh = new THREE.Mesh(baseGeo, baseMat);
     baseMesh.receiveShadow = true;
     stageGroup.add(baseMesh);
 
-    const ringGeo = new THREE.TorusGeometry(1.68, 0.035, 16, 64);
+    const ringGeo = new THREE.TorusGeometry(1.88, 0.038, 16, 64);
     const ringMat = new THREE.MeshStandardMaterial({
       color: 0x00e5ff,
       emissive: 0x00e5ff,
-      emissiveIntensity: 2.2,
+      emissiveIntensity: 2.4,
       roughness: 0.1,
     });
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2;
-    ringMesh.position.y = 0.12;
+    ringMesh.position.y = 0.11;
     stageGroup.add(ringMesh);
     neonRingRef.current = ringMesh;
 
-    const topGeo = new THREE.CylinderGeometry(1.45, 1.55, 0.18, 48);
+    const topGeo = new THREE.CylinderGeometry(1.65, 1.78, 0.16, 64);
     const topMat = new THREE.MeshStandardMaterial({
-      color: 0x07152b,
-      metalness: 0.9,
+      color: 0x061429,
+      metalness: 0.92,
       roughness: 0.15,
     });
     const topMesh = new THREE.Mesh(topGeo, topMat);
-    topMesh.position.y = 0.18;
+    topMesh.position.y = 0.16;
     topMesh.receiveShadow = true;
     stageGroup.add(topMesh);
 
     scene.add(stageGroup);
 
     // ==========================================
-    // 3D HARDCOVER BOOK MESH ASSEMBLY
+    // 3D HARDCOVER BOOK MESH ASSEMBLY (Increased Size)
     // ==========================================
     const bookGroup = new THREE.Group();
-    bookGroup.position.set(0, -0.05, 0);
+    bookGroup.position.set(0, 0.05, 0);
 
-    const bookWidth = 1.4;
-    const bookHeight = 2.1;
-    const bookThickness = 0.28;
+    // Increased book dimensions by ~20% for superior presence
+    const bookWidth = 1.65;
+    const bookHeight = 2.48;
+    const bookThickness = 0.32;
 
     // 1. Stacked Pages
     const pagesGeo = new THREE.BoxGeometry(
@@ -326,7 +333,7 @@ export function V2ThreeHeroBook() {
     bookGroup.add(pagesMesh);
 
     // 2. Front Hardcover with REAL book cover image texture
-    const frontGeo = new THREE.BoxGeometry(bookWidth, bookHeight, 0.02);
+    const frontGeo = new THREE.BoxGeometry(bookWidth, bookHeight, 0.022);
     const initialFrontMat = new THREE.MeshStandardMaterial({
       roughness: 0.35,
       metalness: 0.15,
@@ -347,7 +354,7 @@ export function V2ThreeHeroBook() {
     bookGroup.add(frontMesh);
 
     // 3. Back Hardcover
-    const backGeo = new THREE.BoxGeometry(bookWidth, bookHeight, 0.02);
+    const backGeo = new THREE.BoxGeometry(bookWidth, bookHeight, 0.022);
     const backMat = new THREE.MeshStandardMaterial({
       color: REAL_BSP_BOOKS[0].backColor,
       roughness: 0.45,
@@ -360,7 +367,7 @@ export function V2ThreeHeroBook() {
     bookGroup.add(backMesh);
 
     // 4. Spine Plate with Real Book Title & Author
-    const spineGeo = new THREE.BoxGeometry(0.02, bookHeight, bookThickness);
+    const spineGeo = new THREE.BoxGeometry(0.022, bookHeight, bookThickness);
     const spineTex = createSpineTexture(REAL_BSP_BOOKS[0]);
     const spineMat = new THREE.MeshStandardMaterial({
       map: spineTex,
@@ -381,13 +388,13 @@ export function V2ThreeHeroBook() {
     bookGroupRef.current = bookGroup;
 
     // Ambient Stardust Particles
-    const particleCount = 80;
+    const particleCount = 85;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     for (let p = 0; p < particleCount * 3; p += 3) {
-      positions[p] = (Math.random() - 0.5) * 4.5;
-      positions[p + 1] = (Math.random() - 0.5) * 4.0;
-      positions[p + 2] = (Math.random() - 0.5) * 3.0;
+      positions[p] = (Math.random() - 0.5) * 5.0;
+      positions[p + 1] = (Math.random() - 0.5) * 4.5;
+      positions[p + 2] = (Math.random() - 0.5) * 3.5;
     }
     particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     const particleMat = new THREE.PointsMaterial({
@@ -483,7 +490,7 @@ export function V2ThreeHeroBook() {
     // ANIMATION LOOP
     // ==========================================
     let animId: number;
-    let clock = new THREE.Clock();
+    const clock = new THREE.Clock();
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
@@ -496,15 +503,15 @@ export function V2ThreeHeroBook() {
 
       if (bookGroupRef.current) {
         if (!isDraggingRef.current) {
-          const floatOffset = Math.sin(elapsedTime * 1.5) * 0.04;
-          bookGroupRef.current.position.y = -0.05 + floatOffset;
+          const floatOffset = Math.sin(elapsedTime * 1.5) * 0.03;
+          bookGroupRef.current.position.y = 0.05 + floatOffset;
         }
         bookGroupRef.current.rotation.x = currentRotationRef.current.x;
         bookGroupRef.current.rotation.y = currentRotationRef.current.y;
       }
 
       if (neonRingRef.current) {
-        const pulse = 1.8 + Math.sin(elapsedTime * 3) * 0.5;
+        const pulse = 2.0 + Math.sin(elapsedTime * 3) * 0.5;
         (neonRingRef.current.material as THREE.MeshStandardMaterial).emissiveIntensity =
           pulse;
       }
@@ -551,54 +558,109 @@ export function V2ThreeHeroBook() {
       {/* Three.js Canvas Container */}
       <div
         ref={mountRef}
-        className="w-full h-[520px] sm:h-[600px] lg:h-[680px] cursor-grab active:cursor-grabbing relative"
+        className="w-full h-[560px] sm:h-[640px] lg:h-[720px] cursor-grab active:cursor-grabbing relative"
       />
 
       {/* Floating 3D Interaction Badge */}
       <div className="absolute top-4 right-4 z-20 pointer-events-none">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#051124]/90 backdrop-blur-md border border-cyan-400/40 text-[#00E5FF] text-[11px] font-bold uppercase tracking-wider shadow-xl">
-          <RotateCw className="w-3.5 h-3.5 animate-spin text-cyan-400" style={{ animationDuration: "12s" }} />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#051124]/90 backdrop-blur-md border border-cyan-400/40 text-[#00E5FF] text-xs font-bold uppercase tracking-wider shadow-xl">
+          <RotateCw className="w-4 h-4 animate-spin text-cyan-400" style={{ animationDuration: "12s" }} />
           <span>Interactive 3D Hardcover</span>
         </div>
       </div>
 
       {/* Hover Drag Hint */}
       <div
-        className={`absolute bottom-20 z-20 pointer-events-none transition-opacity duration-300 ${
+        className={`absolute bottom-28 z-20 pointer-events-none transition-opacity duration-300 ${
           isHovered && !isInteracting ? "opacity-90" : "opacity-0"
         }`}
       >
-        <span className="px-3 py-1 rounded-full bg-slate-950/80 text-[11px] text-slate-300 font-medium border border-white/10 backdrop-blur-sm">
+        <span className="px-3.5 py-1.5 rounded-full bg-slate-950/85 text-xs text-slate-200 font-medium border border-white/15 backdrop-blur-md shadow-lg">
           Click & Drag to Rotate in 3D
         </span>
       </div>
 
-      {/* Real Book Switcher Controls */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-[#051226]/95 backdrop-blur-md px-4 py-2.5 rounded-full border border-cyan-500/30 shadow-2xl">
-        <button
-          onClick={prevBook}
-          aria-label="Previous Published Title"
-          className="w-7 h-7 rounded-full bg-white/10 hover:bg-cyan-500/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
+      {/* ======================================================== */}
+      {/* NEW REDESIGNED INTERACTIVE TITLE DOCK                    */}
+      {/* ======================================================== */}
+      <div className="absolute bottom-2 sm:bottom-3 left-2 right-2 sm:left-4 sm:right-4 max-w-xl mx-auto z-20">
+        <div className="relative w-full rounded-2xl bg-gradient-to-r from-[#030c1e]/95 via-[#061633]/95 to-[#030c1e]/95 border border-cyan-500/35 shadow-[0_14px_45px_rgba(0,0,0,0.85)] p-3 sm:p-3.5 backdrop-blur-xl">
+          {/* Active Book Info & Prev/Next Controls */}
+          <div className="flex items-center justify-between gap-3 mb-2.5">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#00E5FF]">
+                  {currentBook.genre}
+                </span>
+                <span className="text-slate-500 text-xs">•</span>
+                <span className="text-xs sm:text-[13px] text-slate-300 font-medium truncate">
+                  By {currentBook.author}
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base lg:text-lg font-serif font-bold text-white truncate">
+                {currentBook.title}
+              </h4>
+            </div>
 
-        <div className="text-center min-w-[190px]">
-          <span className="text-[10px] font-bold text-[#00E5FF] uppercase tracking-wider block truncate">
-            {currentBook.genre} · By {currentBook.author}
-          </span>
-          <span className="text-xs font-serif font-bold text-white block truncate max-w-[210px]">
-            {currentBook.title}
-          </span>
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                onClick={prevBook}
+                aria-label="Previous Published Title"
+                className="w-8 h-8 rounded-lg bg-white/10 hover:bg-cyan-500/25 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 hover:border-cyan-400/50"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={nextBook}
+                aria-label="Next Published Title"
+                className="w-8 h-8 rounded-lg bg-white/10 hover:bg-cyan-500/25 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 hover:border-cyan-400/50"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* 4 Interactive Thumbnail Dock Tabs */}
+          <div className="grid grid-cols-4 gap-2 pt-2.5 border-t border-white/10">
+            {REAL_BSP_BOOKS.map((book, idx) => {
+              const isActive = idx === bookIdx;
+              return (
+                <button
+                  key={book.id}
+                  onClick={() => setBookIdx(idx)}
+                  className={`flex items-center gap-2 p-1.5 rounded-xl text-left transition-all duration-300 cursor-pointer border ${
+                    isActive
+                      ? "bg-cyan-500/20 border-cyan-400 shadow-md shadow-cyan-500/25 ring-1 ring-cyan-400/30"
+                      : "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20"
+                  }`}
+                >
+                  <div className="relative w-6 h-9 rounded-sm shrink-0 overflow-hidden shadow-sm">
+                    <Image
+                      src={book.image}
+                      alt={book.title}
+                      fill
+                      sizes="24px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="hidden sm:block min-w-0 flex-1">
+                    <span
+                      className={`text-[11px] font-bold block truncate leading-tight ${
+                        isActive ? "text-[#00E5FF]" : "text-slate-200"
+                      }`}
+                    >
+                      {book.title.split(":")[0]}
+                    </span>
+                    <span className="text-[10px] text-slate-400 block truncate leading-tight mt-0.5">
+                      {book.author}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
-
-        <button
-          onClick={nextBook}
-          aria-label="Next Published Title"
-          className="w-7 h-7 rounded-full bg-white/10 hover:bg-cyan-500/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-        >
-          <ChevronRight className="w-4 h-4" />
-        </button>
       </div>
     </div>
   );

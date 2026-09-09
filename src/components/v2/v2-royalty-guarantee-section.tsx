@@ -13,11 +13,12 @@ import {
   Phone,
   Lock,
 } from "lucide-react";
+import { V2TiltCard } from "./v2-tilt-card";
 
 export function V2RoyaltyGuaranteeSection() {
   const guarantees = [
     {
-      icon: <DollarSign className="w-6 h-6 text-[#00A3E0]" />,
+      icon: <DollarSign className="w-6 h-6" />,
       title: "100% Royalty Ownership",
       headline: "You Keep Every Cent Your Book Earns",
       description:
@@ -25,7 +26,7 @@ export function V2RoyaltyGuaranteeSection() {
       highlight: "0% Commission Taken by Us",
     },
     {
-      icon: <Lock className="w-6 h-6 text-[#00A3E0]" />,
+      icon: <Lock className="w-6 h-6" />,
       title: "100% Copyright & Rights Retained",
       headline: "Your Intellectual Property Belongs to You",
       description:
@@ -33,7 +34,7 @@ export function V2RoyaltyGuaranteeSection() {
       highlight: "Full Legal Intellectual Property",
     },
     {
-      icon: <FileCheck2 className="w-6 h-6 text-[#00A3E0]" />,
+      icon: <FileCheck2 className="w-6 h-6" />,
       title: "Official Registered ISBNs & Barcodes",
       headline: "Legally Cataloged in the Author's Name",
       description:
@@ -41,7 +42,7 @@ export function V2RoyaltyGuaranteeSection() {
       highlight: "Universal Bookstore Eligibility",
     },
     {
-      icon: <Globe2 className="w-6 h-6 text-[#00A3E0]" />,
+      icon: <Globe2 className="w-6 h-6" />,
       title: "Milestone Author Approvals",
       headline: "Nothing Goes Live Without Your Sign-Off",
       description:
@@ -70,7 +71,7 @@ export function V2RoyaltyGuaranteeSection() {
           </p>
         </div>
 
-        {/* 4 Guarantees Grid */}
+        {/* 4 Guarantees Grid with 3D Tilt & Cursor Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-16">
           {guarantees.map((item, index) => (
             <motion.div
@@ -79,29 +80,48 @@ export function V2RoyaltyGuaranteeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_24px_-6px_rgba(12,24,42,0.06)] p-6 sm:p-8 flex flex-col justify-between hover:border-cyan-400/80 hover:shadow-[0_12px_32px_-6px_rgba(0,163,224,0.16)] transition-all duration-300"
+              className="h-full"
             >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-[#00A3E0] shadow-sm">
-                    {item.icon}
+              <V2TiltCard
+                tiltAmount={6}
+                spotlightColor="rgba(0, 163, 224, 0.12)"
+                isLight={true}
+                className="group bg-white rounded-2xl border border-slate-200/90 shadow-[0_8px_24px_-6px_rgba(12,24,42,0.06)] p-6 sm:p-8 hover:border-cyan-400/80 hover:shadow-[0_20px_40px_-8px_rgba(0,163,224,0.2)]"
+              >
+                <div>
+                  <div
+                    style={{ transform: "translateZ(18px)" }}
+                    className="flex items-center justify-between gap-3 mb-4 transition-transform duration-200"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-[#00A3E0] shadow-sm group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 [&_svg]:text-current [&_svg]:group-hover:text-white">
+                      {item.icon}
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-xs">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>{item.highlight}</span>
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>{item.highlight}</span>
-                  </span>
-                </div>
 
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#00A3E0] mb-1">
-                  {item.title}
-                </h3>
-                <h4 className="font-serif font-bold text-lg sm:text-xl text-[#0B1B36] mb-3 leading-snug">
-                  {item.headline}
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {item.description}
-                </p>
-              </div>
+                  <h3
+                    style={{ transform: "translateZ(12px)" }}
+                    className="text-xs font-bold uppercase tracking-wider text-[#00A3E0] mb-1"
+                  >
+                    {item.title}
+                  </h3>
+                  <h4
+                    style={{ transform: "translateZ(14px)" }}
+                    className="font-serif font-bold text-lg sm:text-xl text-[#0B1B36] mb-3 leading-snug group-hover:text-[#00A3E0] transition-colors"
+                  >
+                    {item.headline}
+                  </h4>
+                  <p
+                    style={{ transform: "translateZ(8px)" }}
+                    className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal"
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </V2TiltCard>
             </motion.div>
           ))}
         </div>

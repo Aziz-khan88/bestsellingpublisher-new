@@ -77,9 +77,9 @@ export function V2HeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-[#00E5FF] text-xs font-bold uppercase tracking-wider w-fit mb-4"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-[#00E5FF] text-xs sm:text-sm font-bold uppercase tracking-wider w-fit mb-5"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <Sparkles className="w-4 h-4 text-[#00A3E0]" />
               <span>Full-Service Independent Book Publishing</span>
             </motion.div>
 
@@ -88,7 +88,7 @@ export function V2HeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-serif font-bold text-white tracking-tight leading-[1.08] mb-4"
+              className="text-4xl sm:text-5xl lg:text-[56px] xl:text-[64px] font-serif font-bold text-white tracking-tight leading-[1.07] mb-5"
             >
               Prepare Your Book for Every Channel.{" "}
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-[#00A3E0]">
@@ -101,7 +101,7 @@ export function V2HeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-slate-300 text-sm sm:text-base lg:text-[16px] leading-relaxed max-w-2xl mb-7 font-normal"
+              className="text-slate-200 text-base sm:text-lg lg:text-[18px] leading-relaxed max-w-2xl mb-8 font-normal"
             >
               From professional editing and bespoke cover design to Amazon KDP setup, global bookstore printing, and targeted bestseller marketing—we coordinate every step so your book reaches readers worldwide. You keep <strong className="text-white font-semibold">100% royalties</strong> and retain <strong className="text-white font-semibold">all copyright ownership</strong>.
             </motion.p>
@@ -111,18 +111,18 @@ export function V2HeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-8"
             >
-              <div className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00A3E0] shrink-0" />
+              <div className="flex items-center gap-2.5 text-sm sm:text-[15px] font-medium text-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-[#00A3E0] shrink-0" />
                 <span>100% Royalties to Author</span>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00A3E0] shrink-0" />
+              <div className="flex items-center gap-2.5 text-sm sm:text-[15px] font-medium text-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-[#00A3E0] shrink-0" />
                 <span>Amazon KDP & 40k Stores</span>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-[#00A3E0] shrink-0" />
+              <div className="flex items-center gap-2.5 text-sm sm:text-[15px] font-medium text-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-[#00A3E0] shrink-0" />
                 <span>Author Milestone Approvals</span>
               </div>
             </motion.div>
@@ -136,7 +136,7 @@ export function V2HeroSection() {
             >
               <a
                 href="#consultation"
-                className="cta-btn-base cta-btn-primary cta-btn-item"
+                className="cta-btn-base cta-btn-primary cta-btn-item text-sm sm:text-base font-bold py-3.5 px-7"
               >
                 <span>Get Free Publishing Scope</span>
                 <ArrowRight className="w-4 h-4" />
@@ -144,7 +144,7 @@ export function V2HeroSection() {
 
               <a
                 href="tel:+18556666675"
-                className="cta-btn-base cta-btn-outline-light cta-btn-item"
+                className="cta-btn-base cta-btn-outline-light cta-btn-item text-sm sm:text-base font-bold py-3.5 px-7"
               >
                 <Phone className="w-4 h-4" />
                 <span>Call (855) 666-6675</span>
@@ -154,38 +154,38 @@ export function V2HeroSection() {
             {/* Live Trust Metrics */}
             <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-6 sm:gap-10">
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-serif text-white leading-none mb-1">
+                <div className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-white leading-none mb-1.5">
                   1,200+
                 </div>
-                <div className="text-[11px] sm:text-xs text-slate-400 font-sans">
+                <div className="text-xs sm:text-sm text-slate-300 font-sans">
                   Books Published
                 </div>
               </div>
-              <div className="w-[1px] h-7 bg-slate-800" />
+              <div className="w-[1px] h-8 bg-slate-800" />
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-serif text-[#00E5FF] leading-none mb-1">
+                <div className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-[#00E5FF] leading-none mb-1.5">
                   100%
                 </div>
-                <div className="text-[11px] sm:text-xs text-slate-400 font-sans">
+                <div className="text-xs sm:text-sm text-slate-300 font-sans">
                   Author Ownership
                 </div>
               </div>
-              <div className="w-[1px] h-7 bg-slate-800" />
+              <div className="w-[1px] h-8 bg-slate-800" />
               <div>
-                <div className="flex items-center gap-1 text-xl sm:text-2xl font-bold font-serif text-white leading-none mb-1">
+                <div className="flex items-center gap-1.5 text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-white leading-none mb-1.5">
                   <span>4.9</span>
-                  <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
                 </div>
-                <div className="text-[11px] sm:text-xs text-slate-400 font-sans">
+                <div className="text-xs sm:text-sm text-slate-300 font-sans">
                   Verified Reviews
                 </div>
               </div>
-              <div className="w-[1px] h-7 bg-slate-800" />
+              <div className="w-[1px] h-8 bg-slate-800" />
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-serif text-[#00E5FF] leading-none mb-1">
+                <div className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-[#00E5FF] leading-none mb-1.5">
                   190+
                 </div>
-                <div className="text-[11px] sm:text-xs text-slate-400 font-sans">
+                <div className="text-xs sm:text-sm text-slate-300 font-sans">
                   Countries Projected
                 </div>
               </div>
@@ -195,9 +195,9 @@ export function V2HeroSection() {
           {/* ======================================================== */}
           {/* RIGHT COLUMN: Real-Time Three.js 3D Hardcover Book Stage */}
           {/* ======================================================== */}
-          <div className="lg:col-span-5 flex justify-center items-center relative min-h-[520px] sm:min-h-[600px] lg:min-h-[680px]">
+          <div className="lg:col-span-5 flex justify-center items-center relative min-h-[560px] sm:min-h-[640px] lg:min-h-[720px]">
             {/* Ambient Radial Backlight */}
-            <div className="absolute w-[400px] sm:w-[540px] h-[400px] sm:h-[540px] rounded-full bg-gradient-to-tr from-[#00A3E0]/25 via-cyan-500/10 to-transparent blur-[90px] pointer-events-none" />
+            <div className="absolute w-[440px] sm:w-[580px] h-[440px] sm:h-[580px] rounded-full bg-gradient-to-tr from-[#00A3E0]/25 via-cyan-500/10 to-transparent blur-[100px] pointer-events-none" />
 
             {/* Three.js Interactive 3D Hardcover Book & Stage */}
             <div className="relative w-full h-full flex items-center justify-center">
@@ -210,26 +210,26 @@ export function V2HeroSection() {
         {/* GLOBAL DISTRIBUTION MARQUEE DOCK                         */}
         {/* ======================================================== */}
         <div className="mt-14 sm:mt-16 pt-8 border-t border-slate-800/80">
-          <p className="text-center text-[11px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">
+          <p className="text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-300 mb-6">
             Distributed Across All Major Bookstores & Digital Platforms
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 lg:gap-14 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
-            <span className="text-sm sm:text-base font-bold tracking-tight text-white flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16 opacity-85 hover:opacity-100 transition-all duration-300">
+            <span className="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
               <span className="text-[#00A3E0]">amazon</span> kdp
             </span>
-            <span className="text-sm sm:text-base font-serif font-bold text-slate-200">
+            <span className="text-base sm:text-lg font-serif font-bold text-slate-100">
               Barnes & Noble
             </span>
-            <span className="text-sm sm:text-base font-sans font-semibold text-slate-200 flex items-center gap-1">
+            <span className="text-base sm:text-lg font-sans font-semibold text-slate-100 flex items-center gap-1">
               Apple Books
             </span>
-            <span className="text-sm sm:text-base font-sans font-bold text-slate-200 tracking-wider">
+            <span className="text-base sm:text-lg font-sans font-bold text-slate-100 tracking-wider">
               INGRAM<span className="text-[#00A3E0]">SPARK</span>
             </span>
-            <span className="text-sm sm:text-base font-sans font-medium text-slate-200">
+            <span className="text-base sm:text-lg font-sans font-medium text-slate-100">
               Google Play Books
             </span>
-            <span className="text-sm sm:text-base font-serif italic text-slate-200">
+            <span className="text-base sm:text-lg font-serif italic text-slate-100">
               Rakuten kobo
             </span>
           </div>
