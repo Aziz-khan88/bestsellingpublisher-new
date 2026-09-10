@@ -2,19 +2,31 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, Sparkles } from "lucide-react";
 import { openConsultationModal } from "@/components/v2/v2-consultation-modal";
+import { openSubscriptionPopup } from "@/components/v2/v2-subscription-popup";
 
 export function V2FloatingDock() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-[#0B1B36]/90 backdrop-blur-md text-white border border-cyan-400/40 rounded-full px-3 sm:px-4 py-2 sm:py-2.5 shadow-2xl text-xs font-semibold hover:border-cyan-400 transition-all">
       <button
         type="button"
+        onClick={() => openSubscriptionPopup()}
+        className="flex items-center gap-1.5 text-white hover:brightness-110 transition-all cursor-pointer bg-gradient-to-r from-[#00A3E0] to-[#0284C7] px-3 py-1.5 rounded-full shadow-[0_2px_10px_rgba(0,163,224,0.4)] active:scale-95 font-bold"
+      >
+        <Sparkles className="w-3.5 h-3.5 text-white" />
+        <span>Custom Package & Budget</span>
+      </button>
+
+      <div className="w-[1px] h-4 bg-slate-700 mx-1" />
+
+      <button
+        type="button"
         onClick={() => openConsultationModal()}
         className="flex items-center gap-1.5 text-cyan-300 hover:text-white transition-colors cursor-pointer bg-cyan-500/20 px-2.5 py-1 rounded-full border border-cyan-400/40 active:scale-95"
       >
         <span className="w-2 h-2 rounded-full bg-[#00E5FF] animate-ping" />
-        <span>⚡ Instant Quote</span>
+        <span>⚡ Quick Scope</span>
       </button>
 
       <div className="w-[1px] h-4 bg-slate-700 mx-1" />

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Selling Publisher — Publishing That Inspires</title>
+    <meta name="description"
+        content="From manuscript refinement to bestseller marketing and global distribution in 40,000+ bookstores worldwide.">
+
+    <!-- Google Fonts: Instrument Serif & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bsp: {
+                            bg: '#FAF7F2',
+                            creamDark: '#F5EFE6',
+                            border: '#EADFCF',
+                            text: '#161514',
+                            muted: '#635E59',
+                            cyan: '#00A3E0',
+                            brightCyan: '#40bee2',
+                            glowCyan: '#00E5FF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Instrument Serif"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .font-serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        /* Diagonal Arrow hover translation */
+        .group:hover .arrow-diagonal {
+            transform: translate(3px, -3px);
+        }
+
+        /* Live pulse animation */
+        @keyframes cyanPulse {
+            0%, 100% { opacity: 0.85; transform: scale(1); box-shadow: 0 0 8px rgba(0,163,224,0.4); }
+            50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 16px rgba(0,163,224,0.75); }
+        }
+        .live-cyan-pulse {
+            animation: cyanPulse 2.5s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EADFCF;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00A3E0;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#FAF7F2] text-[#161514] font-sans antialiased overflow-x-hidden min-h-screen flex flex-col justify-between selection:bg-[#00A3E0] selection:text-white relative">
+
+    <!-- ======================================================== -->
+    <!-- BACKGROUND VIDEO ARTWORK & GRADIENT OVERLAYS (LIGHT THEME)-->
+    <!-- ======================================================== -->
+    <div class="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <!-- Clean video artwork with 0.7x ambient motion -->
+        <video id="heroVideo" autoplay loop muted playsinline
+            class="w-full h-full object-cover object-right md:object-center opacity-90 transition-opacity duration-1000">
+            <source src="/process_of_book_publishing.mp4" type="video/mp4">
+            <source src="/creative_studio_clean.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- 1. Left Column Gradient: Seamless warm cream fade ensuring 100% text readability -->
+        <div
+            class="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/98 via-[#FAF7F2]/80 to-transparent w-full md:w-[62%] lg:w-[56%] xl:w-[50%] pointer-events-none z-[2]">
+        </div>
+
+        <!-- 2. Top Navigation Overlay (Vertical Top-Down Gradient for Header Contrast) -->
+        <div
+            class="absolute top-0 inset-x-0 h-44 sm:h-52 lg:h-60 bg-gradient-to-b from-[#FAF7F2] via-[#FAF7F2]/95 via-[#FAF7F2]/45 to-transparent pointer-events-none z-[3]">
+        </div>
+
+        <!-- 3. Bottom Overlay (Matching Bottom-Up Gradient) -->
+        <div
+            class="absolute bottom-0 inset-x-0 h-44 sm:h-52 lg:h-60 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/95 via-[#FAF7F2]/45 to-transparent pointer-events-none z-[3]">
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MAIN WRAPPER (Website's 1850px Max-Width Standard)       -->
+    <!-- ======================================================== -->
+    <div class="relative z-10 min-h-screen flex flex-col justify-between w-full max-w-[1850px] mx-auto px-6 sm:px-12 lg:px-16 py-6">
+
+        <!-- HEADER / NAVIGATION BAR -->
+        <header class="w-full flex items-center justify-between py-2 transition-all duration-300">
+            <!-- Brand Logo with Website's Cyan Accent -->
+            <a href="#" class="flex items-center gap-2 group select-none">
+                <span class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#161514] transition-colors group-hover:text-[#00A3E0]">
+                    Best Selling Publisher
+                </span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#00A3E0] inline-block transform transition-transform group-hover:scale-125 shadow-[0_0_10px_rgba(0,163,224,0.5)]"></span>
+            </a>
+
+            <!-- Navigation Links (Desktop) with Cyan Underline -->
+            <nav class="hidden md:flex items-center space-x-8 lg:space-x-12 font-medium text-[15px] text-[#635E59]">
+                <a href="#services"
+                    class="hover:text-[#00A3E0] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#00A3E0] hover:after:w-full after:transition-all after:duration-300">Services</a>
+                <a href="#how-it-works"
+                    class="hover:text-[#00A3E0] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#00A3E0] hover:after:w-full after:transition-all after:duration-300">How It Works</a>
+                <a href="#portfolio"
+                    class="hover:text-[#00A3E0] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#00A3E0] hover:after:w-full after:transition-all after:duration-300">Portfolio</a>
+                <a href="#distribution"
+                    class="hover:text-[#00A3E0] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#00A3E0] hover:after:w-full after:transition-all after:duration-300">Distribution</a>
+                <a href="#testimonials"
+                    class="hover:text-[#00A3E0] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#00A3E0] hover:after:w-full after:transition-all after:duration-300">Authors</a>
+            </nav>
+
+            <!-- Action CTA Button with Website's Cyan Glow -->
+            <div class="flex items-center gap-4">
+                <a href="#consultation"
+                    class="px-6 py-2.5 rounded-full border border-[#00A3E0] bg-[#00A3E0] hover:bg-[#0284C7] text-white text-sm font-bold tracking-tight transition-all duration-300 flex items-center gap-2 group shadow-[0_2px_12px_rgba(0,163,224,0.3)] hover:shadow-[0_4px_20px_rgba(0,163,224,0.45)] active:scale-95">
+                    <span>Free Consultation</span>
+                    <i data-lucide="arrow-right"
+                        class="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl border border-[#EADFCF] bg-white text-[#161514] hover:bg-[#F5EFE6] transition-colors shadow-xs"
+                    aria-label="Toggle Navigation">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- MOBILE MENU OVERLAY -->
+        <div id="mobileMenu"
+            class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between p-8 border-l border-[#EADFCF] bg-[#FAF7F2]">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-xl font-extrabold flex items-baseline text-[#161514]">
+                    Best Selling Publisher<span class="w-2.5 h-2.5 rounded-full bg-[#00A3E0] inline-block ml-1 shadow-[0_0_8px_#00A3E0]"></span>
+                </a>
+                <button id="closeMobileMenu" class="p-2 text-[#635E59] rounded-full hover:bg-white transition-colors">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6 text-2xl font-bold text-[#161514]">
+                <a href="#services" class="mobile-nav-link hover:text-[#00A3E0] transition-colors">Services</a>
+                <a href="#how-it-works" class="mobile-nav-link hover:text-[#00A3E0] transition-colors">How It Works</a>
+                <a href="#portfolio" class="mobile-nav-link hover:text-[#00A3E0] transition-colors">Portfolio</a>
+                <a href="#distribution" class="mobile-nav-link hover:text-[#00A3E0] transition-colors">Distribution</a>
+                <a href="#testimonials" class="mobile-nav-link hover:text-[#00A3E0] transition-colors">Authors</a>
+            </nav>
+            <div class="pt-6 border-t border-[#EADFCF]">
+                <a href="#consultation"
+                    class="w-full py-3.5 rounded-full bg-[#00A3E0] hover:bg-[#0284C7] text-white text-center font-bold block shadow-[0_4px_16px_rgba(0,163,224,0.35)]">
+                    Free Consultation →
+                </a>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- MAIN CONTENT (Light Warm Cream Theme)                    -->
+        <!-- ======================================================== -->
+        <main class="my-auto py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+            <!-- LEFT CONTENT COLUMN -->
+            <div class="lg:col-span-7 xl:col-span-6 space-y-8 z-10">
+
+                <!-- Category Tag with Cyan Live Pulse -->
+                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#EADFCF] shadow-xs w-fit">
+                    <span class="w-2 h-2 rounded-full bg-[#00A3E0] live-cyan-pulse"></span>
+                    <span class="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] text-[#00A3E0] uppercase">
+                        • WE WRITE • WE PUBLISH • WE GROW
+                    </span>
+                </div>
+
+                <!-- Main Display Headline -->
+                <h1 class="text-6xl sm:text-7xl lg:text-[88px] xl:text-[96px] leading-[0.95] tracking-tight font-extrabold text-[#161514]">
+                    Publishing That <br class="hidden sm:inline" />
+                    <span class="font-serif italic font-normal text-[#00A3E0] tracking-normal block sm:inline">
+                        Inspires.
+                    </span>
+                </h1>
+
+                <!-- Subheadline / Paragraph in Warm Muted Charcoal -->
+                <p class="text-base sm:text-lg text-[#635E59] max-w-md font-normal leading-relaxed">
+                    We guide authors through every step of the publishing journey—from manuscript refinement to printed bestsellers in readers&apos; hands worldwide.
+                </p>
+
+                <!-- Actions & Social Proof Stack in Single Row -->
+                <div class="pt-2 flex flex-wrap items-center gap-5 sm:gap-6">
+                    <!-- Primary CTA Pill Button in Cyan Gradient -->
+                    <button id="openVideoModal"
+                        class="group px-7 py-3.5 rounded-full bg-gradient-to-r from-[#00A3E0] via-[#0092cc] to-[#0077B6] hover:from-[#40bee2] hover:to-[#00A3E0] text-white text-sm sm:text-base font-bold transition-all duration-300 flex items-center gap-2.5 shadow-[0_4px_20px_rgba(0,163,224,0.35)] hover:shadow-[0_6px_28px_rgba(0,163,224,0.5)] active:scale-95 cursor-pointer">
+                        <span>See Our Work</span>
+                        <i data-lucide="arrow-up-right"
+                            class="arrow-diagonal w-4 h-4 transition-transform duration-300"></i>
+                    </button>
+
+                    <!-- User Avatars Social Proof -->
+                    <div class="flex items-center">
+                        <div class="flex -space-x-2.5 overflow-hidden">
+                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-[#FAF7F2] object-cover shadow-sm"
+                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                                alt="Published Author Elena">
+                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-[#FAF7F2] object-cover shadow-sm"
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
+                                alt="Published Author Marcus">
+                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-[#FAF7F2] object-cover shadow-sm"
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80"
+                                alt="Published Author Claire">
+                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-[#FAF7F2] object-cover shadow-sm"
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80"
+                                alt="Published Author David">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subtext Social Proof -->
+                <p class="text-xs sm:text-sm font-medium text-[#635E59]">
+                    Trusted by <span class="text-[#161514] font-bold">2,000+ authors</span> and publishers across 40,000+ global channels
+                </p>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Completely clear and open, showcasing artwork animation) -->
+            <div class="hidden lg:col-span-5 xl:col-span-6 lg:block relative pointer-events-none"></div>
+
+        </main>
+
+        <!-- FOOTER ACCENT BAR -->
+        <footer class="w-full pt-4 border-t border-[#EADFCF] flex flex-col sm:flex-row items-center justify-between text-xs text-[#635E59] gap-3">
+            <div class="flex items-center gap-4 sm:gap-6 flex-wrap">
+                <span>Editorial & Ghostwriting</span>
+                <span>•</span>
+                <span>Custom Cover Design</span>
+                <span>•</span>
+                <span>Global Amazon & IngramSpark Distribution</span>
+            </div>
+            <div>
+                <span>© 2026 Best Selling Publisher. 100% Royalties to Authors.</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- FULLSCREEN SHOWREEL VIDEO MODAL                          -->
+    <!-- ======================================================== -->
+    <div id="videoModal"
+        class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4 sm:p-8">
+        <button id="closeVideoModal"
+            class="absolute top-6 right-6 text-[#635E59] hover:text-[#161514] p-2.5 rounded-full bg-white/90 hover:bg-white transition-all cursor-pointer shadow-lg border border-[#EADFCF]"
+            aria-label="Close Modal">
+            <i data-lucide="x" class="w-7 h-7"></i>
+        </button>
+        <div
+            class="w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative border border-[#EADFCF]">
+            <video id="modalVideo" class="w-full h-full object-cover" controls>
+                <source src="/process_of_book_publishing.mp4" type="video/mp4">
+                <source src="/creative_studio_clean.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                heroVideo.playbackRate = 0.7;
+                heroVideo.addEventListener('play', () => {
+                    heroVideo.playbackRate = 0.7;
+                });
+            }
+
+            const openVideoModalBtn = document.getElementById('openVideoModal');
+            const closeVideoModalBtn = document.getElementById('closeVideoModal');
+            const videoModal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function openModal() {
+                if (!videoModal) return;
+                videoModal.classList.remove('opacity-0', 'pointer-events-none');
+                videoModal.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+                if (modalVideo) {
+                    modalVideo.currentTime = 0;
+                    modalVideo.play().catch(() => {});
+                }
+            }
+
+            function closeModal() {
+                if (!videoModal) return;
+                videoModal.classList.remove('opacity-100', 'pointer-events-auto');
+                videoModal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+                if (modalVideo) {
+                    modalVideo.pause();
+                }
+            }
+
+            if (openVideoModalBtn) openVideoModalBtn.addEventListener('click', openModal);
+            if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeModal);
+
+            if (videoModal) {
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) closeModal();
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    toggleMobileMenu(false);
+                }
+            });
+
+            function toggleMobileMenu(open) {
+                if (!mobileMenu) return;
+                if (open) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleMobileMenu(true));
+            if (closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', () => toggleMobileMenu(false));
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => toggleMobileMenu(false));
+            });
+        });
+    </script>
+</body>
+
+</html>
